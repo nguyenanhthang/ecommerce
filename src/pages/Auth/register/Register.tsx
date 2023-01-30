@@ -1,9 +1,13 @@
 import React from 'react';
+import { RegisterContainer } from './Login.styled';
+import FormRegister from './components/FormRegister/FormRegister';
 
-type Props = {};
-
-const Register = (props: Props) => {
-    return <div>Register</div>;
+const Register = () => {
+    return (
+        <RegisterContainer>
+            <FormRegister />
+        </RegisterContainer>
+    );
 };
 
 export default Register;

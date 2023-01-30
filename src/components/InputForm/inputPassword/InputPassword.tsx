@@ -10,10 +10,9 @@ const InputPassword: React.FC<InputIf> = ({ label }) => {
         event.preventDefault();
     };
     return (
-        <FormControl sx={{ width: '100%' }} variant='outlined'>
+        <FormControl sx={{ width: '100%' }}>
             <InputLabel htmlFor='outline d-adornment-password'>{label}</InputLabel>
             <OutlinedInput
-                id='outlined-adornment-password'
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position='end'>
@@ -27,7 +26,7 @@ const InputPassword: React.FC<InputIf> = ({ label }) => {
                         </IconButton>
                     </InputAdornment>
                 }
-                label='Password'
+                label={label}
             />
         </FormControl>
     );

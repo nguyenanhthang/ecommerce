@@ -1,55 +1,58 @@
 import React, { useState } from 'react';
 import {
-    DetailLogin,
-    FormLoginWrapper,
-    HeaderLogin,
-    LoginHeading,
+    FormRegisterWrapper,
+    DetailRegister,
+    HeaderRegister,
+    RegisterHeading,
     FormInput,
     FormWrapper,
-    LoginCheck,
-    ForgotPassword,
     WrapperLine,
     Line,
     Or,
-    LoginBySocial,
-    ButtonLoginWrapper,
-    ConvertRegister,
-    RegisterDescription,
-    RegisterConvert
-} from './FormLogin.styled';
+    RegisterBySocial,
+    ButtonRegisterWrapper,
+    ConvertLogin,
+    LoginDescription,
+    LoginConvert
+} from './FormRegister.styled';
 import Inputs from '../../../../../components/InputForm/Inputs';
 import { AccountCircle, LockPerson } from '@mui/icons-material';
-import { FormControlLabel, Checkbox } from '@mui/material';
 import ButtonComponent from '../../../../../components/Button/ButtonComponent';
 import InputPassword from '../../../../../components/InputForm/inputPassword/InputPassword';
 import IconsComponent from '../../../../../components/Icons/IconsComponent';
 import images from '../../../../../assets';
 import { useNavigate } from 'react-router-dom';
-const FormLogin = () => {
-    const [checked, setChecked] = useState(false);
+const FormRegister = () => {
     const Navigate = useNavigate();
-    const handleConvertRegister = () => {
-        Navigate('/register');
-    };
-    const handleLogin = () => {
-        Navigate('/home');
-    };
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setChecked(event.target.checked);
+    const handleConvertLogin = () => {
+        Navigate('/login');
     };
     return (
-        <FormLoginWrapper>
-            <LoginHeading>
-                <HeaderLogin variant='caption'>Login</HeaderLogin>
-                <DetailLogin variant='caption'>Enter Login details to get access</DetailLogin>
-            </LoginHeading>
+        <FormRegisterWrapper>
+            <RegisterHeading>
+                <HeaderRegister variant='caption'>Register</HeaderRegister>
+                <DetailRegister variant='caption'>Create your account to get full access</DetailRegister>
+            </RegisterHeading>
             <FormInput>
                 <FormWrapper>
                     <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
                     <Inputs
-                        id='Login'
+                        id='FullName'
                         placeholder=''
-                        label='Username Or Email Address'
+                        label='Full Name'
+                        value=''
+                        helperText=''
+                        type='text'
+                        width={100}
+                        height={100}
+                    />
+                </FormWrapper>
+                <FormWrapper>
+                    <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
+                    <Inputs
+                        id='EmailAddress'
+                        placeholder=''
+                        label='Email Address'
                         value=''
                         helperText=''
                         type='text'
@@ -61,20 +64,17 @@ const FormLogin = () => {
                     <LockPerson sx={{ fontSize: 35, mr: 1 }} />
                     <InputPassword label='Password' />
                 </FormWrapper>
+                <FormWrapper>
+                    <LockPerson sx={{ fontSize: 35, mr: 1 }} />
+                    <InputPassword label='Confirm Password Password' />
+                </FormWrapper>
             </FormInput>
-            <LoginCheck>
-                <FormControlLabel
-                    control={<Checkbox checked={checked} onChange={handleChange} name='keepLogin' />}
-                    label='Keep Me Logged In'
-                />
-                <ForgotPassword variant='caption'>Forgot Password?</ForgotPassword>
-            </LoginCheck>
             <WrapperLine>
                 <Line></Line>
                 <Or variant='caption'>Or</Or>
                 <Line></Line>
             </WrapperLine>
-            <LoginBySocial>
+            <RegisterBySocial>
                 <ButtonComponent
                     text='Facebook'
                     width={25}
@@ -93,21 +93,21 @@ const FormLogin = () => {
                     height={25}
                     icon={<IconsComponent LinkIcons={images.logoApple} width={20} height={20} />}
                 />
-            </LoginBySocial>
-            <ButtonLoginWrapper>
-                <ButtonComponent onClick={handleLogin} text='Login' width={100} height={100} color='#ffff' />
-            </ButtonLoginWrapper>
-            <ConvertRegister>
-                <RegisterDescription variant='caption'>
-                    Don’t have an account?{' '}
-                    <RegisterConvert onClick={handleConvertRegister} variant='caption'>
-                        Sign Up
-                    </RegisterConvert>{' '}
+            </RegisterBySocial>
+            <ButtonRegisterWrapper>
+                <ButtonComponent text='Register' width={100} height={100} color='#ffff' />
+            </ButtonRegisterWrapper>
+            <ConvertLogin>
+                <LoginDescription variant='caption'>
+                    Already have an account?{' '}
+                    <LoginConvert onClick={handleConvertLogin} variant='caption'>
+                        Login
+                    </LoginConvert>{' '}
                     here
-                </RegisterDescription>
-            </ConvertRegister>
-        </FormLoginWrapper>
+                </LoginDescription>
+            </ConvertLogin>
+        </FormRegisterWrapper>
     );
 };
 
-export default FormLogin;
+export default FormRegister;

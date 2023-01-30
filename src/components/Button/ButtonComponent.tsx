@@ -2,9 +2,9 @@ import React from 'react';
 import { ButtonIf } from '../../types/Component.type';
 import { ButtonWrapper, IconsWrapper, TexButton } from './ButtonComponent.styled';
 
-const ButtonComponent: React.FC<ButtonIf> = ({ icon, text, width, height, color }) => {
+const ButtonComponent: React.FC<ButtonIf> = ({ icon, text, width, height, color, onClick }) => {
     return (
-        <ButtonWrapper sx={{ minHeight: `${height}%`, minWidth: `${width}%` }}>
+        <ButtonWrapper onClick={onClick} sx={{ minHeight: `${height}%`, minWidth: `${width}%` }}>
             <IconsWrapper>{icon}</IconsWrapper>
             <TexButton variant='caption' sx={{ color: color }}>
                 {text}

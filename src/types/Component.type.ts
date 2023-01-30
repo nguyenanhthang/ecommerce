@@ -15,6 +15,7 @@ export interface ButtonIf {
     color?: string;
     width?: number;
     height?: number;
+    onClick?: () => void;
 }
 export interface IconIf {
     LinkIcons: string;

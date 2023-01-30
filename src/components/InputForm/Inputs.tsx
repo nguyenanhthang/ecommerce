@@ -5,7 +5,7 @@ import { InputWrapper } from './Inputs.styled';
 const Inputs: React.FC<InputIf> = ({ id, label, type, height, width, helperText, value, placeholder }) => {
     return (
         <InputWrapper
-            inputProps={{ style: { height, width } }}
+            inputProps={{ style: { height: `${height}`, width: `${width}` } }}
             id={id}
             label={label}
             type={type}

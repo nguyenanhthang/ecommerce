@@ -7,7 +7,4 @@ export const InputWrapper = styled(TextField)`
         font-size: small;
         line-height: normal;
     }
-    legend {
-        font-size: 0.6rem;
-    }
 `;
