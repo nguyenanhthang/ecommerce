@@ -15,10 +15,14 @@ export interface ButtonIf {
     color?: string;
     width?: number;
     height?: number;
+    border?: string;
     onClick?: () => void;
 }
 export interface IconIf {
     LinkIcons: string;
     width?: number;
     height?: number;
+}
+export interface SearchIf {
+    onClick?: () => void;
 }

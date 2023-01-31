@@ -3,9 +3,10 @@ import { Button, Typography } from '@mui/material';
 export const ButtonWrapper = styled(Button)`
     display: flex;
     align-content: center;
-    border: 1px solid #3333;
+    justify-content: center;
     padding-left: 5px;
     padding-right: 5px;
+    cursor: pointer;
 `;
 export const IconsWrapper = styled(Typography)`
     margin-right: 4px;

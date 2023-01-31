@@ -1,4 +1,4 @@
-import Home from '../pages/Main/Home';
+import Home from '../pages/Home/Home';
 import Register from '../pages/Auth/register/Register';
 import Login from '../pages/Auth/Login/Login';
 import config from './../config/config';

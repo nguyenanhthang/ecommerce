@@ -76,18 +76,21 @@ const FormRegister = () => {
             </WrapperLine>
             <RegisterBySocial>
                 <ButtonComponent
+                    border='1px solid #3333'
                     text='Facebook'
                     width={25}
                     height={25}
                     icon={<IconsComponent LinkIcons={images.logoFacebook} width={20} height={20} />}
                 />
                 <ButtonComponent
+                    border='1px solid #3333'
                     text='Google'
                     width={25}
                     height={25}
                     icon={<IconsComponent LinkIcons={images.logoGoogle} width={20} height={20} />}
                 />
                 <ButtonComponent
+                    border='1px solid #3333'
                     text='Apple'
                     width={25}
                     height={25}

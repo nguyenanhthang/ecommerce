@@ -25,14 +25,15 @@ import InputPassword from '../../../../../components/InputForm/inputPassword/Inp
 import IconsComponent from '../../../../../components/Icons/IconsComponent';
 import images from '../../../../../assets';
 import { useNavigate } from 'react-router-dom';
+import config from '../../../../../config/config';
 const FormLogin = () => {
     const [checked, setChecked] = useState(false);
     const Navigate = useNavigate();
     const handleConvertRegister = () => {
-        Navigate('/register');
+        Navigate(config.routes.register);
     };
     const handleLogin = () => {
-        Navigate('/home');
+        Navigate(config.routes.home);
     };
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
@@ -76,18 +77,21 @@ const FormLogin = () => {
             </WrapperLine>
             <LoginBySocial>
                 <ButtonComponent
+                    border='1px solid #3333'
                     text='Facebook'
                     width={25}
                     height={25}
                     icon={<IconsComponent LinkIcons={images.logoFacebook} width={20} height={20} />}
                 />
                 <ButtonComponent
+                    border='1px solid #3333'
                     text='Google'
                     width={25}
                     height={25}
                     icon={<IconsComponent LinkIcons={images.logoGoogle} width={20} height={20} />}
                 />
                 <ButtonComponent
+                    border='1px solid #3333'
                     text='Apple'
                     width={25}
                     height={25}
@@ -95,7 +99,7 @@ const FormLogin = () => {
                 />
             </LoginBySocial>
             <ButtonLoginWrapper>
-                <ButtonComponent onClick={handleLogin} text='Login' width={100} height={100} color='#ffff' />
+                <ButtonComponent onClick={handleLogin} text='Login' width={100} height={100} color='#ffff' border='' />
             </ButtonLoginWrapper>
             <ConvertRegister>
                 <RegisterDescription variant='caption'>
