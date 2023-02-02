@@ -24,20 +24,56 @@ import ButtonComponent from '../../../../../components/Button/ButtonComponent';
 import InputPassword from '../../../../../components/InputForm/inputPassword/InputPassword';
 import IconsComponent from '../../../../../components/Icons/IconsComponent';
 import images from '../../../../../assets';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import config from '../../../../../config/config';
+import { FormStateType, initForm } from '../../../../../types/Users.type';
+import { login } from '../../../../../api/auth';
+import { useMutation } from '@tanstack/react-query';
+import FullScreenLoader from '../../../../../layouts/Loading/Loading';
 const FormLogin = () => {
+    const [inPutLogin, setInputLogin] = useState<FormStateType>(initForm);
+    const [errorMessage] = useState<FormStateType>(initForm);
+    const [checkError] = useState<any>({ messageUsername: false, messageUserPassword: false });
     const [checked, setChecked] = useState(false);
-    const Navigate = useNavigate();
-    const handleConvertRegister = () => {
-        Navigate(config.routes.register);
+    const navigate = useNavigate();
+    const handleChangeLogin = (name: keyof FormStateType) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputLogin((prev) => ({ ...prev, [name]: event.target.value }));
     };
-    const handleLogin = () => {
-        Navigate(config.routes.home);
+    const handleConvertRegister = () => {
+        navigate(config.routes.register);
+    };
+    const validate = (data: any, messageError: string) => {
+        if (data.username === '') {
+            return (errorMessage.username = messageError) && (checkError.messageUsername = true);
+        } else if (data.password === '') {
+            return (errorMessage.password = messageError) && (checkError.messageUserPassword = true);
+        }
+        return (errorMessage.password = messageError) && (errorMessage.password = messageError);
+    };
+    const loginMutation = useMutation({
+        mutationFn: (body: FormStateType) => {
+            return login(body);
+        }
+    });
+    const handleLogin = async () => {
+        loginMutation.mutate(inPutLogin, {
+            onSuccess: () => {
+                navigate(config.routes.home);
+            },
+            onError: async (error: any) => {
+                validate(inPutLogin, error.response.data.message);
+            }
+        });
     };
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
+    if (localStorage.getItem('user')) {
+        return <Navigate to={config.routes.home} />;
+    }
+    if (loginMutation.isLoading) {
+        return <FullScreenLoader />;
+    }
     return (
         <FormLoginWrapper>
             <LoginHeading>
@@ -48,19 +84,27 @@ const FormLogin = () => {
                 <FormWrapper>
                     <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
                     <Inputs
-                        id='Login'
+                        error={checkError.messageUsername}
+                        id='username'
                         placeholder=''
                         label='Username Or Email Address'
-                        value=''
-                        helperText=''
+                        value={inPutLogin.username}
+                        helperText={errorMessage.username}
                         type='text'
                         width={100}
                         height={100}
+                        onChange={handleChangeLogin('username')}
                     />
                 </FormWrapper>
                 <FormWrapper>
                     <LockPerson sx={{ fontSize: 35, mr: 1 }} />
-                    <InputPassword label='Password' />
+                    <InputPassword
+                        error={checkError.messageUserPassword}
+                        helperText={errorMessage.username}
+                        value={inPutLogin.password}
+                        label='Password'
+                        onChange={handleChangeLogin('password')}
+                    />
                 </FormWrapper>
             </FormInput>
             <LoginCheck>

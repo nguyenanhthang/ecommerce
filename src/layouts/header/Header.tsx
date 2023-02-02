@@ -33,7 +33,7 @@ const Header = () => {
                     <ButtonComponent text='Help' icon={<PsychologyAlt sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Language' icon={<GTranslate sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent onClick={() => Navigate(config.routes.login)} text='Login' />
-                    <ButtonComponent onClick={() => Navigate(config.routes.register)} text='Register' />
+                    <ButtonComponent onClick={() => localStorage.removeItem('user')} text='Register' />
                 </NavTopEnd>
             </NavTop>
             <HeaderContainer>

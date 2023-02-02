@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { OutlinedInput, InputLabel, IconButton, InputAdornment, FormControl } from '@mui/material';
+import { OutlinedInput, InputLabel, IconButton, InputAdornment, FormControl, FormHelperText } from '@mui/material';
 import { InputIf } from '../../../types/Component.type';
 
-const InputPassword: React.FC<InputIf> = ({ label }) => {
+const InputPassword: React.FC<InputIf> = ({ label, onChange, value, helperText, error }) => {
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
     };
     return (
-        <FormControl sx={{ width: '100%' }}>
+        <FormControl error={error} sx={{ width: '100%' }}>
             <InputLabel htmlFor='outline d-adornment-password'>{label}</InputLabel>
             <OutlinedInput
+                onChange={onChange}
+                value={value}
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                     <InputAdornment position='end'>
@@ -28,6 +30,7 @@ const InputPassword: React.FC<InputIf> = ({ label }) => {
                 }
                 label={label}
             />
+            <FormHelperText>{helperText}</FormHelperText>
         </FormControl>
     );
 };

@@ -22,10 +22,45 @@ import InputPassword from '../../../../../components/InputForm/inputPassword/Inp
 import IconsComponent from '../../../../../components/Icons/IconsComponent';
 import images from '../../../../../assets';
 import { useNavigate } from 'react-router-dom';
+import config from '../../../../../config/config';
+import { useMutation } from '@tanstack/react-query';
+import { register } from '../../../../../api/auth';
+import { FormStateType, initForm, checkErrorType } from '../../../../../types/Users.type';
 const FormRegister = () => {
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
+    const [inPutRegister, setInputRegister] = useState<FormStateType>(initForm);
+    const [errorMessage] = useState<FormStateType>(initForm);
+    const [checkError] = useState<any>(checkErrorType);
+    // const validate = (data: any, messageError: string) => {
+    //     if (data.username === '') {
+    //         return (errorMessage.username = messageError) && (checkError.username = true);
+    //     } else if (data.password === '') {
+    //         return (errorMessage.username = messageError) && (checkError.password = true);
+    //     } else if (data.email === '') {
+    //         return (errorMessage.email = messageError) && (checkError.password = true);
+    //     }
+    //     return (errorMessage.username = messageError) && (errorMessage.username = messageError);
+    // };
+    const handleChangeRegister = (name: keyof FormStateType) => (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputRegister((prev) => ({ ...prev, [name]: event.target.value }));
+    };
+    const registerMutation = useMutation({
+        mutationFn: (data: any) => {
+            return register(data);
+        }
+    });
+    const handleRegister = async () => {
+        registerMutation.mutate(inPutRegister, {
+            onSuccess: () => {
+                navigate(config.routes.home);
+            },
+            onError: async (error: any) => {
+                //validate(inPutRegister, error.response.data.message);
+            }
+        });
+    };
     const handleConvertLogin = () => {
-        Navigate('/login');
+        navigate(config.routes.login);
     };
     return (
         <FormRegisterWrapper>
@@ -37,36 +72,82 @@ const FormRegister = () => {
                 <FormWrapper>
                     <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
                     <Inputs
-                        id='FullName'
+                        error={checkError.full_name}
+                        id='name'
                         placeholder=''
                         label='Full Name'
-                        value=''
-                        helperText=''
+                        value={inPutRegister.full_name}
+                        helperText={errorMessage.full_name}
                         type='text'
                         width={100}
                         height={100}
+                        onChange={handleChangeRegister('full_name')}
                     />
                 </FormWrapper>
                 <FormWrapper>
                     <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
                     <Inputs
-                        id='EmailAddress'
+                        error={checkError.username}
+                        id='userName'
                         placeholder=''
-                        label='Email Address'
-                        value=''
-                        helperText=''
+                        label='User Name'
+                        value={inPutRegister.username}
+                        helperText={errorMessage.username}
                         type='text'
                         width={100}
                         height={100}
+                        onChange={handleChangeRegister('username')}
+                    />
+                </FormWrapper>
+                <FormWrapper>
+                    <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
+                    <Inputs
+                        error={checkError.phone}
+                        id='phone'
+                        placeholder=''
+                        label='Phone'
+                        value={inPutRegister.phone}
+                        helperText={errorMessage.phone}
+                        type='number'
+                        width={100}
+                        height={100}
+                        onChange={handleChangeRegister('phone')}
+                    />
+                </FormWrapper>
+                <FormWrapper>
+                    <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
+                    <Inputs
+                        error={checkError.email}
+                        id='EmailAddress'
+                        placeholder=''
+                        label='Email Address'
+                        value={inPutRegister.email}
+                        helperText={errorMessage.email}
+                        type='email'
+                        width={100}
+                        height={100}
+                        onChange={handleChangeRegister('email')}
                     />
                 </FormWrapper>
                 <FormWrapper>
                     <LockPerson sx={{ fontSize: 35, mr: 1 }} />
-                    <InputPassword label='Password' />
+                    <InputPassword
+                        error={checkError.password}
+                        helperText={errorMessage.password}
+                        value={inPutRegister.password}
+                        label='Password'
+                        onChange={handleChangeRegister('password')}
+                    />
                 </FormWrapper>
                 <FormWrapper>
                     <LockPerson sx={{ fontSize: 35, mr: 1 }} />
-                    <InputPassword label='Confirm Password Password' />
+                    <InputPassword
+                        error={checkError.confirmPassword}
+                        helperText={errorMessage.confirmPassword}
+                        value={inPutRegister.confirmPassword}
+                        label='passwordConfirm'
+                        onChange={handleChangeRegister('confirmPassword')}
+                    />
                 </FormWrapper>
             </FormInput>
             <WrapperLine>
@@ -98,7 +179,7 @@ const FormRegister = () => {
                 />
             </RegisterBySocial>
             <ButtonRegisterWrapper>
-                <ButtonComponent text='Register' width={100} height={100} color='#ffff' />
+                <ButtonComponent onClick={handleRegister} text='Register' width={100} height={100} color='#ffff' />
             </ButtonRegisterWrapper>
             <ConvertLogin>
                 <LoginDescription variant='caption'>

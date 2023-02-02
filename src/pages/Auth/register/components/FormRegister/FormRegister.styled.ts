@@ -35,7 +35,7 @@ export const FormInput = styled(Box)`
 `;
 export const FormWrapper = styled(Box)`
     width: 100%;
-    margin-top: 4%;
+    margin-top: 6%;
     display: flex;
     align-items: center;
     .MuiFormControl-root {
@@ -56,7 +56,7 @@ export const FormWrapper = styled(Box)`
     }
 `;
 export const WrapperLine = styled(Box)`
-    margin-top: 4%;
+    margin-top: 6%;
     display: flex;
     align-items: center;
 `;
@@ -73,19 +73,19 @@ export const Or = styled(Typography)`
     font-size: 0.75rem;
 `;
 export const RegisterBySocial = styled(Box)`
-    margin-top: 4%;
+    margin-top: 6%;
     display: flex;
     justify-content: space-between;
 `;
 export const ButtonRegisterWrapper = styled(Box)`
-    margin-top: 4%;
+    margin-top: 6%;
     width: 100%;
     height: 38px;
     background: #ee4d2d;
     border-radius: 4px;
 `;
 export const ConvertLogin = styled(Box)`
-    margin-top: 4%;
+    margin-top: 6%;
     width: 100%;
 `;
 export const LoginDescription = styled(Typography)`

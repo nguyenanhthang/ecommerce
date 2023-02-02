@@ -2,16 +2,18 @@ import React from 'react';
 import { InputIf } from '../../types/Component.type';
 import { InputWrapper } from './Inputs.styled';
 
-const Inputs: React.FC<InputIf> = ({ id, label, type, height, width, helperText, value, placeholder }) => {
+const Inputs: React.FC<InputIf> = ({ id, label, type, ...otherProps }) => {
     return (
         <InputWrapper
-            inputProps={{ style: { height: `${height}`, width: `${width}` } }}
+            error={otherProps.error}
+            inputProps={{ style: { height: `${otherProps.height}`, width: `${otherProps.width}` } }}
             id={id}
             label={label}
             type={type}
-            helperText={helperText}
-            defaultValue={value}
-            placeholder={placeholder}
+            helperText={otherProps.helperText}
+            defaultValue={otherProps.value}
+            onChange={otherProps.onChange}
+            placeholder={otherProps.placeholder}
         />
     );
 };

@@ -8,6 +8,8 @@ export interface InputIf {
     icon?: string;
     value?: string;
     placeholder?: string;
+    error?: boolean;
+    onChange?: (e: any) => void;
 }
 export interface ButtonIf {
     icon?: JSX.Element | JSX.Element[];
