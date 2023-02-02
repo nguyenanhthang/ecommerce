@@ -9,7 +9,7 @@ export const login = async (data: any) => {
     }
     return res;
 };
-export const register = async (data: any) => {
+export const registerAuth = async (data: any) => {
     const url = config.routes.register;
     const res = await request.post(url, data);
     return res;

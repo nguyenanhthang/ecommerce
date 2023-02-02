@@ -1,5 +1,5 @@
 import React from 'react';
-import { RegisterContainer } from './Login.styled';
+import { RegisterContainer } from './Register.styled';
 import FormRegister from './components/FormRegister/FormRegister';
 
 const Register = () => {

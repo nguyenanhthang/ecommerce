@@ -9,6 +9,8 @@ export interface InputIf {
     value?: string;
     placeholder?: string;
     error?: boolean;
+    control?: any;
+    name: string;
     onChange?: (e: any) => void;
 }
 export interface ButtonIf {
@@ -18,6 +20,7 @@ export interface ButtonIf {
     width?: number;
     height?: number;
     border?: string;
+    type?: any;
     onClick?: () => void;
 }
 export interface IconIf {

@@ -1,19 +1,29 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
 import { InputIf } from '../../types/Component.type';
 import { InputWrapper } from './Inputs.styled';
-
-const Inputs: React.FC<InputIf> = ({ id, label, type, ...otherProps }) => {
+import { Controller, useFormContext } from 'react-hook-form';
+const Inputs: React.FC<InputIf> = ({ id, name, label, type, ...otherProps }) => {
+    const {
+        control,
+        formState: { errors }
+    } = useFormContext();
     return (
-        <InputWrapper
-            error={otherProps.error}
-            inputProps={{ style: { height: `${otherProps.height}`, width: `${otherProps.width}` } }}
-            id={id}
-            label={label}
-            type={type}
-            helperText={otherProps.helperText}
-            defaultValue={otherProps.value}
-            onChange={otherProps.onChange}
-            placeholder={otherProps.placeholder}
+        <Controller
+            defaultValue=''
+            control={control}
+            name={name}
+            render={({ field }) => (
+                <InputWrapper
+                    {...otherProps}
+                    {...field}
+                    inputProps={{ style: { height: `${otherProps.height}`, width: `${otherProps.width}` } }}
+                    label={label}
+                    type={type}
+                    error={!!errors[name]}
+                    helperText={errors[name] && `${errors[name]?.message}`}
+                />
+            )}
         />
     );
 };

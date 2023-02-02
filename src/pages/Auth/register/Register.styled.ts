@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
-import images from './../../../assets/index';
+import images from '../../../assets/index';
 export const RegisterContainer = styled(Box)`
     background-image: url(${images.backgroundLogin});
     background-size: cover;

@@ -27,41 +27,66 @@ import images from '../../../../../assets';
 import { Navigate, useNavigate } from 'react-router-dom';
 import config from '../../../../../config/config';
 import { FormStateType, initForm } from '../../../../../types/Users.type';
-import { login } from '../../../../../api/auth';
+import { getUser, login } from '../../../../../api/auth';
 import { useMutation } from '@tanstack/react-query';
 import FullScreenLoader from '../../../../../layouts/Loading/Loading';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import request from '../../../../../utils/request';
+const schema = yup.object().shape({
+    username: yup.string().required('Vui Lòng Nhập Tên'),
+    password: yup.string().required('Vui Lòng Nhập Mật Khẩu')
+});
+type LoginInput = yup.InferType<typeof schema>;
 const FormLogin = () => {
+    const methods: any = useForm<LoginInput>({
+        resolver: yupResolver(schema)
+    });
+    const {
+        setError,
+        reset,
+        handleSubmit,
+        formState: { isSubmitSuccessful, errors }
+    } = methods;
     const [inPutLogin, setInputLogin] = useState<FormStateType>(initForm);
     const [errorMessage] = useState<FormStateType>(initForm);
     const [checkError] = useState<any>({ messageUsername: false, messageUserPassword: false });
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate();
-    const handleChangeLogin = (name: keyof FormStateType) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputLogin((prev) => ({ ...prev, [name]: event.target.value }));
-    };
     const handleConvertRegister = () => {
         navigate(config.routes.register);
     };
-    const validate = (data: any, messageError: string) => {
-        if (data.username === '') {
-            return (errorMessage.username = messageError) && (checkError.messageUsername = true);
-        } else if (data.password === '') {
-            return (errorMessage.password = messageError) && (checkError.messageUserPassword = true);
-        }
-        return (errorMessage.password = messageError) && (errorMessage.password = messageError);
-    };
+    console.log(methods);
+    // const validate = (data: any, messageError: string) => {
+    //     if (data.username === '') {
+    //         return (errorMessage.username = messageError) && (checkError.messageUsername = true);
+    //     } else if (data.password === '') {
+    //         return (errorMessage.password = messageError) && (checkError.messageUserPassword = true);
+    //     }
+    //     return (errorMessage.password = messageError) && (errorMessage.password = messageError);
+    // };
     const loginMutation = useMutation({
         mutationFn: (body: FormStateType) => {
             return login(body);
         }
     });
-    const handleLogin = async () => {
-        loginMutation.mutate(inPutLogin, {
+    const handleLogin: SubmitHandler<LoginInput> = (value: any) => {
+        loginMutation.mutate(value, {
             onSuccess: () => {
                 navigate(config.routes.home);
             },
             onError: async (error: any) => {
-                validate(inPutLogin, error.response.data.message);
+                [
+                    {
+                        name: 'username',
+                        message: error.response.data.message
+                    },
+                    {
+                        name: 'password',
+                        message: error.response.data.message
+                    }
+                ].forEach(({ name, message }) => setError(name, { message }));
             }
         });
     };
@@ -80,33 +105,27 @@ const FormLogin = () => {
                 <HeaderLogin variant='caption'>Login</HeaderLogin>
                 <DetailLogin variant='caption'>Enter Login details to get access</DetailLogin>
             </LoginHeading>
-            <FormInput>
-                <FormWrapper>
-                    <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
-                    <Inputs
-                        error={checkError.messageUsername}
-                        id='username'
-                        placeholder=''
-                        label='Username Or Email Address'
-                        value={inPutLogin.username}
-                        helperText={errorMessage.username}
-                        type='text'
-                        width={100}
-                        height={100}
-                        onChange={handleChangeLogin('username')}
-                    />
-                </FormWrapper>
-                <FormWrapper>
-                    <LockPerson sx={{ fontSize: 35, mr: 1 }} />
-                    <InputPassword
-                        error={checkError.messageUserPassword}
-                        helperText={errorMessage.username}
-                        value={inPutLogin.password}
-                        label='Password'
-                        onChange={handleChangeLogin('password')}
-                    />
-                </FormWrapper>
-            </FormInput>
+            <FormProvider {...methods}>
+                <FormInput component='form' onSubmit={methods.handleSubmit(handleLogin)}>
+                    <FormWrapper>
+                        <AccountCircle sx={{ fontSize: 35, mr: 1 }} />
+                        <Inputs
+                            name='username'
+                            label='Username Or Email Address'
+                            type='text'
+                            width={100}
+                            height={100}
+                        />
+                    </FormWrapper>
+                    <FormWrapper>
+                        <LockPerson sx={{ fontSize: 35, mr: 1 }} />
+                        <InputPassword name='password' label='Password' />
+                    </FormWrapper>
+                    <ButtonLoginWrapper>
+                        <ButtonComponent type='submit' text='Login' width={100} height={100} color='#ffff' border='' />
+                    </ButtonLoginWrapper>
+                </FormInput>
+            </FormProvider>
             <LoginCheck>
                 <FormControlLabel
                     control={<Checkbox checked={checked} onChange={handleChange} name='keepLogin' />}
@@ -142,9 +161,6 @@ const FormLogin = () => {
                     icon={<IconsComponent LinkIcons={images.logoApple} width={20} height={20} />}
                 />
             </LoginBySocial>
-            <ButtonLoginWrapper>
-                <ButtonComponent onClick={handleLogin} text='Login' width={100} height={100} color='#ffff' border='' />
-            </ButtonLoginWrapper>
             <ConvertRegister>
                 <RegisterDescription variant='caption'>
                     Don’t have an account?{' '}

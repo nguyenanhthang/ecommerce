@@ -4,9 +4,11 @@ export const FormRegisterWrapper = styled(Box)`
     background: #ffff;
     position: absolute;
     min-width: 40%;
+    height: 100%;
     box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
     padding: 2% 4%;
     border-radius: 5px;
+    overflow: auto;
 `;
 export const RegisterHeading = styled(Box)`
     display: flex;
