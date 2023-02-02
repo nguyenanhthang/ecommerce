@@ -100,7 +100,7 @@ const FormLogin = () => {
                     <LockPerson sx={{ fontSize: 35, mr: 1 }} />
                     <InputPassword
                         error={checkError.messageUserPassword}
-                        helperText={errorMessage.username}
+                        helperText={errorMessage.password}
                         value={inPutLogin.password}
                         label='Password'
                         onChange={handleChangeLogin('password')}
