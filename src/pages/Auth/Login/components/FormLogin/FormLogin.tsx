@@ -49,23 +49,11 @@ const FormLogin = () => {
         handleSubmit,
         formState: { isSubmitSuccessful, errors }
     } = methods;
-    const [inPutLogin, setInputLogin] = useState<FormStateType>(initForm);
-    const [errorMessage] = useState<FormStateType>(initForm);
-    const [checkError] = useState<any>({ messageUsername: false, messageUserPassword: false });
     const [checked, setChecked] = useState(false);
     const navigate = useNavigate();
     const handleConvertRegister = () => {
         navigate(config.routes.register);
     };
-    console.log(methods);
-    // const validate = (data: any, messageError: string) => {
-    //     if (data.username === '') {
-    //         return (errorMessage.username = messageError) && (checkError.messageUsername = true);
-    //     } else if (data.password === '') {
-    //         return (errorMessage.password = messageError) && (checkError.messageUserPassword = true);
-    //     }
-    //     return (errorMessage.password = messageError) && (errorMessage.password = messageError);
-    // };
     const loginMutation = useMutation({
         mutationFn: (body: FormStateType) => {
             return login(body);
