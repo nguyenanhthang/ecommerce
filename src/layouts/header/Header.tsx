@@ -34,6 +34,15 @@ const Header = () => {
                     <ButtonComponent text='Language' icon={<GTranslate sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent onClick={() => Navigate(config.routes.login)} text='Login' />
                     <ButtonComponent onClick={() => localStorage.removeItem('user')} text='Register' />
+                    {/* {localStorage.get('user') ? (
+                        <>
+                            <IconsComponent LinkIcons='/static/images/avatar/1.jpg' width={35} height={35} />
+                        </>
+                    ) : (
+                        <>
+                            
+                        </>
+                    )} */}
                 </NavTopEnd>
             </NavTop>
             <HeaderContainer>
@@ -53,7 +62,6 @@ const Header = () => {
                             <ShoppingCart />
                         </StyledBadge>
                     </IconButton>
-                    {/* <IconsComponent LinkIcons='/static/images/avatar/1.jpg' width={35} height={35} /> */}
                 </NavAction>
             </HeaderContainer>
         </HeaderWrapper>

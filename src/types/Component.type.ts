@@ -31,3 +31,14 @@ export interface IconIf {
 export interface SearchIf {
     onClick?: () => void;
 }
+export interface UntreeIf {
+    icon: JSX.Element | JSX.Element[];
+    title: string;
+    detail: string;
+}
+
+export interface ImgIf {
+    textImg: string;
+    img: string;
+    onclick: () => void;
+}

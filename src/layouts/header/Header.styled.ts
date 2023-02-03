@@ -9,6 +9,7 @@ export const HeaderWrapper = styled(Box)`
     padding: 10px;
     display: flex;
     flex-direction: column;
+    z-index: 999;
 `;
 export const NavTop = styled(Container)`
     width: 100%;
@@ -40,7 +41,7 @@ export const LogoIcon = styled(Box)`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100%;
+    width: 126px;
     min-height: 25px;
 `;
 export const NavTitleWrapper = styled(Box)`

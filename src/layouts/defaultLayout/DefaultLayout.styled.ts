@@ -5,5 +5,6 @@ export const WrapperLayout = styled(Box)`
     flex-direction: column;
     width: 100vw;
     background: ##f5f5f5;
+    min-height: 100vh;
 `;
 export const ContainerLayout = styled(Box)``;

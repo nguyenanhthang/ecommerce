@@ -11,7 +11,7 @@ function App() {
         <Router>
             <div className='App'>
                 <Routes>
-                    <Route index element={<Navigate to={'/login'} />} />
+                    <Route index element={<Navigate to={'/home'} />} />
                     {PublishRouter.map((route, index) => {
                         let Layout = DefaultLayout;
                         if (route.layout === null) {

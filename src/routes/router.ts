@@ -7,5 +7,8 @@ const PublishRouter: Array<Router> = [
     { path: config.routes.login, component: Login, layout: null },
     { path: config.routes.register, component: Register, layout: null }
 ];
-const PrivateRouter: Array<Router> = [{ path: config.routes.home, component: Home }];
+const PrivateRouter: Array<Router> = [
+    { path: config.routes.home, component: Home },
+    { path: config.routes.profile, component: Home }
+];
 export { PrivateRouter, PublishRouter };
