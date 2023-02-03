@@ -3,15 +3,16 @@ import { Box, Typography, Container } from '@mui/material';
 import images from './../../assets/index';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 export const HeaderWrapper = styled(Box)`
+    position: fixed;
     width: 100%;
-    background-color: #ffff;
+    background-color: transparent;
     padding: 10px;
     display: flex;
     flex-direction: column;
 `;
 export const NavTop = styled(Container)`
     width: 100%;
-    background: #ffff;
+    background: transparent;
     height: 30px;
     margin-bottom: 10px;
     display: flex;
