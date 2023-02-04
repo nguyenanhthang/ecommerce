@@ -1,37 +1,28 @@
-import { styled } from '@mui/material/styles';
+import styled from '@emotion/styled/macro';
 import { Box, Typography, CardMedia } from '@mui/material';
 
-export const CardWrapper = styled(Box)`
-    margin: 10px 6px;
-    width: 217px;
-    height: 384px;
-    cursor: pointer;
-    transition: 0.8s;
-    &:hover {
-        transition: 0.8s;
-        transform: scale(1.03, 1.03);
-        border: 1px solid #ee4d2d;
-    }
-    box-shadow: 0 0.0625rem 0.125rem 0 rgb(0 0 0 / 20%);
-`;
+
 export const ImageProduct = styled(Box)`
     width: 100%;
     height: 274px;
+`;
+
+export const ImgAction = styled(Box)`
+    margin-top: -40px;
+    position: absolute;
+    opacity: 0;
+    visibility: hide;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    height: 40px;
+    background-color: rgba(29, 37, 71, 0.5);
 `;
 export const ImageLink = styled(CardMedia)`
     width: 100%;
     height: 100%;
     object-fit: contain;
     position: relative;
-`;
-export const ImgAction = styled(Box)`
-    margin-top: -40px;
-    position: absolute;
-    width: 100%;
-    display: flex;
-    align-content: center;
-    height: 40px;
-    background-color: rgba(29, 37, 71, 0.5);
 `;
 export const CardBody = styled(Box)`
     display: flex;
@@ -51,4 +42,23 @@ export const CardRating = styled(Box)`
 `;
 export const CardAction = styled(Box)`
     display: flex;
+`;
+export const CardWrapper = styled(Box)`
+    margin: 10px 6px;
+    width: 217px;
+    height: 384px;
+    cursor: pointer;
+    transition: 0.8s;
+    box-shadow: 0 0.0625rem 0.125rem 0 rgb(0 0 0 / 20%);
+    &:hover {
+        transform: scale(1.03, 1.03);
+        border: 1px solid #ee4d2d;
+    }
+    &:hover {
+        ${ImgAction} {
+            transition-delay: 0.2s;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
 `;

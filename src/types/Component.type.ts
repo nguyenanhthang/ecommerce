@@ -49,3 +49,12 @@ export interface CardProductIFf {
     productCost: number;
     productRating?: any;
 }
+
+export interface BannerIF {
+    nameBanner: string;
+    nameButton: string;
+    onClick?: () => void;
+    imageBanner: string;
+    height: number;
+    width: number;
+}

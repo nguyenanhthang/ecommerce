@@ -15,7 +15,7 @@ export const registerAuth = async (data: any) => {
     return res;
 };
 export const getUser = async () => {
-    const url = '';
+    const url = config.routes.profile;
     const res = await request.get<User>(url);
     return res;
 };

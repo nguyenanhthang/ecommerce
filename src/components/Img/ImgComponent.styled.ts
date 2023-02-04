@@ -44,6 +44,7 @@ export const TextImg = styled.span`
     text-transform: uppercase;
     font-family: 'Cinzel', serif;
     color: #ffffff;
+    font-size: 2.5rem;
 `;
 export const TextImgWrap = styled.div`
     display: flex;

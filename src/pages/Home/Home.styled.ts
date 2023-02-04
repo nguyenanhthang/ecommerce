@@ -1,11 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { Box, ImageList, Container, Typography } from '@mui/material';
 export const HomeContainer = styled(Box)`
-    height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
-    overflow: auto;
 `;
 export const UntreeContainer = styled(Box)`
     display: flex;
@@ -40,4 +38,11 @@ export const TitleNewProduct = styled(Typography)`
     font-style: normal;
     font-weight: 600;
     line-height: 1.2;
+`;
+export const AboutUsHomeWrapper = styled(Container)`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 40px 0;
 `;

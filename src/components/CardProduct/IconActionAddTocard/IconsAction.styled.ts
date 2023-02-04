@@ -7,6 +7,7 @@ export const IconsActionWrapper = styled(Box)`
     width: 100%;
     height: 100%;
     justify-content: space-evenly;
+    position: absolute;
 `;
 export const IconsActions = styled(Box)`
     background: #ffff;
@@ -19,7 +20,7 @@ export const IconsActions = styled(Box)`
 `;
 export const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
-        color: '#ff6d75'
+        color: '#ff3d47'
     },
     '& .MuiRating-iconHover': {
         color: '#ff3d47'

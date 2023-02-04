@@ -19,9 +19,16 @@ import { ShoppingCart, CircleNotifications, PsychologyAlt, Phone, GTranslate } f
 import ButtonComponent from './../../components/Button/ButtonComponent';
 import { useNavigate } from 'react-router-dom';
 import config from '../../config/config';
+import { useQuery } from '@tanstack/react-query';
+import { getUser } from '../../api/auth';
 
 const Header = () => {
     const Navigate = useNavigate();
+    const userQuery = useQuery({
+        queryKey: ['user'],
+        queryFn: () => getUser()
+    });
+    console.log(userQuery);
     return (
         <HeaderWrapper>
             <NavTop>
@@ -32,17 +39,16 @@ const Header = () => {
                     <ButtonComponent text='Notification' icon={<CircleNotifications sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Help' icon={<PsychologyAlt sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Language' icon={<GTranslate sx={{ fontSize: '1rem' }} />} />
-                    <ButtonComponent onClick={() => Navigate(config.routes.login)} text='Login' />
-                    <ButtonComponent onClick={() => localStorage.removeItem('user')} text='Register' />
-                    {/* {localStorage.get('user') ? (
+                    {userQuery.data ? (
                         <>
                             <IconsComponent LinkIcons='/static/images/avatar/1.jpg' width={35} height={35} />
                         </>
                     ) : (
                         <>
-                            
+                            <ButtonComponent onClick={() => Navigate(config.routes.login)} text='Login' />
+                            <ButtonComponent onClick={() => localStorage.removeItem('user')} text='Register' />
                         </>
-                    )} */}
+                    )}
                 </NavTopEnd>
             </NavTop>
             <HeaderContainer>

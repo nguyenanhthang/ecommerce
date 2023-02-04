@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from './components/banner/Banner';
 import {
+    AboutUsHomeWrapper,
     BannerHome,
     HomeContainer,
     NewProductContainer,
@@ -14,6 +15,7 @@ import images from '../../assets/index';
 import ImgComponent from '../../components/Img/ImgComponent';
 import { useNavigate } from 'react-router-dom';
 import NewProduct from './components/ProductNew/NewProduct';
+import BannerRelative from './components/BannerRalative/BannerRelative';
 const itemData = [
     {
         img: images.clockImg,
@@ -74,6 +76,29 @@ const Home = () => {
                 </TitleNewProduct>
                 <NewProduct />
             </NewProductContainer>
+            <AboutUsHomeWrapper>
+                <BannerRelative
+                    width={100}
+                    height={40}
+                    imageBanner={images.bannerFooter1}
+                    nameBanner='collection houses our first-ever'
+                    nameButton='About Us'
+                />
+                <BannerRelative
+                    width={48.2}
+                    height={40}
+                    imageBanner={images.bannerFooter2}
+                    nameBanner='collection houses our first-ever'
+                    nameButton='Read more'
+                />
+                <BannerRelative
+                    width={48.2}
+                    height={40}
+                    imageBanner={images.bannerFooter3}
+                    nameBanner='collection houses our first-ever'
+                    nameButton='Read more'
+                />
+            </AboutUsHomeWrapper>
         </HomeContainer>
     );
 };
