@@ -1,11 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Banner from './components/banner/Banner';
-import { BannerHome, HomeContainer, Popular, UntreeContainer } from './Home.styled';
+import {
+    BannerHome,
+    HomeContainer,
+    NewProductContainer,
+    Popular,
+    TitleNewProduct,
+    UntreeContainer
+} from './Home.styled';
 import Untree from './components/Untree/Untree';
 import { LocalShippingOutlined, SecurityOutlined, HistoryOutlined } from '@mui/icons-material';
 import images from '../../assets/index';
 import ImgComponent from '../../components/Img/ImgComponent';
 import { useNavigate } from 'react-router-dom';
+import NewProduct from './components/ProductNew/NewProduct';
 const itemData = [
     {
         img: images.clockImg,
@@ -26,13 +34,6 @@ const itemData = [
 ];
 const Home = () => {
     const navigate = useNavigate();
-    // useEffect(() => {
-    //     const handleScroll = () => {
-
-    //     };
-    //     window.addEventListener('scroll', handleScroll);
-    // }, []);
-    console.log(window.scrollY);
     return (
         <HomeContainer>
             <BannerHome>
@@ -65,6 +66,14 @@ const Home = () => {
                     />
                 ))}
             </Popular>
+            <NewProductContainer>
+                <TitleNewProduct>
+                    New
+                    <br />
+                    Arrival
+                </TitleNewProduct>
+                <NewProduct />
+            </NewProductContainer>
         </HomeContainer>
     );
 };

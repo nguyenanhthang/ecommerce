@@ -42,3 +42,10 @@ export interface ImgIf {
     img: string;
     onclick: () => void;
 }
+
+export interface CardProductIFf {
+    productImg: string;
+    productName: string;
+    productCost: number;
+    productRating?: any;
+}
