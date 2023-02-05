@@ -16,6 +16,7 @@ import ImgComponent from '../../components/Img/ImgComponent';
 import { useNavigate } from 'react-router-dom';
 import NewProduct from './components/ProductNew/NewProduct';
 import BannerRelative from './components/BannerRalative/BannerRelative';
+import Footer from 'layouts/footer/Footer';
 const itemData = [
     {
         img: images.clockImg,
@@ -99,6 +100,7 @@ const Home = () => {
                     nameButton='Read more'
                 />
             </AboutUsHomeWrapper>
+            <Footer />
         </HomeContainer>
     );
 };

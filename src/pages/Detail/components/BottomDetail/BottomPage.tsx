@@ -51,8 +51,8 @@ const BottomPage = () => {
         <BottomPageWrapper sx={{ width: '100%', height: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                 <Tabs value={value} onChange={handleChange} aria-label='basic tabs example'>
-                    <Tab label='PRODUCT DESCRIPTION' {...a11yProps(0)} />
-                    <Tab label='Review' {...a11yProps(1)} />
+                    <Tab label='Review' {...a11yProps(0)} />
+                    <Tab label='PRODUCT DESCRIPTION' {...a11yProps(1)} />
                     <Tab label='Item Three' {...a11yProps(2)} />
                 </Tabs>
             </Box>

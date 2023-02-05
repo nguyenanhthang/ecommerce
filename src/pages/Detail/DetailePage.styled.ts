@@ -1,9 +1,11 @@
 import { styled } from '@mui/material/styles';
-import { Box, ImageList, Container, Typography } from '@mui/material';
+import { Box, Container } from '@mui/material';
 export const DetailContainer = styled(Box)`
     width: 100vw;
     display: flex;
     flex-direction: column;
+    height: 100vh;
+    overflow: auto;
 `;
 export const BannerDetail = styled(Box)`
     width: 100%;
@@ -18,6 +20,11 @@ export const DetailBody = styled(Container)`
     gap: 30px;
 `;
 export const ReviewDetail = styled(Container)`
+    margin-top: 20px;
+    width: 100%;
+    height: 633px;
+`;
+export const RelativeProductDetailWrapper = styled(Container)`
     margin-top: 20px;
     width: 100%;
     height: 633px;

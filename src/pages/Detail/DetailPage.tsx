@@ -1,10 +1,18 @@
 import React from 'react';
-import { BannerDetail, DetailBody, DetailContainer, ReviewDetail } from './DetailePage.styled';
+import {
+    BannerDetail,
+    DetailBody,
+    DetailContainer,
+    RelativeProductDetailWrapper,
+    ReviewDetail
+} from './DetailePage.styled';
 import BannerRelative from 'pages/Home/components/BannerRalative/BannerRelative';
 import images from './../../assets/index';
 import ImageProduct from './components/LeftDetail/ImageProduct';
 import ChooseOption from './components/RightDetaile/ChooseOption';
 import BottomPage from './components/BottomDetail/BottomPage';
+import RelatedProduct from './components/ReLatedProduct/RelatedProduct';
+import Footer from 'layouts/footer/Footer';
 
 const DetailPage = () => {
     return (
@@ -25,6 +33,10 @@ const DetailPage = () => {
             <ReviewDetail>
                 <BottomPage />
             </ReviewDetail>
+            <RelativeProductDetailWrapper>
+                <RelatedProduct />
+            </RelativeProductDetailWrapper>
+            <Footer />
         </DetailContainer>
     );
 };

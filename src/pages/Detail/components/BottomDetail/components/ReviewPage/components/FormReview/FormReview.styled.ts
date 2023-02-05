@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { Box, ImageList, Container, Typography, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 
 export const FormReviewWrapper = styled(Box)`
     min-width: 43%;

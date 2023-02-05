@@ -55,8 +55,8 @@ export const ButtonBannerWrap = styled(Box)`
     align-content: center;
     justify-content: center;
     transition: 0.8s;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    //visibility: hidden;
     z-index: 999;
 `;
 export const TextBanner = styled(Typography)`
@@ -81,13 +81,13 @@ export const TextBannerWrap = styled(Box)`
     justify-content: center;
     height: 85px;
     transition: 0.5s;
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    //visibility: hidden;
     z-index: 2;
 `;
 export const BannerWrapper = styled(Box)`
     margin-top: 10px;
-    &:hover {
+    /* &:hover {
         ${ButtonBannerWrap} {
             transition-delay: 0.2s;
             opacity: 1;
@@ -100,5 +100,5 @@ export const BannerWrapper = styled(Box)`
             opacity: 1;
             visibility: visible;
         }
-    }
+    } */
 `;

@@ -6,7 +6,12 @@ import images from '../../../../assets/index';
 const NewProduct = () => {
     return (
         <NewProductWrapper>
-            <CardProduct productImg={images.clockImg} productName='asdasdsdfsdfsdfdsfsdfsdf' productCost={0} productRating={3} />
+            <CardProduct
+                productImg={images.clockImg}
+                productName='asdasdsdfsdfsdfdsfsdfsdf'
+                productCost={0}
+                productRating={3}
+            />
             <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
             <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
             <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
