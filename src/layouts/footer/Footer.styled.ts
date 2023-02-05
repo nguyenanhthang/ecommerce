@@ -1,8 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
 export const ContainerFooter = styled(Box)`
+    z-index: 999;
     padding: 80px 60px;
-    background: #1D2547;
+    background: #1d2547;
     @media (max-width: 1000px) {
         padding: 70px 30px;
     }

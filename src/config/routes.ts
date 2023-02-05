@@ -3,7 +3,7 @@ export const routes = {
     register: '/register',
     home: '/home',
     profile: '/profile',
-    aboutUs: '/aboutus'
-    // product: '/product',
-    // detail: '/product/detail'
+    aboutUs: '/aboutus',
+    product: '/product',
+    detail: '/product/detail'
 };

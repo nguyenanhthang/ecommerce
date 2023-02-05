@@ -9,6 +9,7 @@ const images: any = {
     banner3: require('./imgs/banner3.png'),
     banner4: require('./imgs/banner4.png'),
     banner5: require('./imgs/banner5.png'),
+    banner7: require('./imgs/banner7.jpg'),
     clockImg: require('./imgs/clock.png'),
     glassesImg: require('./imgs/glasses.png'),
     jacketImg: require('./imgs/jacket.png'),
@@ -18,6 +19,7 @@ const images: any = {
     bannerFooter3: require('./imgs/bannerFooter3.png'),
     twitter: require('./imgs/twiter.png'),
     youtube: require('./imgs/youtube.png'),
-    instagram: require('./imgs/instagram.png')
+    instagram: require('./imgs/instagram.png'),
+    userReview1: require('./imgs/review1.png')
 };
 export default images;

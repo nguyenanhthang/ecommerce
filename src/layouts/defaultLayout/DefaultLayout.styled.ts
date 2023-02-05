@@ -8,4 +8,6 @@ export const WrapperLayout = styled(Box)`
     height: 100vh;
     overflow: auto;
 `;
-export const ContainerLayout = styled(Box)``;
+export const ContainerLayout = styled(Box)`
+    margin-top: 100px;
+`;

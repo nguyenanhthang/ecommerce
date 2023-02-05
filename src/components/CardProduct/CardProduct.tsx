@@ -5,6 +5,7 @@ import {
     CardCost,
     CardRating,
     CardTitle,
+    CardTitleRaing,
     CardWrapper,
     ImageLink,
     ImageProduct,
@@ -46,10 +47,9 @@ const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, produc
                 <CardTitle>name: {productName}</CardTitle>
                 <CardCost>Coast: ₫{productCost}</CardCost>
                 <CardRating>
-                    <CardTitle>Rating:</CardTitle>
+                    <CardTitleRaing>Rating:</CardTitleRaing>
                     <Box
                         sx={{
-                            width: 200,
                             display: 'flex',
                             alignItems: 'center'
                         }}

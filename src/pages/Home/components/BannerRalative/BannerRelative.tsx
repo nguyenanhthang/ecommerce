@@ -7,7 +7,8 @@ import {
     Banner,
     BannerContainer,
     TextBanner,
-    TextBannerWrap
+    TextBannerWrap,
+    TextParamBanner
 } from './BannerRelative.styled';
 import { Box } from '@mui/system';
 const BannerRelative: React.FC<BannerIF> = ({ ...otherProps }) => {
@@ -24,7 +25,11 @@ const BannerRelative: React.FC<BannerIF> = ({ ...otherProps }) => {
                         <TextBanner>{otherProps.nameBanner}</TextBanner>
                     </TextBannerWrap>
                     <ButtonBannerWrap>
-                        <ButtonBanner onClick={otherProps.onClick}>{otherProps.nameButton}</ButtonBanner>
+                        {otherProps.paramBanner ? (
+                            <TextParamBanner>{otherProps.paramBanner}</TextParamBanner>
+                        ) : (
+                            <ButtonBanner onClick={otherProps.onClick}>{otherProps.nameButton}</ButtonBanner>
+                        )}
                     </ButtonBannerWrap>
                     <TextBannerWrap>
                         <Box></Box>

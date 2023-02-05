@@ -28,6 +28,15 @@ const Banner = () => {
             <SwiperSlide>
                 <BannerRelative
                     nameButton='Explore Now'
+                    nameBanner='Fashion for Upcoming Winter'
+                    width={100}
+                    height={100}
+                    imageBanner={images.banner7}
+                />
+            </SwiperSlide>
+            <SwiperSlide>
+                <BannerRelative
+                    nameButton='Explore Now'
                     nameBanner='The New Way To Display Product by Colorlib'
                     width={100}
                     height={100}
@@ -58,7 +67,7 @@ const Banner = () => {
                     nameBanner='The New Way To Display Product by Colorlib'
                     width={100}
                     height={100}
-                    imageBanner={images.banner4}
+                    imageBanner={images.banner5}
                 />
             </SwiperSlide>
             <SwiperSlide>

@@ -24,7 +24,7 @@ export interface ButtonIf {
     onClick?: () => void;
 }
 export interface IconIf {
-    LinkIcons: string;
+    LinkIcons?: string;
     width?: number;
     height?: number;
 }
@@ -52,9 +52,10 @@ export interface CardProductIFf {
 
 export interface BannerIF {
     nameBanner: string;
-    nameButton: string;
+    nameButton?: string;
     onClick?: () => void;
     imageBanner: string;
     height: number;
     width: number;
+    paramBanner?: string;
 }
