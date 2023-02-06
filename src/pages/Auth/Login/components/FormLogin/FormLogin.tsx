@@ -81,7 +81,7 @@ const FormLogin = () => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
     };
-    if (localStorage.getItem('user')) {
+    if (localStorage.getItem('token')) {
         return <Navigate to={config.routes.home} />;
     }
     if (loginMutation.isLoading) {

@@ -1,5 +1,5 @@
-import { styled } from '@mui/material/styles';
-import { Box, Typography, Container } from '@mui/material';
+import styled from '@emotion/styled/macro';
+import { Box, Typography, Container, List, ListItem } from '@mui/material';
 import images from './../../assets/index';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 export const HeaderWrapper = styled(Box)`
@@ -81,7 +81,58 @@ export const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
     '& .MuiBadge-badge': {
         right: -3,
         top: 13,
-        border: `2px solid ${theme.palette.background.paper}`,
+        border: `2px solid`,
         padding: '0 8px'
     }
 }));
+
+export const NavListUser = styled(List)`
+    display: none;
+    position: absolute;
+    content: '';
+    top: calc(100% + 12px);
+    list-style: none;
+    padding: 8px 0;
+    right: 0;
+    background-color: #ffff;
+    width: 160px;
+    z-index: 2;
+    box-shadow: 0 2px 10px #ccc;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    ::before {
+        content: '';
+        border-width: 18px 25px;
+        border-style: solid;
+        border-color: transparent transparent #ffff transparent;
+        position: absolute;
+        right: 14px;
+        top: -30px;
+    }
+`;
+export const InfoWrapper = styled(Box)`
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    cursor: pointer;
+    position: relative;
+    &:hover {
+        ${NavListUser} {
+            display: block;
+        }
+    }
+`;
+export const NavListItem = styled(ListItem)`
+    display: inline-flex;
+    font-size: 1.4 rem;
+    padding: 0.8rem 1.3rem;
+    gap: 10px;
+    &:hover {
+        background-color: #8acbe9;
+    }
+`;
+export const InfoUserName = styled(Typography)`
+    margin-left: 5px;
+`;

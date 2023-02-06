@@ -32,7 +32,7 @@ export const CardBody = styled(Box)`
     width: 100%;
 `;
 export const CardTitle = styled(Typography)`
-    width: 100%
+    width: 100%;
     line-height: 1.7;
     text-overflow: ellipsis;
     white-space: nowrap;
