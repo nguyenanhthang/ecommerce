@@ -28,7 +28,7 @@ export const CardBody = styled(Box)`
     flex-direction: column;
     align-items: flex-start;
     font-size: 15px;
-    margin: 10px 15px;
+    padding: 10px 15px;
     width: 100%;
 `;
 export const CardTitle = styled(Typography)`
@@ -64,7 +64,7 @@ export const CardAction = styled(Box)`
 export const CardWrapper = styled(Box)`
     overflow: hidden;
     margin: 10px 6px;
-    width: 217px;
+    width: 210px;
     height: 384px;
     cursor: pointer;
     transition: 0.8s;

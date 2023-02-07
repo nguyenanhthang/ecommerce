@@ -7,5 +7,5 @@ export const WrapperLayout = styled(Box)`
     background: ##f5f5f5;
 `;
 export const ContainerLayout = styled(Box)`
-    margin-top: 100px;
+    margin-top: 120px;
 `;

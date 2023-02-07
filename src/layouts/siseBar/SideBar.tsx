@@ -36,7 +36,6 @@ const DataSideBar: any = [
 ];
 const SideBar = () => {
     const [open, setOpen] = React.useState(true);
-
     const handleClick = () => {
         setOpen(!open);
     };
@@ -46,7 +45,7 @@ const SideBar = () => {
                 {DataSideBar.map((el: any, i: number) => {
                     return (
                         <>
-                            <ListItemButton onClick={handleClick}>
+                            <ListItemButton sx={{ p: 0 }} onClick={handleClick}>
                                 <ListItemIcon>{/* <InboxIcon /> */}</ListItemIcon>
                                 <ListItemText primary={el.title} />
                                 {open ? <ExpandLess /> : <ExpandMore />}

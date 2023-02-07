@@ -55,6 +55,7 @@ const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, produc
                         }}
                     >
                         <Rating
+                            sx={{ fontSize: '1.2rem' }}
                             name='hover-feedback'
                             value={value}
                             precision={1}
