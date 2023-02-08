@@ -13,10 +13,9 @@ type Props = {
 };
 const IconsAction: React.FC<Props> = ({ id }) => {
     const navigate = useNavigate();
-    
     return (
         <IconsActionWrapper>
-            <IconsActions onClick={() => navigate(`/product/detail/${id}`)}>
+            <IconsActions onClick={() => navigate(`/detail/${id}`)}>
                 <LocalMall />
             </IconsActions>
             <IconsActions>

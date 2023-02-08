@@ -11,7 +11,7 @@ export const Search = styled(Box)(({ theme }) => ({
     marginRight: theme.spacing(1),
     marginLeft: 0,
     width: '100%',
-    height: '40%',
+    height: '100%',
     [theme.breakpoints.up('sm')]: {
         marginLeft: theme.spacing(1),
         width: 'auto'

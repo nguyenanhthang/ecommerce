@@ -35,7 +35,6 @@ function getLabelText(value: number) {
 const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, productCost, productRating, id }) => {
     const [value, setValue] = React.useState<number | null>(productRating);
     const [hover, setHover] = React.useState(-1);
-    console.log(id);
     return (
         <CardWrapper>
             <ImageProduct>

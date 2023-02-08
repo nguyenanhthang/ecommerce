@@ -18,9 +18,8 @@ import { useParams } from 'react-router-dom';
 
 const DetailPage = () => {
     const userId: any = useParams();
-    console.log(userId);
     const getDetailProduct = useDetail(userId.id);
-    console.log(getDetailProduct);
+    //console.log(getDetailProduct);
     return (
         <DetailContainer>
             <BannerDetail>
@@ -33,14 +32,14 @@ const DetailPage = () => {
                 />
             </BannerDetail>
             <DetailBody>
-                <ImageProduct />
-                <ChooseOption />
+                <ImageProduct getDetailProduct={getDetailProduct?.data?.data} />
+                <ChooseOption getDetailProduct={getDetailProduct?.data?.data} />
             </DetailBody>
             <ReviewDetail>
                 <BottomPage />
             </ReviewDetail>
             <RelativeProductDetailWrapper>
-                <RelatedProduct />
+                <RelatedProduct getDetailProduct={getDetailProduct?.data} />
             </RelativeProductDetailWrapper>
             <Footer />
         </DetailContainer>

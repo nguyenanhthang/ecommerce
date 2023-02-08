@@ -5,6 +5,6 @@ export const routes = {
     profile: '/profile',
     aboutUs: '/aboutus',
     product: '/product',
-    detail: '/product/detail/:id',
+    detail: 'detail/:id',
     cartPage: '/cartpage'
 };

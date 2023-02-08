@@ -22,6 +22,7 @@ export interface ButtonIf {
     height?: number;
     border?: string;
     type?: any;
+    colorButton?: string;
     onClick?: () => void;
 }
 export interface IconIf {

@@ -1,10 +1,11 @@
 import React from 'react';
-import ProductsCart from './components/ProductsCart';
-import { CardPageWrap } from './CardPage.styled';
+import ProductsCart from './components/ProductCart/ProductsCart';
+import { CardPageWrap, CardPageContainer } from './CartPage.styled';
 import { BannerDetail } from 'pages/Detail/DetailePage.styled';
 import BannerRelative from 'pages/Home/components/BannerRalative/BannerRelative';
 import images from '../../assets/index';
 import { Container } from '@mui/material';
+import SearchCartPage from './components/SearchCart/SearchCartPage';
 
 const CardPage = () => {
     return (
@@ -18,9 +19,10 @@ const CardPage = () => {
                     height={50}
                 />
             </BannerDetail>
-            <Container>
+            <CardPageContainer>
                 <ProductsCart />
-            </Container>
+                <SearchCartPage />
+            </CardPageContainer>
         </CardPageWrap>
     );
 };

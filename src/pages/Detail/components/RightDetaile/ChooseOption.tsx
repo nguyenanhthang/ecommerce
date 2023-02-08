@@ -35,9 +35,12 @@ const options = [
     { label: "Schindler's List", year: 1993 },
     { label: 'Pulp Fiction', year: 1994 }
 ];
+type Props = {
+    getDetailProduct: any;
+};
 
-const ChooseOption = () => {
-    let [count, setCount] = React.useState(0);
+const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
+    let [count, setCount] = React.useState(1);
 
     function incrementCount() {
         count = count + 1;
@@ -51,7 +54,7 @@ const ChooseOption = () => {
     return (
         <ChooseOptionWrapper>
             <ChooseOptionHeader>
-                <ChooseOptionTitle variant='h6'>Name: Nike Flex Run Tracksuit</ChooseOptionTitle>
+                <ChooseOptionTitle variant='h6'>Name: {getDetailProduct?.product_name}</ChooseOptionTitle>
                 <ChooseOptionRating>
                     <Rating
                         name='simple-controlled'
@@ -62,13 +65,9 @@ const ChooseOption = () => {
                     />
                 </ChooseOptionRating>
                 <ChooseOptionStock variant='h6'>Stock: Available In Stock</ChooseOptionStock>
-                <ChooseOptionCost>Cost: $45.05</ChooseOptionCost>
+                <ChooseOptionCost>Cost: {getDetailProduct?.attribute_product[0]?.pivot.price}</ChooseOptionCost>
             </ChooseOptionHeader>
-            <ChooseOptionDescription>
-                Curabitur semper varius lectus sed consequat. Nam accumsan dapibus sem, sed lobortis nisi porta vitae.
-                Ut quam tortor, facilisis nec laoreet consequat, malesuada a massa. Proin pretium tristique leo et
-                imperdiet.
-            </ChooseOptionDescription>
+            <ChooseOptionDescription>{getDetailProduct?.product_short_desc}</ChooseOptionDescription>
             <ChooseOptionColorWrapper>
                 <ChooseOptionColorTitle variant='h4'>
                     COLOR <ImportTant variant='caption'>*</ImportTant>

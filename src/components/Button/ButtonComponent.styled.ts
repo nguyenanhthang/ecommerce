@@ -14,4 +14,7 @@ export const IconsWrapper = styled(Typography)`
 export const TexButton = styled(Typography)`
     color: #000;
     font-size: 0.8rem;
+    &:hover {
+        color: black;
+    }
 `;

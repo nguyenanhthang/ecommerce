@@ -5,7 +5,6 @@ export const DetailContainer = styled(Box)`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: auto;
 `;
 export const BannerDetail = styled(Box)`
     width: 100%;
