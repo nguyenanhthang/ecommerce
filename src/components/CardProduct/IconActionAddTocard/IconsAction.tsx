@@ -3,13 +3,20 @@ import { IconsActionWrapper, IconsActions, StyledRating } from './IconsAction.st
 import { LocalMall, OpenInNew } from '@mui/icons-material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import config from 'config/config';
-const IconsAction = () => {
+import { useMutation } from '@tanstack/react-query';
+import { productsDetail } from '../../../api/Product';
+import { useDetail } from '../../../Hook/useProduct';
+type Props = {
+    id: any;
+};
+const IconsAction: React.FC<Props> = ({ id }) => {
     const navigate = useNavigate();
+    
     return (
         <IconsActionWrapper>
-            <IconsActions onClick={() => navigate(config.routes.detail)}>
+            <IconsActions onClick={() => navigate(`/product/detail/${id}`)}>
                 <LocalMall />
             </IconsActions>
             <IconsActions>

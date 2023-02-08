@@ -23,13 +23,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormInput, FormWrapper } from '../../../Auth/Login/components/FormLogin/FormLogin.styled';
 import Inputs from '../../../../components/InputForm/Inputs';
 import ButtonComponent from 'components/Button/ButtonComponent';
-type Props = {};
+type Props = {
+    getUser: any;
+};
 const schema = yup.object().shape({
     username: yup.string().required('Vui Lòng Nhập Tên'),
-    password: yup.string().required('Vui Lòng Nhập Mật Khẩu')
+    full_name: yup.string().required('Vui Lòng Nhập Mật Khẩu')
 });
 type LoginInput = yup.InferType<typeof schema>;
-const MyProfile = (props: Props) => {
+const MyProfile: React.FC<Props> = ({ getUser }) => {
     const methods: any = useForm<LoginInput>({
         resolver: yupResolver(schema)
     });
@@ -55,15 +57,29 @@ const MyProfile = (props: Props) => {
                 <FormProvider {...methods}>
                     <FormInput component='form'>
                         <FormWrapper>
-                            <Inputs name='username' label='Tên đăng nhập' type='text' width={100} height={100} />
+                            <Inputs
+                                name='username'
+                                label='Tên đăng nhập'
+                                type='text'
+                                width={100}
+                                height={100}
+                                value={getUser ? getUser.data.data.username : ''}
+                            />
                         </FormWrapper>
                         <FormWrapper>
-                            <Inputs name='username' label='Tên' type='text' width={100} height={100} />
+                            <Inputs
+                                name='Full_name'
+                                label='Tên'
+                                type='text'
+                                width={100}
+                                height={100}
+                                value={getUser ? getUser.data.data.full_name : ''}
+                            />
                         </FormWrapper>
                     </FormInput>
                 </FormProvider>
-                <EmailProfile>Email: asdasdasd</EmailProfile>
-                <PhoneProfile>Phone: 23423423423</PhoneProfile>
+                <EmailProfile>Email: {getUser.data.data.email}</EmailProfile>
+                <PhoneProfile>Phone: {getUser.data.data.phone}</PhoneProfile>
                 <SexWrapperProfile>
                     <FormControl>
                         <FormLabel id='demo-row-radio-buttons-group-label'>Gender</FormLabel>

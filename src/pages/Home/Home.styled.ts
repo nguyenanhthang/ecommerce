@@ -1,11 +1,10 @@
 import { styled } from '@mui/material/styles';
-import { Box, ImageList, Container, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 export const HomeContainer = styled(Box)`
     width: 100vw;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: auto;
 `;
 export const UntreeContainer = styled(Box)`
     display: flex;

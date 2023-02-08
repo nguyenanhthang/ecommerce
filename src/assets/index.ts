@@ -20,6 +20,7 @@ const images: any = {
     twitter: require('./imgs/twiter.png'),
     youtube: require('./imgs/youtube.png'),
     instagram: require('./imgs/instagram.png'),
-    userReview1: require('./imgs/review1.png')
+    userReview1: require('./imgs/review1.png'),
+    cartProduct1: require('./imgs/cartProduct1.png')
 };
 export default images;

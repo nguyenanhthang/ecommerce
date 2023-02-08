@@ -34,6 +34,7 @@ import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import request from '../../../../../utils/request';
+import ButtonLoading from 'layouts/Loading/ButtonLoading';
 const schema = yup.object().shape({
     username: yup.string().required('Vui Lòng Nhập Tên'),
     password: yup.string().required('Vui Lòng Nhập Mật Khẩu')
@@ -84,9 +85,6 @@ const FormLogin = () => {
     if (localStorage.getItem('token')) {
         return <Navigate to={config.routes.home} />;
     }
-    if (loginMutation.isLoading) {
-        return <FullScreenLoader />;
-    }
     return (
         <FormLoginWrapper>
             <LoginHeading>
@@ -110,7 +108,15 @@ const FormLogin = () => {
                         <InputPassword name='password' label='Password' />
                     </FormWrapper>
                     <ButtonLoginWrapper>
-                        <ButtonComponent type='submit' text='Login' width={100} height={100} color='#ffff' border='' />
+                        <ButtonLoading
+                            loading={loginMutation.isLoading}
+                            type='submit'
+                            text='Login'
+                            width={100}
+                            height={100}
+                            color='#ffff'
+                            border=''
+                        />
                     </ButtonLoginWrapper>
                 </FormInput>
             </FormProvider>

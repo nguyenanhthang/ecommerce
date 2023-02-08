@@ -5,7 +5,9 @@ import { ExpandLess, ExpandMore, Create } from '@mui/icons-material';
 import IconsComponent from 'components/Icons/IconsComponent';
 import ButtonComponent from 'components/Button/ButtonComponent';
 
-type Props = {};
+type Props = {
+    getUser: any;
+};
 const DataSideBar: any = [
     {
         title: 'Tài Khoản Của tôi',
@@ -26,7 +28,7 @@ const DataSideBar: any = [
         ]
     }
 ];
-const SideBarProfile = (props: Props) => {
+const SideBarProfile: React.FC<Props> = ({ getUser }) => {
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
         setOpen(!open);
@@ -34,9 +36,9 @@ const SideBarProfile = (props: Props) => {
     return (
         <SideBarProfileWrapper>
             <InfoProfile>
-                <IconsComponent LinkIcons='' />
+                <IconsComponent LinkIcons={getUser ? getUser.data.data.full_name : ''} />
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'baseline', marginLeft: '5px' }}>
-                    <InfoNameProfile>Name: oasdkjopasd</InfoNameProfile>
+                    <InfoNameProfile>Name: {getUser ? getUser.data.data.full_name : ''}</InfoNameProfile>
                     <ButtonComponent icon={<Create />} type='button' text='Edit Profile' border='none' />
                 </Box>
             </InfoProfile>

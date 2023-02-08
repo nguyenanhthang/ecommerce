@@ -1,5 +1,5 @@
 import styled from '@emotion/styled/macro';
-import { Box, Typography, Container, List, ListItem } from '@mui/material';
+import { Box, Typography, Container, List, ListItem, IconButton } from '@mui/material';
 import images from './../../assets/index';
 import Badge, { BadgeProps } from '@mui/material/Badge';
 export const HeaderWrapper = styled(Box)`
@@ -135,4 +135,32 @@ export const NavListItem = styled(ListItem)`
 `;
 export const InfoUserName = styled(Typography)`
     margin-left: 5px;
+`;
+export const CardList = styled(Box)`
+    position: absolute;
+    top: calc(100% + 14px);
+    right: -4px;
+    background-color: #ffff;
+    width: 400px;
+    display: none;
+    ::after {
+        content: '';
+        cursor: pointer;
+        position: absolute;
+        right: 5px;
+        top: -26px;
+        border-width: 18px 20px;
+        border-style: solid;
+        border-color: transparent transparent #ffff transparent;
+    }
+`;
+export const CartHeader = styled(IconButton)`
+    position: relative;
+    display: inline-block;
+    padding: 0 8px;
+    &:hover {
+        ${CardList} {
+            display: block;
+        }
+    }
 `;

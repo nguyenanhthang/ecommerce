@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router-dom';
 import NewProduct from './components/ProductNew/NewProduct';
 import BannerRelative from './components/BannerRalative/BannerRelative';
 import Footer from 'layouts/footer/Footer';
+import { useProduct } from '../../Hook/useProduct';
 const itemData = [
     {
         img: images.clockImg,
@@ -37,6 +38,7 @@ const itemData = [
 ];
 const Home = () => {
     const navigate = useNavigate();
+    const getProducts = useProduct();
     return (
         <HomeContainer>
             <BannerHome>
@@ -75,7 +77,7 @@ const Home = () => {
                     <br />
                     Arrival
                 </TitleNewProduct>
-                <NewProduct />
+                <NewProduct getProducts={getProducts} />
             </NewProductContainer>
             <AboutUsHomeWrapper>
                 <BannerRelative

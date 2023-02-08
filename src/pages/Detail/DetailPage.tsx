@@ -13,8 +13,14 @@ import ChooseOption from './components/RightDetaile/ChooseOption';
 import BottomPage from './components/BottomDetail/BottomPage';
 import RelatedProduct from './components/ReLatedProduct/RelatedProduct';
 import Footer from 'layouts/footer/Footer';
+import { useDetail } from '../../Hook/useProduct';
+import { useParams } from 'react-router-dom';
 
 const DetailPage = () => {
+    const userId: any = useParams();
+    console.log(userId);
+    const getDetailProduct = useDetail(userId.id);
+    console.log(getDetailProduct);
     return (
         <DetailContainer>
             <BannerDetail>

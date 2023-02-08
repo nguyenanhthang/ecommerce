@@ -32,15 +32,16 @@ const labels: {
 function getLabelText(value: number) {
     return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
 }
-const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, productCost, productRating }) => {
+const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, productCost, productRating, id }) => {
     const [value, setValue] = React.useState<number | null>(productRating);
     const [hover, setHover] = React.useState(-1);
+    console.log(id);
     return (
         <CardWrapper>
             <ImageProduct>
                 <ImageLink image={`${productImg}`} />
                 <ImgAction>
-                    <IconsAction />
+                    <IconsAction id={id} />
                 </ImgAction>
             </ImageProduct>
             <CardBody>

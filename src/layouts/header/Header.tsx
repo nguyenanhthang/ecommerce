@@ -14,7 +14,9 @@ import {
     InfoUserName,
     InfoWrapper,
     NavListUser,
-    NavListItem
+    NavListItem,
+    CartHeader,
+    CardList
 } from './Header.styled';
 import SearchComponent from '../../components/Search/SearchComponent';
 import IconsComponent from '../../components/Icons/IconsComponent';
@@ -27,29 +29,32 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getUser, logoutUser } from '../../api/auth';
 import request from 'utils/request';
 import { AccountBox, ShoppingCartCheckout, Logout } from '@mui/icons-material';
+import Cart from './components/cart/Cart';
+import FullScreenLoader from 'layouts/Loading/Loading';
+import { useUser } from 'Hook/useUser';
 const MenuItem: any = [
     { title: 'Profile', to: config.routes.profile, icon: <AccountBox /> },
-    { title: 'Detail Cart', to: config.routes.detailCart, icon: <ShoppingCartCheckout /> }
+    { title: 'Detail Cart', to: config.routes.cartPage, icon: <ShoppingCartCheckout /> }
 ];
 const Header = () => {
     const navigate = useNavigate();
-    const userQuery = useQuery({
-        queryKey: ['getUsers'],
-        queryFn: () => getUser()
-    });
+    const getUser: any = useUser();
     const LogoutUserMutation = useMutation({
         mutationFn: () => {
             return logoutUser();
         }
     });
     const HandleLogoutUser = () => {
-        LogoutUserMutation.mutate(userQuery.data.data, {
+        LogoutUserMutation.mutate(getUser.data.data, {
             onSuccess: () => {
                 localStorage.removeItem('token');
                 navigate(config.routes.login);
             }
         });
     };
+    if (getUser.isLoading) {
+        return <FullScreenLoader />;
+    }
     return (
         <HeaderWrapper>
             <NavTop>
@@ -60,10 +65,10 @@ const Header = () => {
                     <ButtonComponent text='Notification' icon={<CircleNotifications sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Help' icon={<PsychologyAlt sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Language' icon={<GTranslate sx={{ fontSize: '1rem' }} />} />
-                    {userQuery.data?.data ? (
-                        <InfoWrapper>
-                            <IconsComponent LinkIcons={userQuery.data.data.avatar} width={20} height={20} />
-                            <InfoUserName>{userQuery.data.data.full_name}</InfoUserName>
+                    {!getUser.isLoading && getUser.data && getUser.data.data ? (
+                        <InfoWrapper key={getUser.data.data.id}>
+                            <IconsComponent LinkIcons={getUser.data.data.avatar} width={20} height={20} />
+                            <InfoUserName>{getUser.data.data.full_name}</InfoUserName>
                             <NavListUser>
                                 {MenuItem.map((el: any, i: number) => {
                                     return (
@@ -103,11 +108,14 @@ const Header = () => {
                 </NavTitleWrapper>
                 <NavAction>
                     <SearchComponent />
-                    <IconButton aria-label='cart'>
+                    <CartHeader aria-label='cart'>
                         <StyledBadge badgeContent={4} color='secondary'>
                             <ShoppingCart />
                         </StyledBadge>
-                    </IconButton>
+                        <CardList>
+                            <Cart />
+                        </CardList>
+                    </CartHeader>
                 </NavAction>
             </HeaderContainer>
         </HeaderWrapper>

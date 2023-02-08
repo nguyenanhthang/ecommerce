@@ -14,6 +14,7 @@ export interface InputIf {
     onChange?: (e: any) => void;
 }
 export interface ButtonIf {
+    loading?: any;
     icon?: JSX.Element | JSX.Element[];
     text?: string;
     color?: string;
@@ -48,6 +49,7 @@ export interface CardProductIFf {
     productName: string;
     productCost: number;
     productRating?: any;
+    id?: number;
 }
 
 export interface BannerIF {

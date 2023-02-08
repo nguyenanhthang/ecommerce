@@ -3,13 +3,15 @@ import { DescriptionMyAvatar, MyAvatarContainer, MyAvatarWrapper } from './MyAva
 import IconsComponent from 'components/Icons/IconsComponent';
 import ButtonComponent from 'components/Button/ButtonComponent';
 
-type Props = {};
+type Props = {
+    getUser: any;
+};
 
-const MyAvatar = (props: Props) => {
+const MyAvatar: React.FC<Props> = ({ getUser }) => {
     return (
         <MyAvatarWrapper>
             <MyAvatarContainer>
-                <IconsComponent LinkIcons='' />
+                <IconsComponent LinkIcons={getUser ? getUser.data.data.full_name : ''} />
                 <ButtonComponent
                     type='button'
                     width={100}

@@ -8,10 +8,11 @@ import images from 'assets';
 import Tool from './components/Tool/Tool';
 import { ProductPagination } from './components/Product/Products.styled';
 import { Pagination } from '@mui/material';
+import { useProduct } from 'Hook/useProduct';
 
-type Props = {};
-
-const Product = (props: Props) => {
+const Product = () => {
+    const getProducts = useProduct();
+    console.log(getProducts);
     return (
         <ProductWrapper>
             <ProductBanner>
@@ -29,7 +30,7 @@ const Product = (props: Props) => {
                     <ProductTool>
                         <Tool />
                     </ProductTool>
-                    <Products />
+                    <Products getProducts={getProducts} />
                 </ProductContent>
             </ProductContainer>
             <ProductPagination>

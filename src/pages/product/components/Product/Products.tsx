@@ -1,54 +1,29 @@
 import React from 'react';
-import { ProductPagination, ProductsContainer, ProductsWrapper } from './Products.styled';
+import { ProductsContainer, ProductsWrapper } from './Products.styled';
 import CardProduct from 'components/CardProduct/CardProduct';
-import images from 'assets';
-import { Pagination } from '@mui/material';
+import { useMutation } from '@tanstack/react-query';
 
-type Props = {};
+type Props = {
+    getProducts: any;
+};
 
-const Products = (props: Props) => {
+const Products: React.FC<Props> = ({ getProducts }) => {
     return (
         <ProductsWrapper>
             <ProductsContainer>
-                <CardProduct
-                    productImg={images.clockImg}
-                    productName='asdasdsdfsdfsdfdsfsdfsdf'
-                    productCost={0}
-                    productRating={3}
-                />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
-                <CardProduct productImg={images.clockImg} productName='asdasd' productCost={0} productRating={3} />
+                {getProducts?.data?.data?.data.map((product: any) => {
+                    return (
+                        <CardProduct
+                            key={product.id}
+                            productImg={'http://hieu.fresher.ameladev.click/' + product.product_image}
+                            productName={product.product_name}
+                            productCost={product.attribute_product[0]?.pivot.price}
+                            productRating={3}
+                            id={product.id}
+                        />
+                    );
+                })}
             </ProductsContainer>
-            
         </ProductsWrapper>
     );
 };

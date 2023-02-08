@@ -33,6 +33,7 @@ export const SelectFilter = styled(Box)`
 
 export const FilterSectionPrice = styled(Typography)`
     font-size: 1.2rem;
+    font-weight: 100;
     cursor: pointer;
 `;
 export const FilterList = styled(List)`
