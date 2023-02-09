@@ -14,19 +14,21 @@ import {
     Images
 } from './CardCart.styled';
 
-type Props = {};
+type Props = {
+    dataCart: any;
+};
 
-const CardCart = (props: Props) => {
+const CardCart: React.FC<Props> = ({ dataCart }) => {
     return (
         <CardCartWrap>
-            <Images image='https://img.abaha.vn/photos/resized/320x/73-1574413855-myohui.png' />
+            <Images image={'http://hieu.fresher.ameladev.click/' + dataCart?.product_image} />
             <CardCartInfo>
                 <CardCartHead>
-                    <CardCartHeadTitle variant='caption'>
-                        Set dưỡng trắng trị nám Whoo Gong Jin Hyang Seol 5 món
-                    </CardCartHeadTitle>
+                    <CardCartHeadTitle variant='caption'>{dataCart?.product_name}</CardCartHeadTitle>
                     <CardCartHeadPriceWrap>
-                        <CardCartHeadPrice variant='caption'>20000$</CardCartHeadPrice>
+                        <CardCartHeadPrice variant='caption'>
+                            {dataCart.attribute_product[0]?.pivot.price}
+                        </CardCartHeadPrice>
                         <CardCartHeadMultiply variant='caption'>x</CardCartHeadMultiply>
                         <CardCartHeadQuantity variant='caption'>1</CardCartHeadQuantity>
                     </CardCartHeadPriceWrap>

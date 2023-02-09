@@ -29,7 +29,8 @@ export const HeaderCartListItem = styled(ListItem)`
 `;
 export const ButtonCard = styled(Box)`
     padding: 10px 10px;
-    font-size: 1rem;
-    background: cornflowerblue;
-    color: #ffff;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;

@@ -32,3 +32,7 @@ html *::-webkit-scrollbar-track {
 // body{
 //     overflow-y: hidden;
 // }
+html{
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}

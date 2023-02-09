@@ -11,7 +11,6 @@ export const Images = styled(CardMedia)`
     width: 42px;
     height: 42px;
     margin: 12px;
-    border: 1px solid blue;
 `;
 export const CardCartInfo = styled(Box)`
     width: 100%;

@@ -32,11 +32,13 @@ import { AccountBox, ShoppingCartCheckout, Logout } from '@mui/icons-material';
 import Cart from './components/cart/Cart';
 import FullScreenLoader from 'layouts/Loading/Loading';
 import { useUser } from 'Hook/useUser';
+import { useAppSelector } from '../../app/hooks';
 const MenuItem: any = [
     { title: 'Profile', to: config.routes.profile, icon: <AccountBox /> },
     { title: 'Detail Cart', to: config.routes.cartPage, icon: <ShoppingCartCheckout /> }
 ];
 const Header = () => {
+    const dataCart = useAppSelector((state) => state.product.CartProduct);
     const navigate = useNavigate();
     const getUser: any = useUser();
     const LogoutUserMutation = useMutation({
@@ -52,9 +54,6 @@ const Header = () => {
             }
         });
     };
-    if (getUser.isLoading) {
-        return <FullScreenLoader />;
-    }
     return (
         <HeaderWrapper>
             <NavTop>
@@ -109,7 +108,7 @@ const Header = () => {
                 <NavAction>
                     <SearchComponent />
                     <CartHeader aria-label='cart'>
-                        <StyledBadge badgeContent={4} color='secondary'>
+                        <StyledBadge badgeContent={dataCart ? dataCart.length : 0} color='secondary'>
                             <ShoppingCart />
                         </StyledBadge>
                         <CardList>

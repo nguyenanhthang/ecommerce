@@ -15,10 +15,14 @@ import { Grid } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { CartButtonWrap } from './ProductsCart.styled';
 import ButtonComponent from 'components/Button/ButtonComponent';
-type Props = {};
-const ProductsCart = (props: Props) => {
+import { useNavigate } from 'react-router-dom';
+import config from 'config/config';
+type Props = {
+    dataCart: any;
+};
+const ProductsCart: React.FC<Props> = ({ dataCart }) => {
     let [count, setCount] = React.useState(1);
-
+    const navigate = useNavigate();
     function incrementCount() {
         count = count + 1;
         setCount(count);
@@ -43,99 +47,48 @@ const ProductsCart = (props: Props) => {
                     <ProductCartTitle>Action</ProductCartTitle>
                 </Grid>
             </Grid>
-            <Grid container sx={{ m: 0 }}>
-                <Grid item xs={6}>
-                    <ItemProduct>
-                        <Images image='static/images/avatar/1.jpg' />
-                        <ProductItem>
-                            <ProductCartName>asdasd</ProductCartName>
-                            <ProductCartCost>sdadsa</ProductCartCost>
-                        </ProductItem>
-                    </ItemProduct>
-                </Grid>
-                <Grid item xs={2.5}>
-                    <ItemProduct>
-                        <ProductCartSizeButtonNode>
-                            <ProductCartButton sx={{ left: '55%' }} onClick={incrementCount}>
-                                +
-                            </ProductCartButton>
-                            <ProductCartCount>{count}</ProductCartCount>
-                            <ProductCartButton onClick={decrementCount}>-</ProductCartButton>
-                        </ProductCartSizeButtonNode>
-                    </ItemProduct>
-                </Grid>
-                <Grid item xs={2.5}>
-                    <ItemProduct>{43}</ItemProduct>
-                </Grid>
-                <Grid item xs={1}>
-                    <ItemProduct>
-                        <DeleteForeverIcon sx={{ cursor: 'pointer' }} />
-                    </ItemProduct>
-                </Grid>
-            </Grid>
-            <Grid container sx={{ m: 0 }}>
-                <Grid item xs={6}>
-                    <ItemProduct>
-                        <Images image='' />
-                        <ProductItem>
-                            <ProductCartName>asdasd</ProductCartName>
-                            <ProductCartCost>sdadsa</ProductCartCost>
-                        </ProductItem>
-                    </ItemProduct>
-                </Grid>
-                <Grid item xs={2.5}>
-                    <ItemProduct>
-                        <ProductCartSizeButtonNode>
-                            <ProductCartButton sx={{ left: '55%' }} onClick={incrementCount}>
-                                +
-                            </ProductCartButton>
-                            <ProductCartCount>{count}</ProductCartCount>
-                            <ProductCartButton onClick={decrementCount}>-</ProductCartButton>
-                        </ProductCartSizeButtonNode>
-                    </ItemProduct>
-                </Grid>
-                <Grid item xs={2.5}>
-                    <ItemProduct>{43}</ItemProduct>
-                </Grid>
-                <Grid item xs={1}>
-                    <ItemProduct>
-                        <DeleteForeverIcon sx={{ cursor: 'pointer' }} />
-                    </ItemProduct>
-                </Grid>
-            </Grid>
-            <Grid container sx={{ m: 0 }}>
-                <Grid item xs={6}>
-                    <ItemProduct>
-                        <Images image='' />
-                        <ProductItem>
-                            <ProductCartName>asdasd</ProductCartName>
-                            <ProductCartCost>sdadsa</ProductCartCost>
-                        </ProductItem>
-                    </ItemProduct>
-                </Grid>
-                <Grid item xs={2.5}>
-                    <ItemProduct>
-                        <ProductCartSizeButtonNode>
-                            <ProductCartButton sx={{ left: '55%' }} onClick={incrementCount}>
-                                +
-                            </ProductCartButton>
-                            <ProductCartCount>{count}</ProductCartCount>
-                            <ProductCartButton onClick={decrementCount}>-</ProductCartButton>
-                        </ProductCartSizeButtonNode>
-                    </ItemProduct>
-                </Grid>
-                <Grid item xs={2.5}>
-                    <ItemProduct>{43}</ItemProduct>
-                </Grid>
-                <Grid item xs={1}>
-                    <ItemProduct>
-                        <DeleteForeverIcon sx={{ cursor: 'pointer' }} />
-                    </ItemProduct>
-                </Grid>
-            </Grid>
+            {dataCart?.map((product: any) => {
+                return (
+                    <Grid container sx={{ m: 0 }}>
+                        <Grid item xs={6}>
+                            <ItemProduct>
+                                <Images image={`http://hieu.fresher.ameladev.click/${product?.product_image}`} />
+                                <ProductItem>
+                                    <ProductCartName>{product?.product_name}</ProductCartName>
+                                    <ProductCartCost>{product?.attribute_product[0]?.pivot.price}</ProductCartCost>
+                                </ProductItem>
+                            </ItemProduct>
+                        </Grid>
+                        <Grid item xs={2.5}>
+                            <ItemProduct>
+                                <ProductCartSizeButtonNode>
+                                    <ProductCartButton sx={{ left: '55%' }} onClick={incrementCount}>
+                                        +
+                                    </ProductCartButton>
+                                    <ProductCartCount>{count}</ProductCartCount>
+                                    <ProductCartButton onClick={decrementCount}>-</ProductCartButton>
+                                </ProductCartSizeButtonNode>
+                            </ItemProduct>
+                        </Grid>
+                        <Grid item xs={2.5}>
+                            <ItemProduct>{product?.attribute_product[0]?.pivot.price}</ItemProduct>
+                        </Grid>
+                        <Grid item xs={1}>
+                            <ItemProduct>
+                                <DeleteForeverIcon sx={{ cursor: 'pointer' }} />
+                            </ItemProduct>
+                        </Grid>
+                    </Grid>
+                );
+            })}
             <CartButtonWrap>
                 <Grid item xs={4}>
-                    <ButtonComponent text='Continue Shopping' color='#ffff' colorButton='green' />
+                    <ButtonComponent
+                        onClick={() => navigate(config.routes.product)}
+                        text='Continue Shopping'
+                        color='#ffff'
+                        colorButton='green'
+                    />
                 </Grid>
                 <Grid item xs={4}>
                     <ButtonComponent text='Update Cart' color='#ffff' colorButton='black' />

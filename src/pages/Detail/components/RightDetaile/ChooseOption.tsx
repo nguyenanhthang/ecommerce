@@ -25,6 +25,8 @@ import {
 } from './ChooseOption.styled';
 import { Rating } from '@mui/material';
 import ButtonComponent from 'components/Button/ButtonComponent';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { addCart } from 'features/Product/ProductSlice';
 
 const options = [
     { label: 'The Shawshank Redemption', year: 1994 },
@@ -40,8 +42,8 @@ type Props = {
 };
 
 const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
+    const dispatch = useAppDispatch();
     let [count, setCount] = React.useState(1);
-
     function incrementCount() {
         count = count + 1;
         setCount(count);
@@ -51,6 +53,9 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
         setCount(count);
     }
     const [value, setValue] = React.useState<number | null>(2);
+    const handleAddToCart = (getDetailProduct: any) => {
+        dispatch(addCart(getDetailProduct));
+    };
     return (
         <ChooseOptionWrapper>
             <ChooseOptionHeader>
@@ -100,7 +105,7 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                         <ChooseOptionCount>{count}</ChooseOptionCount>
                         <ChooseOptionButton onClick={decrementCount}>-</ChooseOptionButton>
                     </ChooseOptionSizeButtonNode>
-                    <ChooseOptionAddToCard>ADD To Card</ChooseOptionAddToCard>
+                    <ChooseOptionAddToCard onClick={() => handleAddToCart(getDetailProduct)}>ADD To Card</ChooseOptionAddToCard>
                 </ChooseOptionSizeButtonWrapper>
             </ChooseOptionSizeWrapper>
         </ChooseOptionWrapper>

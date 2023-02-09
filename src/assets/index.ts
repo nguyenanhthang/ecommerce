@@ -21,6 +21,7 @@ const images = {
     bannerFooter2: require('./imgs/bannerFooter2.png'),
     bannerFooter3: require('./imgs/bannerFooter3.png'),
     twitter: require('./imgs/twiter.png'),
-    youtube: require('./imgs/youtube.png')
+    youtube: require('./imgs/youtube.png'),
+    noProduct: require('./imgs/shoppecart.png')
 };
 export default images;

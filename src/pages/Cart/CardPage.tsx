@@ -6,8 +6,10 @@ import BannerRelative from 'pages/Home/components/BannerRalative/BannerRelative'
 import images from '../../assets/index';
 import { Container } from '@mui/material';
 import SearchCartPage from './components/SearchCart/SearchCartPage';
+import { useAppSelector } from '../../app/hooks';
 
 const CardPage = () => {
+    const dataCart = useAppSelector((state) => state.product.CartProduct);
     return (
         <CardPageWrap>
             <BannerDetail>
@@ -20,7 +22,7 @@ const CardPage = () => {
                 />
             </BannerDetail>
             <CardPageContainer>
-                <ProductsCart />
+                <ProductsCart dataCart={dataCart} />
                 <SearchCartPage />
             </CardPageContainer>
         </CardPageWrap>
