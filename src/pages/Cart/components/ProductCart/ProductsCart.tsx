@@ -11,26 +11,22 @@ import {
     ProductCartCost
 } from './ProductsCart.styled';
 import * as React from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { CartButtonWrap } from './ProductsCart.styled';
 import ButtonComponent from 'components/Button/ButtonComponent';
 import { useNavigate } from 'react-router-dom';
 import config from 'config/config';
+import { RootState } from '../../../../app/store';
+import { useAppSelector, useAppDispatch } from '../../../../app/hooks';
+import { addCart, deleteCart, destroyCart } from 'features/Product/ProductSlice';
+import images from '../../../../assets/index';
 type Props = {
     dataCart: any;
 };
 const ProductsCart: React.FC<Props> = ({ dataCart }) => {
-    let [count, setCount] = React.useState(1);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    function incrementCount() {
-        count = count + 1;
-        setCount(count);
-    }
-    function decrementCount() {
-        count = count - 1;
-        setCount(count);
-    }
     return (
         <ProductsCartWrap>
             <Grid container sx={{ m: 0, marginBottom: '30px' }}>
@@ -47,40 +43,65 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                     <ProductCartTitle>Action</ProductCartTitle>
                 </Grid>
             </Grid>
-            {dataCart?.map((product: any) => {
-                return (
-                    <Grid container sx={{ m: 0 }}>
-                        <Grid item xs={6}>
-                            <ItemProduct>
-                                <Images image={`http://hieu.fresher.ameladev.click/${product?.product_image}`} />
-                                <ProductItem>
-                                    <ProductCartName>{product?.product_name}</ProductCartName>
-                                    <ProductCartCost>{product?.attribute_product[0]?.pivot.price}</ProductCartCost>
-                                </ProductItem>
-                            </ItemProduct>
+            {dataCart.length !== 0 ? (
+                dataCart.map((product: any) => {
+                    return (
+                        <Grid container sx={{ m: 0 }}>
+                            <Grid item xs={6}>
+                                <ItemProduct>
+                                    <Images image={`http://hieu.fresher.ameladev.click/${product?.product_image}`} />
+                                    <ProductItem>
+                                        <ProductCartName>{product?.product_name}</ProductCartName>
+                                        <ProductCartCost>{product?.productPrice}</ProductCartCost>
+                                    </ProductItem>
+                                </ItemProduct>
+                            </Grid>
+                            <Grid item xs={2.5}>
+                                <ItemProduct>
+                                    <ProductCartSizeButtonNode>
+                                        <ProductCartButton
+                                            sx={{ left: '55%' }}
+                                            onClick={() =>
+                                                dispatch(
+                                                    addCart({
+                                                        id: product.id,
+                                                        product_name: product.product_name,
+                                                        product_image: product.product_image,
+                                                        quantity: +1,
+                                                        productPrice: product?.productPrice,
+                                                        totalPrice: product?.productPrice
+                                                    })
+                                                )
+                                            }
+                                        >
+                                            +
+                                        </ProductCartButton>
+                                        <ProductCartCount>{product?.quantity}</ProductCartCount>
+                                        <ProductCartButton onClick={() => dispatch(deleteCart(product.id))}>
+                                            -
+                                        </ProductCartButton>
+                                    </ProductCartSizeButtonNode>
+                                </ItemProduct>
+                            </Grid>
+                            <Grid item xs={2.5}>
+                                <ItemProduct>{product?.totalPrice}</ItemProduct>
+                            </Grid>
+                            <Grid item xs={1}>
+                                <ItemProduct>
+                                    <DeleteForeverIcon
+                                        onClick={() => dispatch(destroyCart(product.id))}
+                                        sx={{ cursor: 'pointer' }}
+                                    />
+                                </ItemProduct>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={2.5}>
-                            <ItemProduct>
-                                <ProductCartSizeButtonNode>
-                                    <ProductCartButton sx={{ left: '55%' }} onClick={incrementCount}>
-                                        +
-                                    </ProductCartButton>
-                                    <ProductCartCount>{count}</ProductCartCount>
-                                    <ProductCartButton onClick={decrementCount}>-</ProductCartButton>
-                                </ProductCartSizeButtonNode>
-                            </ItemProduct>
-                        </Grid>
-                        <Grid item xs={2.5}>
-                            <ItemProduct>{product?.attribute_product[0]?.pivot.price}</ItemProduct>
-                        </Grid>
-                        <Grid item xs={1}>
-                            <ItemProduct>
-                                <DeleteForeverIcon sx={{ cursor: 'pointer' }} />
-                            </ItemProduct>
-                        </Grid>
-                    </Grid>
-                );
-            })}
+                    );
+                })
+            ) : (
+                <Box>
+                    <img style={{ width: '50%', height: '50%' }} src={images.noProduct} alt='img' />
+                </Box>
+            )}
             <CartButtonWrap>
                 <Grid item xs={4}>
                     <ButtonComponent

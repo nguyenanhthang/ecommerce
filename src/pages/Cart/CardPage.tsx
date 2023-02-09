@@ -7,9 +7,10 @@ import images from '../../assets/index';
 import { Container } from '@mui/material';
 import SearchCartPage from './components/SearchCart/SearchCartPage';
 import { useAppSelector } from '../../app/hooks';
+import { RootState } from '../../app/store';
 
 const CardPage = () => {
-    const dataCart = useAppSelector((state) => state.product.CartProduct);
+    const dataCart = useAppSelector((state: RootState) => state.product.CartProduct);
     return (
         <CardPageWrap>
             <BannerDetail>

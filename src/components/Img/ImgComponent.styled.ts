@@ -58,10 +58,11 @@ export const TextImgWrap = styled.div`
     visibility: hidden;
 `;
 export const ImageWrapper = styled.div`
-    min-width: 25%;
+    min-width: 310px;
     min-height: 487px;
     padding-right: 15px;
     padding-left: 15px;
+    margin: 10px 0;
     &:hover ${ButtonImgWrap} {
         transition-delay: 0.2s;
         opacity: 1;

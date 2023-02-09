@@ -9,14 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import config from 'config/config';
 
 const Cart = () => {
-    const dataCart = useAppSelector((state) => state.product.CartProduct);
+    const dataCart = useAppSelector((state: any) => state.product.CartProduct);
+    const dataTotalAmount = useAppSelector((state: any) => state.product.totalAmount);
     const navigate = useNavigate();
     return (
         <HeaderCartListWrap>
             <HeaderCartTitle>List Cart</HeaderCartTitle>
             <HeaderCartList>
-                {dataCart.length !== 0 ? (
-                    dataCart.map((product: any) => {
+                {dataCart?.length !== 0 ? (
+                    dataCart?.map((product: any) => {
                         return (
                             <HeaderCartListItem>
                                 <CardCart dataCart={product} />
@@ -31,7 +32,7 @@ const Cart = () => {
             </HeaderCartList>
             <ButtonCard>
                 <Typography sx={{ fontSize: '0.9rem', fontWeight: 600, color: 'red' }} variant='caption'>
-                    ToTal Cost: 8000$
+                    ToTal Cost: {dataTotalAmount}$
                 </Typography>
                 <ButtonComponent
                     onClick={() => navigate(config.routes.cartPage)}

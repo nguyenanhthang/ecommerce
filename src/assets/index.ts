@@ -16,7 +16,6 @@ const images = {
     clothesImg: require('./imgs/clother.png'),
     glassesImg: require('./imgs/glasses.png'),
     userReview1: require('./imgs/review1.png'),
-    cartProduct1: require('./imgs/cartProduct1.png'),
     bannerFooter1: require('./imgs/bannerFooter1.png'),
     bannerFooter2: require('./imgs/bannerFooter2.png'),
     bannerFooter3: require('./imgs/bannerFooter3.png'),

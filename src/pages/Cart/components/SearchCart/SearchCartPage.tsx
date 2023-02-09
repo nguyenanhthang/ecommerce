@@ -14,10 +14,13 @@ import {
 } from './SearchCartPage.styled';
 import SearchComponent from '../../../../components/Search/SearchComponent';
 import ButtonComponent from '../../../../components/Button/ButtonComponent';
+import { useAppSelector } from '../../../../app/hooks';
+import { RootState } from '../../../../app/store';
 
 type Props = {};
 
 const SearchCartPage = (props: Props) => {
+    const dataTotalAmount = useAppSelector((state: RootState) => state.product.totalAmount);
     return (
         <SearchCartPageWrap>
             <SearchCartPageHeader>
@@ -30,11 +33,11 @@ const SearchCartPage = (props: Props) => {
                 <SearchCartPageTotalTitle>CART TOTAL</SearchCartPageTotalTitle>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                     <SearchCartPageSubTotal>Subtotal: </SearchCartPageSubTotal>
-                    <SearchCartPageSubTotalCost>$ 169.50</SearchCartPageSubTotalCost>
+                    <SearchCartPageSubTotalCost>$ {dataTotalAmount}</SearchCartPageSubTotalCost>
                 </Box>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                     <SearchCartPageTotalTotal>Total: </SearchCartPageTotalTotal>
-                    <SearchCartPageTotalTotalCost>$ 169.50</SearchCartPageTotalTotalCost>
+                    <SearchCartPageTotalTotalCost>$ {dataTotalAmount}</SearchCartPageTotalTotalCost>
                 </Box>
                 <ButtonComponent text='Update Cart' color='#ffff' colorButton='black' />
             </SearchCartPageTotal>

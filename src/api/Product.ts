@@ -3,6 +3,10 @@ export const getProducts = async () => {
     const res = await request.get('/list-product'); // <== Here we use await keywords to get the result of the Promise, check internet if it's blurry for you
     return res?.data; // Maybe do some work on res.data to get the expected format
 };
+export const getProductsCateGories = async (limit: number) => {
+    const res = await request.get(`/list-categories?per_page=${limit}`); // <== Here we use await keywords to get the result of the Promise, check internet if it's blurry for you
+    return res?.data; // Maybe do some work on res.data to get the expected format
+};
 
 export const productsDetail = async (id: number) => {
     const bearer_token = `Bearer ${localStorage.getItem('token')}`;

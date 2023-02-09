@@ -54,7 +54,16 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
     }
     const [value, setValue] = React.useState<number | null>(2);
     const handleAddToCart = (getDetailProduct: any) => {
-        dispatch(addCart(getDetailProduct));
+        dispatch(
+            addCart({
+                id: getDetailProduct.id,
+                product_name: getDetailProduct.product_name,
+                product_image: getDetailProduct.product_image,
+                quantity: count,
+                productPrice: getDetailProduct?.attribute_product[0]?.pivot.price,
+                totalPrice: getDetailProduct?.attribute_product[0]?.pivot.price * count
+            })
+        );
     };
     return (
         <ChooseOptionWrapper>
@@ -105,7 +114,9 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                         <ChooseOptionCount>{count}</ChooseOptionCount>
                         <ChooseOptionButton onClick={decrementCount}>-</ChooseOptionButton>
                     </ChooseOptionSizeButtonNode>
-                    <ChooseOptionAddToCard onClick={() => handleAddToCart(getDetailProduct)}>ADD To Card</ChooseOptionAddToCard>
+                    <ChooseOptionAddToCard onClick={() => handleAddToCart(getDetailProduct)}>
+                        ADD To Card
+                    </ChooseOptionAddToCard>
                 </ChooseOptionSizeButtonWrapper>
             </ChooseOptionSizeWrapper>
         </ChooseOptionWrapper>
