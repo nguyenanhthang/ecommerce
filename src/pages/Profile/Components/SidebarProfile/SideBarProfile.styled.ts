@@ -19,3 +19,6 @@ export const InfoProfile = styled(Box)`
 export const InfoNameProfile = styled(Typography)`
     padding: 0 0 0 7px;
 `;
+
+export const Ordered = styled(Box)``;
+export const TitleOrdered = styled(Typography)``;

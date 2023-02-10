@@ -2,10 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { getProducts } from 'api/Product';
 import { productsDetail, getProductsCateGories } from '../api/Product';
 
-export const useProduct = () => {
+export const useProduct = (keyword: any) => {
     return useQuery({
-        queryKey: ['getProducts'],
-        queryFn: () => getProducts()
+        queryKey: ['getProducts', keyword],
+        queryFn: () => getProducts(keyword)
     });
 };
 export const useDetail = (id: number | string) => {
@@ -14,9 +14,9 @@ export const useDetail = (id: number | string) => {
         queryFn: () => productsDetail(id as number)
     });
 };
-export const useCategories = (limit: number) => {
+export const useCategories = (limit: number | string) => {
     return useQuery({
-        queryKey: ['getProductsDetail', limit],
+        queryKey: ['getProductsDetailCateGories'],
         queryFn: () => getProductsCateGories(limit)
     });
 };

@@ -1,13 +1,15 @@
 import request from 'utils/request';
-export const getProducts = async () => {
-    const res = await request.get('/list-product'); // <== Here we use await keywords to get the result of the Promise, check internet if it's blurry for you
-    return res?.data; // Maybe do some work on res.data to get the expected format
+export const getProducts = async (keyword: number | string) => {
+    const res = await request.get(`/list-product`, { params: keyword });
+    // const res = await request.get(`/list-product`, {
+    //     params: { sortBy: 'product_price', sortOrder: `${keyword}`, keyWord: `${keyword}` }
+    // });
+    return res?.data;
 };
-export const getProductsCateGories = async (limit: number) => {
+export const getProductsCateGories = async (limit: number | string) => {
     const res = await request.get(`/list-categories?per_page=${limit}`); // <== Here we use await keywords to get the result of the Promise, check internet if it's blurry for you
     return res?.data; // Maybe do some work on res.data to get the expected format
 };
-
 export const productsDetail = async (id: number) => {
     const bearer_token = `Bearer ${localStorage.getItem('token')}`;
     try {

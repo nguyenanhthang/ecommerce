@@ -1,5 +1,12 @@
 import React from 'react';
-import { InfoNameProfile, InfoProfile, SideBarProfileContainer, SideBarProfileWrapper } from './SideBarProfile.styled';
+import {
+    InfoNameProfile,
+    InfoProfile,
+    SideBarProfileContainer,
+    SideBarProfileWrapper,
+    Ordered,
+    TitleOrdered
+} from './SideBarProfile.styled';
 import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { ExpandLess, ExpandMore, Create } from '@mui/icons-material';
 import IconsComponent from 'components/Icons/IconsComponent';
@@ -16,15 +23,6 @@ const DataSideBar: any = [
             { label: 'Ngân Hàng', to: '/profile' },
             { label: 'Địa Chỉ', to: '/profile' },
             { label: 'Đổi Mật Khẩu', to: '/profile' }
-        ]
-    },
-    {
-        title: 'Đơn Mua',
-        children: [
-            { label: '', sumProduct: '' },
-            { label: '', sumProduct: '' },
-            { label: '', sumProduct: '' },
-            { label: '', sumProduct: '' }
         ]
     }
 ];
@@ -66,6 +64,9 @@ const SideBarProfile: React.FC<Props> = ({ getUser }) => {
                         </>
                     );
                 })}
+                <Ordered>
+                    <TitleOrdered>Đơn mua</TitleOrdered>
+                </Ordered>
             </SideBarProfileContainer>
         </SideBarProfileWrapper>
     );

@@ -4,13 +4,16 @@ import { CardPageWrap, CardPageContainer } from './CartPage.styled';
 import { BannerDetail } from 'pages/Detail/DetailePage.styled';
 import BannerRelative from 'pages/Home/components/BannerRalative/BannerRelative';
 import images from '../../assets/index';
-import { Container } from '@mui/material';
 import SearchCartPage from './components/SearchCart/SearchCartPage';
 import { useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
+import { useEffect } from 'react';
 
 const CardPage = () => {
     const dataCart = useAppSelector((state: RootState) => state.product.CartProduct);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <CardPageWrap>
             <BannerDetail>

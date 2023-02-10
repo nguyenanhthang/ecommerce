@@ -27,26 +27,31 @@ type Props = {
     getUser: any;
 };
 const schema = yup.object().shape({
-    username: yup.string().required('Vui Lòng Nhập Tên'),
-    full_name: yup.string().required('Vui Lòng Nhập Mật Khẩu')
+    full_name: yup.string().required('Vui Lòng Nhập Tên'),
+    phone: yup.string().required('Vui Lòng Nhập so dien thoai'),
+    email: yup
+        .string()
+        .required('vui Lòng Nhập Email ')
+        .email('Trường Này Phải Là Email')
+        .min(6, 'Phải Có Ít nhất 6 Ký Tự')
 });
 type LoginInput = yup.InferType<typeof schema>;
 const MyProfile: React.FC<Props> = ({ getUser }) => {
+    console.log(getUser);
     const methods: any = useForm<LoginInput>({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        defaultValues: {
+            full_name: getUser?.data?.data?.full_name,
+            email: getUser?.data?.data?.email,
+            phone: getUser?.data?.data?.phone
+        }
     });
     const {
-        // setError,
-        // reset,
-        // handleSubmit,
-        // formState: { isSubmitSuccessful, errors }
+        setError,
+        reset,
+        handleSubmit,
+        formState: { isSubmitSuccessful, errors }
     } = methods;
-    const [value, setValue] = React.useState<Dayjs | null>(null);
-    const [state, setState] = React.useState({
-        boy: true,
-        girl: false,
-        other: false
-    });
     return (
         <MyProfileWrapper>
             <HeaderProfile>
@@ -57,57 +62,25 @@ const MyProfile: React.FC<Props> = ({ getUser }) => {
                 <FormProvider {...methods}>
                     <FormInput component='form'>
                         <FormWrapper>
-                            <Inputs
-                                name='username'
-                                label='Tên đăng nhập'
-                                type='text'
-                                width={100}
-                                height={100}
-                                value={getUser ? getUser.data.data.username : ''}
-                            />
-                        </FormWrapper>
-                        <FormWrapper>
-                            <Inputs
-                                name='Full_name'
-                                label='Tên'
-                                type='text'
-                                width={100}
-                                height={100}
-                                value={getUser ? getUser.data.data.full_name : ''}
-                            />
+                            <Inputs name='full_name' placeholder='name' type='text' width={100} height={100} />
                         </FormWrapper>
                     </FormInput>
+                    <EmailProfile>
+                        Email: <Inputs name='email' placeholder='email' type='text' width={100} height={100} />
+                    </EmailProfile>
+                    <PhoneProfile>
+                        Phone: <Inputs name='phone' placeholder='phone' type='text' width={100} height={100} />
+                    </PhoneProfile>
+                    <ButtonComponent
+                        type='button'
+                        width={10}
+                        height={10}
+                        text='Save'
+                        color='#ffff'
+                        colorButton='#ee4d2d'
+                        border='1px solid rgba(0,0,0,.09)'
+                    />
                 </FormProvider>
-                <EmailProfile>Email: {getUser.data.data.email}</EmailProfile>
-                <PhoneProfile>Phone: {getUser.data.data.phone}</PhoneProfile>
-                <SexWrapperProfile>
-                    <FormControl>
-                        <FormLabel id='demo-row-radio-buttons-group-label'>Gender</FormLabel>
-                        <RadioGroup
-                            row
-                            aria-labelledby='demo-row-radio-buttons-group-label'
-                            name='row-radio-buttons-group'
-                        >
-                            <FormControlLabel value='female' control={<Radio />} label='Female' />
-                            <FormControlLabel value='male' control={<Radio />} label='Male' />
-                            <FormControlLabel value='other' control={<Radio />} label='Other' />
-                            <FormControlLabel value='disabled' disabled control={<Radio />} label='other' />
-                        </RadioGroup>
-                    </FormControl>
-                </SexWrapperProfile>
-                <BirthDayProfile>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                            label='Chọn ngày sinh'
-                            value={value}
-                            onChange={(newValue) => {
-                                setValue(newValue);
-                            }}
-                            renderInput={(params) => <TextField {...params} />}
-                        />
-                    </LocalizationProvider>
-                </BirthDayProfile>
-                <ButtonComponent type='button' width={10} height={10} text='Save' border='1px solid rgba(0,0,0,.09)' />
             </FormEditProfile>
         </MyProfileWrapper>
     );

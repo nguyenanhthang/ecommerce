@@ -9,8 +9,8 @@ export const ProductWrapper = styled(Box)`
 `;
 export const ProductContainer = styled(Container)`
     display: flex;
-    width: 100vw;
-    margin: 20px 0 40px 0;
+    min-width: inherit;
+    margin-top: 40px;
 `;
 export const ProductContent = styled(Box)`
     flex: 1;

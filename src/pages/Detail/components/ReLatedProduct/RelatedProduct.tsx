@@ -25,7 +25,7 @@ const RelatedProduct: React.FC<Props> = ({ getDetailProduct }) => {
                             key={product.id}
                             productImg={'http://hieu.fresher.ameladev.click/' + product.product_image}
                             productName={product.product_name}
-                            productCost={0}
+                            productCost={product.product_price}
                             productRating={3}
                             id={product.id}
                         />

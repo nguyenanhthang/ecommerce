@@ -60,8 +60,8 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                 product_name: getDetailProduct.product_name,
                 product_image: getDetailProduct.product_image,
                 quantity: count,
-                productPrice: getDetailProduct?.attribute_product[0]?.pivot.price,
-                totalPrice: getDetailProduct?.attribute_product[0]?.pivot.price * count
+                productPrice: getDetailProduct?.product_price,
+                totalPrice: getDetailProduct?.product_price * count
             })
         );
     };
@@ -79,7 +79,7 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                     />
                 </ChooseOptionRating>
                 <ChooseOptionStock variant='h6'>Stock: Available In Stock</ChooseOptionStock>
-                <ChooseOptionCost>Cost: {getDetailProduct?.attribute_product[0]?.pivot.price}</ChooseOptionCost>
+                <ChooseOptionCost>Cost: {getDetailProduct?.product_price}</ChooseOptionCost>
             </ChooseOptionHeader>
             <ChooseOptionDescription>{getDetailProduct?.product_short_desc}</ChooseOptionDescription>
             <ChooseOptionColorWrapper>

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface ProductState {
     CartProduct: any;
-    //totalQuantity: number;
+    search: string | number;
     totalAmount: number;
 }
 const cartSession: any = sessionStorage.getItem('listCart');
@@ -15,7 +15,8 @@ const setItemFunc = (item: any, totalAmount: number) => {
 };
 const initialState: ProductState = {
     CartProduct: getCartSession,
-    totalAmount: getTotalAmountSession
+    totalAmount: getTotalAmountSession,
+    search: ''
 };
 
 export const productSlice = createSlice({
@@ -83,10 +84,13 @@ export const productSlice = createSlice({
                 state.CartProduct.map((item: any) => item),
                 state.totalAmount
             );
+        },
+        searchProduct: (state, action: PayloadAction<any>) => {
+            state.search = action.payload;
         }
     }
 });
 
-export const { addCart, deleteCart, destroyCart } = productSlice.actions;
+export const { addCart, deleteCart, destroyCart, searchProduct } = productSlice.actions;
 
 export default productSlice.reducer;

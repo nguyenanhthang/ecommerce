@@ -1,5 +1,5 @@
 import SideBar from 'layouts/siseBar/SideBar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Footer from '../../layouts/footer/Footer';
 import { ProductBanner, ProductContainer, ProductContent, ProductTool, ProductWrapper } from './Product.styled';
 import Products from './components/Product/Products';
@@ -9,10 +9,13 @@ import Tool from './components/Tool/Tool';
 import { ProductPagination } from './components/Product/Products.styled';
 import { Pagination } from '@mui/material';
 import { useProduct } from 'Hook/useProduct';
-
+import { useParams, useNavigate } from 'react-router-dom';
 const Product = () => {
-    const getProducts = useProduct();
-    console.log(getProducts);
+    const getName: any = useParams().param;
+    const getProducts = useProduct({ sortBy: 'product_price', sortOrder: getName });
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <ProductWrapper>
             <ProductBanner>

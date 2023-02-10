@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from './components/banner/Banner';
 import {
     AboutUsHomeWrapper,
@@ -17,7 +17,9 @@ import { useNavigate } from 'react-router-dom';
 import NewProduct from './components/ProductNew/NewProduct';
 import BannerRelative from './components/BannerRalative/BannerRelative';
 import Footer from 'layouts/footer/Footer';
-import { useProduct } from '../../Hook/useProduct';
+import { useProduct, useCategories } from '../../Hook/useProduct';
+import { useAppSelector } from '../../app/hooks';
+import { RootState } from '../../app/store';
 const itemData = [
     {
         img: images.clockImg,
@@ -37,8 +39,14 @@ const itemData = [
     }
 ];
 const Home = () => {
+    const search = useAppSelector((state: RootState) => state.product.search);
+    const limit: number = 4;
     const navigate = useNavigate();
-    const getProducts = useProduct();
+    const getProducts: any = useProduct(search);
+    const getCategory: any = useCategories(limit);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <HomeContainer>
             <BannerHome>
@@ -62,12 +70,12 @@ const Home = () => {
                 />
             </UntreeContainer>
             <Popular>
-                {itemData.map((item) => (
+                {getCategory?.data?.data?.data?.map((item: any, i: number) => (
                     <ImgComponent
-                        key={item.img}
-                        img={item.img}
-                        textImg={item.title}
-                        onclick={() => navigate(`/${item.title}`)}
+                        key={i}
+                        img={item.cate_image}
+                        textImg={item.cate_name}
+                        onclick={() => navigate(`/${item.cate_name}`)}
                     />
                 ))}
             </Popular>

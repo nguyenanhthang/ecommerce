@@ -23,7 +23,9 @@ export const FormEditProfile = styled(Box)`
 export const EmailProfile = styled(Typography)`
     margin: 30px 0;
 `;
-export const PhoneProfile = styled(Typography)``;
+export const PhoneProfile = styled(Typography)`
+    margin: 0 0 30px 0;
+`;
 export const SexWrapperProfile = styled(Box)`
     display: flex;
     margin: 30px 0;
@@ -32,4 +34,6 @@ export const BirthDayProfile = styled(Box)`
     display: flex;
     margin: 0 0 30px 0;
 `;
-export const ButtonProfile = styled(Button)``;
+export const ButtonProfile = styled(Button)`
+    margin: 0 0 30px 0;
+`;

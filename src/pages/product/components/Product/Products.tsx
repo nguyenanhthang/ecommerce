@@ -17,7 +17,7 @@ const Products: React.FC<Props> = ({ getProducts }) => {
                             key={product.id}
                             productImg={'http://hieu.fresher.ameladev.click/' + product.product_image}
                             productName={product.product_name}
-                            productCost={product.attribute_product[0]?.pivot.price}
+                            productCost={product.product_price}
                             productRating={3}
                             id={product.id}
                         />

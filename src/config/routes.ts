@@ -4,7 +4,8 @@ export const routes = {
     home: '/home',
     profile: '/profile',
     aboutUs: '/aboutus',
-    product: '/product',
+    product: '/product/:param',
     detail: 'detail/:id',
-    cartPage: '/cartpage'
+    cartPage: '/cartpage',
+    checkout: '/checkout'
 };

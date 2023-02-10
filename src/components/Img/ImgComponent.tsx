@@ -15,7 +15,7 @@ const ImgComponent: React.FC<ImgIf> = ({ img, textImg, onclick }) => {
     return (
         <ImageWrapper>
             <ImageContainer>
-                <Image style={{ backgroundImage: `url(${img})` }}>
+                <Image style={{ backgroundImage: `url(http://hieu.fresher.ameladev.click/${img})` }}>
                     <Box></Box>
                     <ButtonImgWrap>
                         <ButtonImg onClick={onclick}>Shop Now</ButtonImg>

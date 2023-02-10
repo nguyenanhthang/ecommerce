@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     BannerDetail,
     DetailBody,
@@ -19,7 +19,9 @@ import { useParams } from 'react-router-dom';
 const DetailPage = () => {
     const userId: any = useParams();
     const getDetailProduct = useDetail(userId.id);
-    //console.log(getDetailProduct);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <DetailContainer>
             <BannerDetail>

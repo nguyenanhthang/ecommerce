@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { ChangeEvent, FormEventHandler, useEffect, useState } from 'react';
 import {
     HeaderContainer,
     HeaderWrapper,
@@ -23,7 +23,7 @@ import IconsComponent from '../../components/Icons/IconsComponent';
 import { IconButton, Typography } from '@mui/material';
 import { ShoppingCart, CircleNotifications, PsychologyAlt, Phone, GTranslate } from '@mui/icons-material';
 import ButtonComponent from './../../components/Button/ButtonComponent';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import config from '../../config/config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getUser, logoutUser } from '../../api/auth';
@@ -33,6 +33,9 @@ import Cart from './components/cart/Cart';
 import FullScreenLoader from 'layouts/Loading/Loading';
 import { useUser } from 'Hook/useUser';
 import { useAppSelector } from '../../app/hooks';
+import { useDispatch } from 'react-redux';
+import { searchProduct } from 'features/Product/ProductSlice';
+import { RootState } from '../../app/store';
 const MenuItem: any = [
     { title: 'Profile', to: config.routes.profile, icon: <AccountBox /> },
     { title: 'Detail Cart', to: config.routes.cartPage, icon: <ShoppingCartCheckout /> }
@@ -41,7 +44,14 @@ const Header = () => {
     const dataCart = useAppSelector((state) => state.product.CartProduct);
     const navigate = useNavigate();
     const getUser: any = useUser();
-    const LogoutUserMutation = useMutation({
+    const dispatch = useDispatch();
+    const search = useAppSelector((state: RootState) => state.product.search);
+    console.log(search);
+    const handleKeyDown = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        navigate(`/product/${search}`);
+    };
+    const LogoutUserMutation: any = useMutation({
         mutationFn: () => {
             return logoutUser();
         }
@@ -71,11 +81,9 @@ const Header = () => {
                             <NavListUser>
                                 {MenuItem.map((el: any, i: number) => {
                                     return (
-                                        <>
-                                            <NavListItem key={i} onClick={() => navigate(el.to)}>
-                                                {el.icon} {el.title}
-                                            </NavListItem>
-                                        </>
+                                        <NavListItem key={i} onClick={() => navigate(el.to)}>
+                                            {el.icon} {el.title}
+                                        </NavListItem>
                                     );
                                 })}
                                 <NavListItem onClick={() => HandleLogoutUser()}>
@@ -106,7 +114,10 @@ const Header = () => {
                     <NavTitle variant='caption'>Contact</NavTitle>
                 </NavTitleWrapper>
                 <NavAction>
-                    <SearchComponent />
+                    <SearchComponent
+                        onKeyDown={handleKeyDown}
+                        onChange={(e: any) => dispatch(searchProduct(e.target.value))}
+                    />
                     <CartHeader aria-label='cart'>
                         <StyledBadge badgeContent={dataCart ? dataCart.length : 0} color='secondary'>
                             <ShoppingCart />

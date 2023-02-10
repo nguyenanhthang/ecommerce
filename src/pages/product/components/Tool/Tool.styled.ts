@@ -6,7 +6,7 @@ export const ToolWrapper = styled(Box)`
 export const ToolContainer = styled(Box)`
     display: flex;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.03);
     width: 100%;
     padding: 8px 22px;
     border-radius: 2px;

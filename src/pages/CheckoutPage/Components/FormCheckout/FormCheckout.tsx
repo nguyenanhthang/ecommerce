@@ -23,8 +23,6 @@ const FormCheckout = (props: Props) => {
     } = methods;
     return (
         <CheckOutFormWrap>
-            <Typography variant='h3'> order now </Typography>
-            <Typography variant='h1'> free and fast </Typography>
             <FormProvider {...methods}>
                 <CheckOutForm component='form'>
                     <CheckOutFormBox>
@@ -41,6 +39,11 @@ const FormCheckout = (props: Props) => {
                         </CheckOutFormWrapInput>
                         <CheckOutFormWrapInput>
                             <Inputs name='email' label='Email' type='text' width={100} height={100} />
+                        </CheckOutFormWrapInput>
+                    </CheckOutFormBox>
+                    <CheckOutFormBox>
+                        <CheckOutFormWrapInput>
+                            <Inputs name='address' label='note' type='text' width={100} height={100} />
                         </CheckOutFormWrapInput>
                     </CheckOutFormBox>
                     {/* <input type="submit" value="order now" class="btn"> */}

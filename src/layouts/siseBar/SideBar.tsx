@@ -2,6 +2,7 @@ import React from 'react';
 import { SideBarList, SideBarWrapper } from './SideBar.styled';
 import { Collapse, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
+import { useCategories } from '../../Hook/useProduct';
 
 const DataSideBar: any = [
     {
@@ -35,6 +36,8 @@ const DataSideBar: any = [
     }
 ];
 const SideBar = () => {
+    const limit: number = 4;
+    const getCategory = useCategories(limit);
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
         setOpen(!open);

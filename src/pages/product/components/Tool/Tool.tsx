@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     FilterList,
     FilterListItem,
@@ -16,10 +16,13 @@ import {
     ToolWrapper
 } from './Tool.styled';
 import { ExpandMore, NavigateNext, KeyboardArrowLeft } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {};
 
 const Tool = (props: Props) => {
+    const [sort, setSort] = useState('');
+    const navigate = useNavigate();
     return (
         <ToolWrapper>
             <ToolContainer>
@@ -32,8 +35,8 @@ const Tool = (props: Props) => {
                         <FilterSectionPrice>Price</FilterSectionPrice>
                         <ExpandMore />
                         <FilterList>
-                            <FilterListItem>Giá: Cao đến thấp</FilterListItem>
-                            <FilterListItem>Giá: Thấp đến cao</FilterListItem>
+                            <FilterListItem onClick={() => navigate('/product/desc')}>Giá: Cao đến thấp</FilterListItem>
+                            <FilterListItem onClick={() => navigate('/product/asc')}>Giá: Thấp đến cao</FilterListItem>
                         </FilterList>
                     </FilterSection>
                     <FilterSectionPage>
