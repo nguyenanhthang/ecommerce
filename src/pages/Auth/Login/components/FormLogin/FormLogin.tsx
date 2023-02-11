@@ -26,14 +26,12 @@ import IconsComponent from '../../../../../components/Icons/IconsComponent';
 import images from '../../../../../assets';
 import { Navigate, useNavigate } from 'react-router-dom';
 import config from '../../../../../config/config';
-import { FormStateType, initForm } from '../../../../../types/Users.type';
-import { getUser, login } from '../../../../../api/auth';
+import { FormStateType } from '../../../../../types/Users.type';
+import { login } from '../../../../../api/auth';
 import { useMutation } from '@tanstack/react-query';
-import FullScreenLoader from '../../../../../layouts/Loading/Loading';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import request from '../../../../../utils/request';
 import ButtonLoading from 'layouts/Loading/ButtonLoading';
 const schema = yup.object().shape({
     username: yup.string().required('Vui Lòng Nhập Tên'),

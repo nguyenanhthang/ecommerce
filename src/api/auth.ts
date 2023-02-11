@@ -28,20 +28,9 @@ export const getUser = async () => {
         console.error(err.message);
     }
 };
-export const updateUser = async (id: number | string) => {
-    const bearer_token = `Bearer ${localStorage.getItem('token')}`;
-    try {
-        const config = {
-            headers: {
-                Authorization: bearer_token
-            }
-        };
-        const res = await request.get(`edit-profile/${id}`, config); // <== Here we use await keywords to get the result of the Promise, check internet if it's blurry for you
-        return res?.data; // Maybe do some work on res.data to get the expected format
-    } catch (err: any) {
-        // here display a message to the user or something else
-        console.error(err.message);
-    }
+export const updateUser = async (id: number | string, data: any) => {
+    const res = await request.post(`/edit-profile/${id}`, data);
+    return res?.data;
 };
 export const logoutUser = async () => {
     const bearer_token = `Bearer ${localStorage.getItem('token')}`;

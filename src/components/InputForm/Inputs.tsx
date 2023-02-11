@@ -24,6 +24,7 @@ const Inputs: React.FC<InputIf> = ({ id, name, label, type, ...otherProps }) => 
                     type={type}
                     error={!!errors[name]}
                     helperText={errors[name] && `${errors[name]?.message}`}
+                    id={id}
                 />
             )}
         />

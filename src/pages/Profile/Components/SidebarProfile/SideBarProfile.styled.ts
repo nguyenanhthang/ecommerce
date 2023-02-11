@@ -1,9 +1,14 @@
 import { styled } from '@mui/material/styles';
-import { Box, Typography } from '@mui/material';
-export const SideBarProfileWrapper = styled(Box)`
+import { Box, Typography, Grid } from '@mui/material';
+export const SideBarProfileGrid = styled(Grid)`
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    height: inherit;
+    padding-right: 60px;
+`;
+export const SideBarProfileWrapper = styled(Grid)`
+    display: flex;
+    flex-direction: column;
     height: inherit;
 `;
 export const SideBarProfileContainer = styled(Box)`
