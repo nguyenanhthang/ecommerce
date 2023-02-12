@@ -10,7 +10,7 @@ type Props = {
 const Products: React.FC<Props> = ({ getProducts }) => {
     return (
         <ProductsWrapper>
-            <ProductsContainer>
+            <ProductsContainer container spacing={1}>
                 {getProducts?.data?.data?.data.map((product: any, i: number) => {
                     return (
                         <CardProduct

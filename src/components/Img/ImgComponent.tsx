@@ -13,7 +13,7 @@ import { Box } from '@mui/material';
 import Grid2 from '@mui/material/Unstable_Grid2';
 const ImgComponent: React.FC<ImgIf> = ({ img, textImg, onclick }) => {
     return (
-        <Grid2 sx={{ height: '400px' }} xs={12} md={3} sm={6}>
+        <Grid2 sx={{ height: '400px' }} xs={12} md={3} sm={6} lg={3}>
             <ImageWrapper>
                 <ImageContainer>
                     <Image style={{ backgroundImage: `url(http://hieu.fresher.ameladev.click/${img})` }}>

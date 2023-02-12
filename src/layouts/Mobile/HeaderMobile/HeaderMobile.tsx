@@ -193,7 +193,7 @@ const HeaderMobile = (props: Props) => {
                 <List>
                     {['Home', 'Product', 'About', 'Contact'].map((text, index) => (
                         <ListItem key={text} disablePadding>
-                            <ListItemButton>
+                            <ListItemButton onClick={() => navigate(`/${text}`)}>
                                 <ListItemIcon>{index % 2 === 0 ? <HomeIcon /> : <MailIcon />}</ListItemIcon>
                                 <ListItemText primary={text} />
                             </ListItemButton>

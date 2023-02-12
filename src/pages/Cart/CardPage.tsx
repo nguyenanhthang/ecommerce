@@ -25,7 +25,7 @@ const CardPage = () => {
                     height={50}
                 />
             </BannerDetail>
-            <CardPageContainer>
+            <CardPageContainer container>
                 <ProductsCart dataCart={dataCart} />
                 <SearchCartPage />
             </CardPageContainer>

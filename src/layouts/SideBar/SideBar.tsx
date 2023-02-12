@@ -3,6 +3,7 @@ import { SideBarList, SideBarWrapper } from './SideBar.styled';
 import { Collapse, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
 import { useCategories } from '../../Hook/useProduct';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const DataSideBar: any = [
     {
@@ -38,18 +39,18 @@ const DataSideBar: any = [
 const SideBar = () => {
     const limit: number = 4;
     const getCategory = useCategories(limit);
+    const matches = useMediaQuery('(max-width:790px)');
     const [open, setOpen] = React.useState(true);
     const handleClick = () => {
         setOpen(!open);
     };
     return (
-        <SideBarWrapper>
+        <SideBarWrapper md={1.5} sm={3} lg={1.5}>
             <SideBarList>
                 {DataSideBar.map((el: any, i: number) => {
                     return (
                         <>
                             <ListItemButton sx={{ p: 0 }} onClick={handleClick}>
-                                <ListItemIcon>{/* <InboxIcon /> */}</ListItemIcon>
                                 <ListItemText primary={el.title} />
                                 {open ? <ExpandLess /> : <ExpandMore />}
                             </ListItemButton>
@@ -57,8 +58,7 @@ const SideBar = () => {
                                 <List component='div' disablePadding>
                                     {el.children.map((el: any) => {
                                         return (
-                                            <ListItemButton sx={{ pl: 4 }}>
-                                                <ListItemIcon>{/* <StarBorder /> */}</ListItemIcon>
+                                            <ListItemButton sx={{ pl: 2 }}>
                                                 <ListItemText primary={`${el.label} ${el.sumProduct}`} />
                                             </ListItemButton>
                                         );

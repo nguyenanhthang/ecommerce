@@ -46,7 +46,7 @@ const Header = () => {
     const getUser: any = useUser();
     const dispatch = useDispatch();
     const search = useAppSelector((state: RootState) => state.product.search);
-    console.log(search);
+    const TotalQuantity = useAppSelector((state: RootState) => state.product.totalQuantity);
     const handleKeyDown = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (search !== '') {
@@ -122,7 +122,7 @@ const Header = () => {
                         onChange={(e: any) => dispatch(searchProduct(e.target.value))}
                     />
                     <CartHeader aria-label='cart'>
-                        <StyledBadge badgeContent={dataCart ? dataCart.length : 0} color='secondary'>
+                        <StyledBadge badgeContent={TotalQuantity} color='secondary'>
                             <ShoppingCart />
                         </StyledBadge>
                         <CardList>

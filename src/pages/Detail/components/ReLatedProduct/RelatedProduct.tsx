@@ -18,7 +18,7 @@ const RelatedProduct: React.FC<Props> = ({ getDetailProduct }) => {
             <RelativeProductHeader>
                 <RelativeProductTitle variant='h5'>RELATED PRODUCT</RelativeProductTitle>
             </RelativeProductHeader>
-            <RelativeProductBody container>
+            <RelativeProductBody container spacing={1.5}>
                 {getDetailProduct?.similar_product?.map((product: any) => {
                     return (
                         <CardProduct

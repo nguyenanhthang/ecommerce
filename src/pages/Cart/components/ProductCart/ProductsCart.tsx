@@ -11,7 +11,8 @@ import {
     ProductCartCost
 } from './ProductsCart.styled';
 import * as React from 'react';
-import { Grid, Box } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+import { Box } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { CartButtonWrap } from './ProductsCart.styled';
 import ButtonComponent from 'components/Button/ButtonComponent';
@@ -28,26 +29,26 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     return (
-        <ProductsCartWrap>
-            <Grid container sx={{ m: 0, marginBottom: '30px' }}>
-                <Grid item xs={6}>
+        <ProductsCartWrap lg={9} md={9} sm={12} xs={12}>
+            <Grid sx={{ m: 0, marginBottom: '30px', display: 'flex' }}>
+                <Grid lg={6} xs={5} sm={4}>
                     <ProductCartTitle>Product</ProductCartTitle>
                 </Grid>
-                <Grid item xs={2.5}>
+                <Grid lg={2.5} xs={3} sm={3}>
                     <ProductCartTitle>QUANTITY</ProductCartTitle>
                 </Grid>
-                <Grid item xs={2.5}>
+                <Grid lg={2.5} xs={3} sm={3}>
                     <ProductCartTitle>TOTAL</ProductCartTitle>
                 </Grid>
-                <Grid item xs={1}>
+                <Grid lg={1} xs={1} sm={2}>
                     <ProductCartTitle>Action</ProductCartTitle>
                 </Grid>
             </Grid>
             {dataCart.length !== 0 ? (
                 dataCart.map((product: any) => {
                     return (
-                        <Grid container sx={{ m: 0 }}>
-                            <Grid item xs={6}>
+                        <Grid sx={{ m: 0, display: 'flex' }}>
+                            <Grid lg={6} xs={4}>
                                 <ItemProduct>
                                     <Images image={`http://hieu.fresher.ameladev.click/${product?.product_image}`} />
                                     <ProductItem>
@@ -56,7 +57,7 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                                     </ProductItem>
                                 </ItemProduct>
                             </Grid>
-                            <Grid item xs={2.5}>
+                            <Grid lg={2.5} xs={3}>
                                 <ItemProduct>
                                     <ProductCartSizeButtonNode>
                                         <ProductCartButton
@@ -83,10 +84,10 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                                     </ProductCartSizeButtonNode>
                                 </ItemProduct>
                             </Grid>
-                            <Grid item xs={2.5}>
+                            <Grid lg={2.5} xs={3}>
                                 <ItemProduct>{product?.totalPrice}</ItemProduct>
                             </Grid>
-                            <Grid item xs={1}>
+                            <Grid lg={1} xs={2}>
                                 <ItemProduct>
                                     <DeleteForeverIcon
                                         onClick={() => dispatch(destroyCart(product.id))}
@@ -103,7 +104,7 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                 </Box>
             )}
             <CartButtonWrap>
-                <Grid item xs={4}>
+                <Grid xs={4}>
                     <ButtonComponent
                         onClick={() => navigate(config.routes.product)}
                         text='Continue Shopping'
@@ -111,7 +112,7 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                         colorButton='green'
                     />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid xs={4}>
                     <ButtonComponent text='Update Cart' color='#ffff' colorButton='black' />
                 </Grid>
             </CartButtonWrap>

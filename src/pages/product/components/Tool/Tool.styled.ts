@@ -1,7 +1,12 @@
 import styled from '@emotion/styled/macro';
 import { Box, Button, List, ListItem, Typography } from '@mui/material';
-export const ToolWrapper = styled(Box)`
+import { deviceComponents } from './../../../../Hook/useDevice';
+import Grid2 from '@mui/material/Unstable_Grid2';
+export const ToolWrapper = styled(Grid2)`
     width: 100%;
+    @media screen and ${deviceComponents.mobileL} {
+        display: none;
+    }
 `;
 export const ToolContainer = styled(Box)`
     display: flex;
@@ -29,7 +34,6 @@ export const SelectFilter = styled(Box)`
     align-items: center;
     width: 100%;
 `;
-
 
 export const FilterSectionPrice = styled(Typography)`
     font-size: 1.2rem;

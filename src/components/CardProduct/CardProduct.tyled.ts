@@ -63,7 +63,7 @@ export const CardAction = styled(Box)`
 `;
 export const CardWrapper = styled(Box)`
     overflow: hidden;
-    margin: 10px 6px;
+    min-width: 190px;
     height: 100%;
     cursor: pointer;
     transition: 0.8s;

@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Box, Container } from '@mui/material';
-
+import Grid2 from '@mui/material/Unstable_Grid2';
 export const ProductWrapper = styled(Box)`
     width: 100vw;
     display: flex;
@@ -8,10 +8,13 @@ export const ProductWrapper = styled(Box)`
     height: 100vh;
 `;
 export const ProductContainer = styled(Container)`
-    display: flex;
-    min-width: inherit;
+    width: inherit;
     margin-top: 40px;
-    mảgin
+`;
+export const GridProduct = styled(Grid2)`
+    max-width: 100vw;
+    display: flex;
+    flex-wrap: nowrap;
 `;
 export const ProductContent = styled(Box)`
     flex: 1;

@@ -15,7 +15,6 @@ export const RelativeProductTitle = styled(Typography)`
 export const RelativeProductBody = styled(Grid2)`
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
     height: auto;
     margin: 0 0 40px 0;
 `;

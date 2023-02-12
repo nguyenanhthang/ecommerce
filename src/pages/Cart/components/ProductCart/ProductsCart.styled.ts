@@ -1,9 +1,8 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography, CardMedia, Button } from '@mui/material';
-
-export const ProductsCartWrap = styled(Box)`
-    width: 60vw;
-    height: inherit;
+import Grid from '@mui/material/Unstable_Grid2';
+export const ProductsCartWrap = styled(Grid)`
+    height: auto;
 `;
 export const ProductsCartHeader = styled(Box)``;
 export const ProductCartTitle = styled(Typography)`

@@ -37,7 +37,7 @@ const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, produc
     const [value, setValue] = React.useState<number | null>(productRating);
     const [hover, setHover] = React.useState(-1);
     return (
-        <Grid2 sx={{ height: '384px' }} md={2.4} xs={12} sm={6}>
+        <Grid2 sx={{ height: '384px', margin: '10px 0px' }} md={2.4} lg={2.4} xs={12} sm={6}>
             <CardWrapper>
                 <ImageProduct>
                     <ImageLink image={`${productImg}`} />
