@@ -18,7 +18,7 @@ const RelatedProduct: React.FC<Props> = ({ getDetailProduct }) => {
             <RelativeProductHeader>
                 <RelativeProductTitle variant='h5'>RELATED PRODUCT</RelativeProductTitle>
             </RelativeProductHeader>
-            <RelativeProductBody>
+            <RelativeProductBody container>
                 {getDetailProduct?.similar_product?.map((product: any) => {
                     return (
                         <CardProduct
@@ -32,9 +32,6 @@ const RelatedProduct: React.FC<Props> = ({ getDetailProduct }) => {
                     );
                 })}
             </RelativeProductBody>
-            <RelativeProductPagination>
-                <Pagination count={10} variant='outlined' shape='rounded' />
-            </RelativeProductPagination>
         </RelativeProductWrapper>
     );
 };

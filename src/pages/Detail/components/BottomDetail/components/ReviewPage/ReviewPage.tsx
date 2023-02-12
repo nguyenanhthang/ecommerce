@@ -7,7 +7,7 @@ type Props = {};
 
 const ReviewPage = (props: Props) => {
     return (
-        <ReviewPageWrapper>
+        <ReviewPageWrapper container>
             <UserReview />
             <FormReview />
         </ReviewPageWrapper>

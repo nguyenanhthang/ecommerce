@@ -20,6 +20,7 @@ import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfi
 import StarIcon from '@mui/icons-material/Star';
 import IconsComponent from 'components/Icons/IconsComponent';
 import IconsAction from './IconActionAddTocard/IconsAction';
+import Grid2 from '@mui/material/Unstable_Grid2';
 const labels: {
     [index: string]: React.ReactElement;
 } = {
@@ -36,43 +37,45 @@ const CardProduct: React.FC<CardProductIFf> = ({ productImg, productName, produc
     const [value, setValue] = React.useState<number | null>(productRating);
     const [hover, setHover] = React.useState(-1);
     return (
-        <CardWrapper>
-            <ImageProduct>
-                <ImageLink image={`${productImg}`} />
-                <ImgAction>
-                    <IconsAction id={id} />
-                </ImgAction>
-            </ImageProduct>
-            <CardBody>
-                <CardTitle>name: {productName}</CardTitle>
-                <CardCost>Coast: ₫{productCost}</CardCost>
-                <CardRating>
-                    <CardTitleRaing>Rating:</CardTitleRaing>
-                    <Box
-                        sx={{
-                            display: 'flex',
-                            alignItems: 'center'
-                        }}
-                    >
-                        <Rating
-                            sx={{ fontSize: '1.2rem' }}
-                            name='hover-feedback'
-                            value={value}
-                            precision={1}
-                            getLabelText={getLabelText}
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
+        <Grid2 sx={{ height: '384px' }} md={2.4} xs={12} sm={6}>
+            <CardWrapper>
+                <ImageProduct>
+                    <ImageLink image={`${productImg}`} />
+                    <ImgAction>
+                        <IconsAction id={id} />
+                    </ImgAction>
+                </ImageProduct>
+                <CardBody>
+                    <CardTitle>name: {productName}</CardTitle>
+                    <CardCost>Coast: ₫{productCost}</CardCost>
+                    <CardRating>
+                        <CardTitleRaing>Rating:</CardTitleRaing>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                alignItems: 'center'
                             }}
-                            onChangeActive={(event, newHover) => {
-                                setHover(newHover);
-                            }}
-                            emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
-                        />
-                        {value !== null && <Box sx={{ ml: 0.3 }}>{labels[hover !== -1 ? hover : value]}</Box>}
-                    </Box>
-                </CardRating>
-            </CardBody>
-        </CardWrapper>
+                        >
+                            <Rating
+                                sx={{ fontSize: '1.2rem' }}
+                                name='hover-feedback'
+                                value={value}
+                                precision={1}
+                                getLabelText={getLabelText}
+                                onChange={(event, newValue) => {
+                                    setValue(newValue);
+                                }}
+                                onChangeActive={(event, newHover) => {
+                                    setHover(newHover);
+                                }}
+                                emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize='inherit' />}
+                            />
+                            {value !== null && <Box sx={{ ml: 0.3 }}>{labels[hover !== -1 ? hover : value]}</Box>}
+                        </Box>
+                    </CardRating>
+                </CardBody>
+            </CardWrapper>
+        </Grid2>
     );
 };
 

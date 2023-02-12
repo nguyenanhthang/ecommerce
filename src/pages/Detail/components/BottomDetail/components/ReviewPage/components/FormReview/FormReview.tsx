@@ -51,7 +51,7 @@ const FormReview = (props: Props) => {
     } = methods;
     const [value, setValue] = React.useState<number | null>(4);
     return (
-        <FormReviewWrapper>
+        <FormReviewWrapper md={5.5} lg={5.5} sm={12} xs={12}>
             <HeaderFormReview>
                 <TitleFormReview variant='h4'>Add a Review</TitleFormReview>
                 <YourRatingReview variant='caption'>

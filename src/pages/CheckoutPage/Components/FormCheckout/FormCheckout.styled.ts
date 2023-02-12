@@ -1,8 +1,7 @@
 import { styled } from '@mui/material/styles';
-import { Box, CardMedia, Container, Typography } from '@mui/material';
+import { Box, CardMedia, Container, Typography, Grid } from '@mui/material';
 
-export const CheckOutFormWrap = styled(Box)`
-    width: 60vw;
+export const CheckOutFormWrap = styled(Grid)`
     height: inherit;
 `;
 export const CheckOutForm = styled(Box)`

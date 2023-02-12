@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
 import { Box, ImageList, Container, Typography } from '@mui/material';
-
+import Grid2 from '@mui/material/Unstable_Grid2';
 export const RelativeProductWrapper = styled(Box)`
-    height: 100%;
+    height: auto;
     width: 100%;
 `;
 export const RelativeProductHeader = styled(Box)`
@@ -12,9 +12,12 @@ export const RelativeProductHeader = styled(Box)`
 export const RelativeProductTitle = styled(Typography)`
     font-weight: 600;
 `;
-export const RelativeProductBody = styled(Box)`
+export const RelativeProductBody = styled(Grid2)`
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-evenly;
+    height: auto;
+    margin: 0 0 40px 0;
 `;
 export const RelativeProductPagination = styled(Box)`
     margin: 20px;

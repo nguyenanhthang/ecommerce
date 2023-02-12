@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Box, Container, Typography } from '@mui/material';
+import Grid2 from '@mui/material/Unstable_Grid2';
 export const HomeContainer = styled(Box)`
     width: 100vw;
     display: flex;
@@ -14,11 +15,11 @@ export const UntreeContainer = styled(Box)`
     background: #f8f9fa;
     padding: 30px 0;
 `;
-export const BannerHome = styled(Box)`
+export const BannerHome = styled(Grid2)`
     width: 100%;
     height: 100%;
 `;
-export const Popular = styled(Box)`
+export const Popular = styled(Grid2)`
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;

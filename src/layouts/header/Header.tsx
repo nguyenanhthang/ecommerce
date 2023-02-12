@@ -20,10 +20,9 @@ import {
 } from './Header.styled';
 import SearchComponent from '../../components/Search/SearchComponent';
 import IconsComponent from '../../components/Icons/IconsComponent';
-import { IconButton, Typography } from '@mui/material';
 import { ShoppingCart, CircleNotifications, PsychologyAlt, Phone, GTranslate } from '@mui/icons-material';
 import ButtonComponent from './../../components/Button/ButtonComponent';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import config from '../../config/config';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { getUser, logoutUser } from '../../api/auth';
@@ -36,6 +35,7 @@ import { useAppSelector } from '../../app/hooks';
 import { useDispatch } from 'react-redux';
 import { searchProduct } from 'features/Product/ProductSlice';
 import { RootState } from '../../app/store';
+import queryString from 'query-string';
 const MenuItem: any = [
     { title: 'Profile', to: config.routes.profile, icon: <AccountBox /> },
     { title: 'Detail Cart', to: config.routes.cartPage, icon: <ShoppingCartCheckout /> }
@@ -49,7 +49,10 @@ const Header = () => {
     console.log(search);
     const handleKeyDown = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        navigate(`/product/${search}`);
+        if (search !== '') {
+            return navigate({ pathname: config.routes.product, search: queryString.stringify({ keyword: search }) });
+        }
+        return navigate(config.routes.product);
     };
     const LogoutUserMutation: any = useMutation({
         mutationFn: () => {

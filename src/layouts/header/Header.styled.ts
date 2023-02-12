@@ -2,6 +2,7 @@ import styled from '@emotion/styled/macro';
 import { Box, Typography, Container, List, ListItem, IconButton } from '@mui/material';
 import images from './../../assets/index';
 import Badge, { BadgeProps } from '@mui/material/Badge';
+import { deviceComponents } from 'Hook/useDevice';
 export const HeaderWrapper = styled(Box)`
     position: fixed;
     width: 100%;
@@ -44,6 +45,9 @@ export const NavLogo = styled(Box)`
     height: 80%;
     width: 11%;
     position: relative;
+    @media screen and ${deviceComponents.tablet} {
+        display: none;
+    }
 `;
 export const LogoIcon = styled(Box)`
     background-image: url(${images.logoShop});
@@ -53,6 +57,10 @@ export const LogoIcon = styled(Box)`
     width: 126px;
     min-height: 25px;
     position: relative;
+    @media ${deviceComponents.laptop} {
+        width: 80px;
+        min-height: 15px;
+    }
 `;
 export const NavTitleWrapper = styled(Box)`
     font-size: 1rem;
@@ -135,6 +143,10 @@ export const NavListItem = styled(ListItem)`
 `;
 export const InfoUserName = styled(Typography)`
     margin-left: 5px;
+    width: 70px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 export const CardList = styled(Box)`
     position: absolute;

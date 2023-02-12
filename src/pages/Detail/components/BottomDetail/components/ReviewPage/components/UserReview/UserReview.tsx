@@ -17,10 +17,9 @@ import { Box, Rating } from '@mui/material';
 import images from 'assets';
 
 const UserReview = () => {
-    
     const [value, setValue] = React.useState<number | null>(4);
     return (
-        <UserReviewWrapper>
+        <UserReviewWrapper md={5.5} lg={5.5} sm={12} xs={12}>
             <TopReview>
                 <ArangePointWrapper>
                     <TextPoint variant='h5'>Overall</TextPoint>

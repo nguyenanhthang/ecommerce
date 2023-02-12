@@ -3,6 +3,7 @@ import {
     BannerDetail,
     DetailBody,
     DetailContainer,
+    Grid,
     RelativeProductDetailWrapper,
     ReviewDetail
 } from './DetailePage.styled';
@@ -12,7 +13,7 @@ import ImageProduct from './components/LeftDetail/ImageProduct';
 import ChooseOption from './components/RightDetaile/ChooseOption';
 import BottomPage from './components/BottomDetail/BottomPage';
 import RelatedProduct from './components/ReLatedProduct/RelatedProduct';
-import Footer from 'layouts/footer/Footer';
+import Footer from 'layouts/Footer/Footer';
 import { useDetail } from '../../Hook/useProduct';
 import { useParams } from 'react-router-dom';
 
@@ -34,8 +35,10 @@ const DetailPage = () => {
                 />
             </BannerDetail>
             <DetailBody>
-                <ImageProduct getDetailProduct={getDetailProduct?.data?.data} />
-                <ChooseOption getDetailProduct={getDetailProduct?.data?.data} />
+                <Grid container>
+                    <ImageProduct getDetailProduct={getDetailProduct?.data?.data} />
+                    <ChooseOption getDetailProduct={getDetailProduct?.data?.data} />
+                </Grid>
             </DetailBody>
             <ReviewDetail>
                 <BottomPage />

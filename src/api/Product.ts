@@ -1,9 +1,6 @@
 import request from 'utils/request';
 export const getProducts = async (keyword: number | string) => {
     const res = await request.get(`/list-product`, { params: keyword });
-    // const res = await request.get(`/list-product`, {
-    //     params: { sortBy: 'product_price', sortOrder: `${keyword}`, keyWord: `${keyword}` }
-    // });
     return res?.data;
 };
 export const getProductsCateGories = async (limit: number | string) => {

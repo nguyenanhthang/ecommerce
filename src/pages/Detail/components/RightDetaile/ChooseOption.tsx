@@ -66,7 +66,7 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
         );
     };
     return (
-        <ChooseOptionWrapper>
+        <ChooseOptionWrapper xs={12} sm={12} lg={5.5} md={5.5}>
             <ChooseOptionHeader>
                 <ChooseOptionTitle variant='h6'>Name: {getDetailProduct?.product_name}</ChooseOptionTitle>
                 <ChooseOptionRating>

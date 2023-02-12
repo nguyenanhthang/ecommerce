@@ -1,6 +1,6 @@
-import SideBar from 'layouts/siseBar/SideBar';
-import React, { useEffect } from 'react';
-import Footer from '../../layouts/footer/Footer';
+import SideBar from 'layouts/SideBar/SideBar';
+import React, { useEffect, useMemo, useState } from 'react';
+import Footer from '../../layouts/Footer/Footer';
 import { ProductBanner, ProductContainer, ProductContent, ProductTool, ProductWrapper } from './Product.styled';
 import Products from './components/Product/Products';
 import BannerRelative from 'pages/Home/components/BannerRalative/BannerRelative';
@@ -9,10 +9,21 @@ import Tool from './components/Tool/Tool';
 import { ProductPagination } from './components/Product/Products.styled';
 import { Pagination } from '@mui/material';
 import { useProduct } from 'Hook/useProduct';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
+import config from 'config/config';
+
 const Product = () => {
-    const getName: any = useParams().param;
-    const getProducts = useProduct({ sortBy: 'product_price', sortOrder: getName });
+    const location = useLocation();
+    const navigate = useNavigate();
+    const filter = queryString.parse(location.search);
+    const getProducts: any = useProduct(filter);
+    const [currentPage, setCurrentPage] = useState(1);
+    const count = getProducts?.data?.data?.last_page;
+    const handleChange = (event: any, value: number) => {
+        setCurrentPage(value);
+        navigate({ pathname: config.routes.product, search: queryString.stringify({ page: value }) });
+    };
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -37,7 +48,13 @@ const Product = () => {
                 </ProductContent>
             </ProductContainer>
             <ProductPagination>
-                <Pagination count={10} variant='outlined' shape='rounded' />
+                <Pagination
+                    count={count}
+                    page={currentPage}
+                    onChange={handleChange}
+                    variant='outlined'
+                    shape='rounded'
+                />
             </ProductPagination>
             <Footer />
         </ProductWrapper>

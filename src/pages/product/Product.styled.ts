@@ -11,6 +11,7 @@ export const ProductContainer = styled(Container)`
     display: flex;
     min-width: inherit;
     margin-top: 40px;
+    mảgin
 `;
 export const ProductContent = styled(Box)`
     flex: 1;

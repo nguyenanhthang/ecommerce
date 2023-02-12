@@ -1,7 +1,8 @@
 import styled from '@emotion/styled/macro';
 import { Box, Container, Button, Typography } from '@mui/material';
-
-export const BannerContainer = styled(Box)`
+import Grid2 from '@mui/material/Unstable_Grid2';
+import { deviceComponents } from './../../../../Hook/useDevice';
+export const BannerContainer = styled(Grid2)`
     width: 100%;
     height: 100%;
 `;
@@ -85,20 +86,9 @@ export const TextBannerWrap = styled(Box)`
     //visibility: hidden;
     z-index: 2;
 `;
-export const BannerWrapper = styled(Box)`
+export const BannerWrapper = styled(Grid2)`
     margin-top: 10px;
-    /* &:hover {
-        ${ButtonBannerWrap} {
-            transition-delay: 0.2s;
-            opacity: 1;
-            visibility: visible;
-        }
+    @media screen and ${deviceComponents.tablet} {
+        width: 100%;
     }
-    &:hover {
-        ${TextBannerWrap} {
-            transition-delay: 0.2s;
-            opacity: 1;
-            visibility: visible;
-        }
-    } */
 `;

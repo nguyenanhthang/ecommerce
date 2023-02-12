@@ -17,16 +17,17 @@ import {
 } from './Tool.styled';
 import { ExpandMore, NavigateNext, KeyboardArrowLeft } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import queryString from 'query-string';
+import config from 'config/config';
 
 type Props = {};
 
 const Tool = (props: Props) => {
-    const [sort, setSort] = useState('');
     const navigate = useNavigate();
     return (
         <ToolWrapper>
             <ToolContainer>
-                <ToolLabel>xắp sếp theo</ToolLabel>
+                <ToolLabel variant='caption'>xắp sếp theo</ToolLabel>
                 <ToolButton>Phổ biến</ToolButton>
                 <ToolButton>Mới nhất</ToolButton>
                 <ToolButton>Bán chạy</ToolButton>
@@ -35,8 +36,26 @@ const Tool = (props: Props) => {
                         <FilterSectionPrice>Price</FilterSectionPrice>
                         <ExpandMore />
                         <FilterList>
-                            <FilterListItem onClick={() => navigate('/product/desc')}>Giá: Cao đến thấp</FilterListItem>
-                            <FilterListItem onClick={() => navigate('/product/asc')}>Giá: Thấp đến cao</FilterListItem>
+                            <FilterListItem
+                                onClick={() =>
+                                    navigate({
+                                        pathname: config.routes.product,
+                                        search: queryString.stringify({ sortBy: 'product_price', sortOrder: 'dsc' })
+                                    })
+                                }
+                            >
+                                Giá: Cao đến thấp
+                            </FilterListItem>
+                            <FilterListItem
+                                onClick={() =>
+                                    navigate({
+                                        pathname: config.routes.product,
+                                        search: queryString.stringify({ sortBy: 'product_price', sortOrder: 'asc' })
+                                    })
+                                }
+                            >
+                                Giá: Thấp đến cao
+                            </FilterListItem>
                         </FilterList>
                     </FilterSection>
                     <FilterSectionPage>

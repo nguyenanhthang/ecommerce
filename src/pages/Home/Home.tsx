@@ -16,7 +16,7 @@ import ImgComponent from '../../components/Img/ImgComponent';
 import { useNavigate } from 'react-router-dom';
 import NewProduct from './components/ProductNew/NewProduct';
 import BannerRelative from './components/BannerRalative/BannerRelative';
-import Footer from 'layouts/footer/Footer';
+import Footer from 'layouts/Footer/Footer';
 import { useProduct, useCategories } from '../../Hook/useProduct';
 import { useAppSelector } from '../../app/hooks';
 import { RootState } from '../../app/store';
@@ -49,7 +49,7 @@ const Home = () => {
     }, []);
     return (
         <HomeContainer>
-            <BannerHome>
+            <BannerHome container>
                 <Banner />
             </BannerHome>
             <UntreeContainer>
@@ -69,7 +69,7 @@ const Home = () => {
                     detail='Far far away, behind the word mountains, far from the countries.'
                 />
             </UntreeContainer>
-            <Popular>
+            <Popular container spacing={1}>
                 {getCategory?.data?.data?.data?.map((item: any, i: number) => (
                     <ImgComponent
                         key={i}

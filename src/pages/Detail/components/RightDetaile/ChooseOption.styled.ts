@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography, Button } from '@mui/material';
-
-export const ChooseOptionWrapper = styled(Box)`
+import Grid2 from '@mui/material/Unstable_Grid2';
+export const ChooseOptionWrapper = styled(Grid2)`
     display: flex;
     flex-direction: column;
     width: 100%;

@@ -11,10 +11,10 @@ const Products: React.FC<Props> = ({ getProducts }) => {
     return (
         <ProductsWrapper>
             <ProductsContainer>
-                {getProducts?.data?.data?.data.map((product: any) => {
+                {getProducts?.data?.data?.data.map((product: any, i: number) => {
                     return (
                         <CardProduct
-                            key={product.id}
+                            key={i}
                             productImg={'http://hieu.fresher.ameladev.click/' + product.product_image}
                             productName={product.product_name}
                             productCost={product.product_price}

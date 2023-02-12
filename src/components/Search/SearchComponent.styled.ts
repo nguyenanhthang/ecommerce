@@ -36,8 +36,15 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch'
+        [theme.breakpoints.down('md')]: {
+            width: '20ch',
+            height: '2ch',
+            padding: '16px 1px 9px 45px'
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: '10ch',
+            height: '2ch',
+            padding: '15px 1px 1px 45px'
         }
     }
 }));

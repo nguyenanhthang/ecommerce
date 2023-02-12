@@ -5,7 +5,7 @@ import config from './../config/config';
 import { Router } from '../types/Router.type';
 import Profile from 'pages/Profile/Profile';
 import DetailPage from 'pages/Detail/DetailPage';
-import Product from 'pages/product/Product';
+import Product from 'pages/Product/Product';
 import CardPage from 'pages/Cart/CardPage';
 import CheckoutPage from '../pages/CheckoutPage/CheckoutPage';
 const PublishRouter: Array<Router> = [

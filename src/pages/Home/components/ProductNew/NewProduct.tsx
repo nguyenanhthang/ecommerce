@@ -7,7 +7,7 @@ type Props = {
 };
 const NewProduct: React.FC<Props> = ({ getProducts }) => {
     return (
-        <NewProductWrapper>
+        <NewProductWrapper container spacing={1}>
             {getProducts?.data?.data?.data.map((product: any) => {
                 return (
                     <CardProduct
