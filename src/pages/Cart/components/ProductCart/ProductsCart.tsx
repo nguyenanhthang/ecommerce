@@ -26,8 +26,22 @@ type Props = {
     dataCart: any;
 };
 const ProductsCart: React.FC<Props> = ({ dataCart }) => {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    const [show, setShow] = React.useState(false);
+    const totalQuantity = useAppSelector((state) => state.product.totalQuantity);
+    const addProduct = (product: any) => {
+        dispatch(
+            addCart({
+                id: product.id,
+                product_name: product.product_name,
+                product_image: product.product_image,
+                quantity: +1,
+                productPrice: product?.productPrice,
+                totalPrice: product?.productPrice
+            })
+        ) && setShow(false);
+    };
     return (
         <ProductsCartWrap lg={9} md={9} sm={12} xs={12}>
             <Grid sx={{ m: 0, marginBottom: '30px', display: 'flex' }}>
@@ -60,25 +74,18 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                             <Grid lg={2.5} xs={3}>
                                 <ItemProduct>
                                     <ProductCartSizeButtonNode>
-                                        <ProductCartButton
-                                            sx={{ left: '55%' }}
-                                            onClick={() =>
-                                                dispatch(
-                                                    addCart({
-                                                        id: product.id,
-                                                        product_name: product.product_name,
-                                                        product_image: product.product_image,
-                                                        quantity: +1,
-                                                        productPrice: product?.productPrice,
-                                                        totalPrice: product?.productPrice
-                                                    })
-                                                )
-                                            }
-                                        >
+                                        <ProductCartButton sx={{ left: '55%' }} onClick={() => addProduct(product)}>
                                             +
                                         </ProductCartButton>
                                         <ProductCartCount>{product?.quantity}</ProductCartCount>
-                                        <ProductCartButton onClick={() => dispatch(deleteCart(product.id))}>
+                                        <ProductCartButton
+                                            disabled={show}
+                                            onClick={() =>
+                                                product?.quantity === 1
+                                                    ? setShow(true)
+                                                    : dispatch(deleteCart(product.id))
+                                            }
+                                        >
                                             -
                                         </ProductCartButton>
                                     </ProductCartSizeButtonNode>
@@ -111,9 +118,6 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
                         color='#ffff'
                         colorButton='green'
                     />
-                </Grid>
-                <Grid xs={4}>
-                    <ButtonComponent text='Update Cart' color='#ffff' colorButton='black' />
                 </Grid>
             </CartButtonWrap>
         </ProductsCartWrap>

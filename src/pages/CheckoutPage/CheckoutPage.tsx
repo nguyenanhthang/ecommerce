@@ -8,7 +8,7 @@ type Props = {};
 const CheckoutPage = (props: Props) => {
     return (
         <CheckOutWrapper>
-            <CheckoutWrap>
+            <CheckoutWrap container>
                 <FormCheckout />
                 <SearchCartPage />
             </CheckoutWrap>

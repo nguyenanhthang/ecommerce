@@ -16,10 +16,13 @@ import SearchComponent from '../../../../components/Search/SearchComponent';
 import ButtonComponent from '../../../../components/Button/ButtonComponent';
 import { useAppSelector } from '../../../../app/hooks';
 import { RootState } from '../../../../app/store';
+import config from 'config/config';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {};
 
 const SearchCartPage = (props: Props) => {
+    const navigate = useNavigate();
     const dataTotalAmount = useAppSelector((state: RootState) => state.product.totalAmount);
     return (
         <SearchCartPageWrap>
@@ -39,7 +42,12 @@ const SearchCartPage = (props: Props) => {
                     <SearchCartPageTotalTotal>Total: </SearchCartPageTotalTotal>
                     <SearchCartPageTotalTotalCost>$ {dataTotalAmount}</SearchCartPageTotalTotalCost>
                 </Box>
-                <ButtonComponent text='Update Cart' color='#ffff' colorButton='black' />
+                <ButtonComponent
+                    onClick={() => navigate(config.routes.checkout)}
+                    text='Checkout'
+                    color='#ffff'
+                    colorButton='black'
+                />
             </SearchCartPageTotal>
         </SearchCartPageWrap>
     );

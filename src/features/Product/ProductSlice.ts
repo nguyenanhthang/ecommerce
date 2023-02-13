@@ -42,7 +42,8 @@ export const productSlice = createSlice({
                 });
             } else {
                 validDateCart.quantity += newItem.quantity;
-                validDateCart.totalPrice = Number(validDateCart.totalPrice) + Number(validDateCart.productPrice * newItem.quantity);
+                validDateCart.totalPrice =
+                    Number(validDateCart.totalPrice) + Number(validDateCart.productPrice * newItem.quantity);
             }
             state.totalQuantity += newItem.quantity;
             // if (validDateCart.quantity === validDateCart.stock) {

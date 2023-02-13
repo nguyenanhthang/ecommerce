@@ -20,6 +20,7 @@ import { useParams } from 'react-router-dom';
 const DetailPage = () => {
     const userId: any = useParams();
     const getDetailProduct = useDetail(userId.id);
+    console.log(getDetailProduct?.data?.data);
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -36,8 +37,8 @@ const DetailPage = () => {
             </BannerDetail>
             <DetailBody>
                 <Grid container>
-                    <ImageProduct getDetailProduct={getDetailProduct?.data?.data} />
-                    <ChooseOption getDetailProduct={getDetailProduct?.data?.data} />
+                    {!getDetailProduct.isLoading && <ImageProduct getDetailProduct={getDetailProduct?.data?.data} />}
+                    {!getDetailProduct.isLoading && <ChooseOption getDetailProduct={getDetailProduct?.data} />}
                 </Grid>
             </DetailBody>
             <ReviewDetail>

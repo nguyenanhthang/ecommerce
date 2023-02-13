@@ -13,8 +13,8 @@ const Profile = (props: Props) => {
     }, []);
     return (
         <ProfileWrapper>
-            <SideBarProfile getUser={getUser} />
-            <MyProfile getUser={getUser} />
+            {!getUser.isLoading && <SideBarProfile getUser={getUser} />}
+            {!getUser.isLoading && <MyProfile getUser={getUser} />}
         </ProfileWrapper>
     );
 };

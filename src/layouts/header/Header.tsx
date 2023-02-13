@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEventHandler, useEffect, useState } from 'react';
+import React from 'react';
 import {
     HeaderContainer,
     HeaderWrapper,
@@ -22,14 +22,12 @@ import SearchComponent from '../../components/Search/SearchComponent';
 import IconsComponent from '../../components/Icons/IconsComponent';
 import { ShoppingCart, CircleNotifications, PsychologyAlt, Phone, GTranslate } from '@mui/icons-material';
 import ButtonComponent from './../../components/Button/ButtonComponent';
-import { useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import config from '../../config/config';
-import { useMutation, useQuery } from '@tanstack/react-query';
-import { getUser, logoutUser } from '../../api/auth';
-import request from 'utils/request';
+import { useMutation } from '@tanstack/react-query';
+import { logoutUser } from '../../api/auth';
 import { AccountBox, ShoppingCartCheckout, Logout } from '@mui/icons-material';
 import Cart from './components/cart/Cart';
-import FullScreenLoader from 'layouts/Loading/Loading';
 import { useUser } from 'Hook/useUser';
 import { useAppSelector } from '../../app/hooks';
 import { useDispatch } from 'react-redux';
@@ -41,7 +39,6 @@ const MenuItem: any = [
     { title: 'Detail Cart', to: config.routes.cartPage, icon: <ShoppingCartCheckout /> }
 ];
 const Header = () => {
-    const dataCart = useAppSelector((state) => state.product.CartProduct);
     const navigate = useNavigate();
     const getUser: any = useUser();
     const dispatch = useDispatch();

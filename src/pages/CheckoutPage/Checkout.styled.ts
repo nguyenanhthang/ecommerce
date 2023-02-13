@@ -1,9 +1,11 @@
 import { styled } from '@mui/material/styles';
-import { Box, CardMedia, Container, Typography } from '@mui/material';
-export const CheckOutWrapper = styled(Box)`
+import { Container } from '@mui/material';
+import Grid2 from '@mui/material/Unstable_Grid2';
+export const CheckOutWrapper = styled(Container)`
     display: flex;
     flex-direction: column;
+    margin-top: 40px;
 `;
-export const CheckoutWrap = styled(Container)`
+export const CheckoutWrap = styled(Grid2)`
     display: flex;
 `;

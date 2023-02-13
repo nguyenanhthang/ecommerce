@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { Box, CardMedia, Container, Typography, Grid } from '@mui/material';
-
+import { Box, Typography} from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
 export const CheckOutFormWrap = styled(Grid)`
     height: inherit;
 `;

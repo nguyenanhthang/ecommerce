@@ -1,8 +1,7 @@
 import React from 'react';
-import { HeaderMobileWrap, Search, SearchIconWrapper, DrawerHeader } from './HeaderMobile.styled';
+import { HeaderMobileWrap, Search } from './HeaderMobile.styled';
 import {
     Toolbar,
-    Typography,
     IconButton,
     Box,
     Drawer,
@@ -19,11 +18,19 @@ import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ButtonComponent from '../../../components/Button/ButtonComponent';
 import config from 'config/config';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SearchComponent from '../../../components/Search/SearchComponent';
 import { useAppSelector } from '../../../app/hooks';
 import { useUser } from '../../../Hook/useUser';
-import { InfoWrapper, InfoUserName, NavListUser, NavListItem, NavLogo, LogoIcon } from '../../header/Header.styled';
+import {
+    InfoWrapper,
+    InfoUserName,
+    NavListUser,
+    NavListItem,
+    NavLogo,
+    LogoIcon,
+    StyledBadge
+} from '../../header/Header.styled';
 import IconsComponent from 'components/Icons/IconsComponent';
 import { searchProduct } from 'features/Product/ProductSlice';
 import { useDispatch } from 'react-redux';
@@ -31,12 +38,10 @@ import { RootState } from '../../../app/store';
 import { useMutation } from '@tanstack/react-query';
 import queryString from 'query-string';
 import { logoutUser } from '../../../api/auth';
-import { useTheme } from 'styled-components';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { styled } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-import SearchIcon from '@mui/icons-material/Search';
 import MailIcon from '@mui/icons-material/Mail';
 type Props = {};
 interface AppBarProps extends MuiAppBarProps {
@@ -65,12 +70,11 @@ const AppBar = styled(MuiAppBar, {
 }));
 const HeaderMobile = (props: Props) => {
     const [open, setOpen] = React.useState(false);
-    const theme: any = useTheme();
-    const dataCart = useAppSelector((state) => state.product.CartProduct);
     const navigate = useNavigate();
     const getUser: any = useUser();
     const dispatch = useDispatch();
     const search = useAppSelector((state: RootState) => state.product.search);
+    const TotalQuantity = useAppSelector((state: RootState) => state.product.totalQuantity);
     const handleDrawerOpen = () => {
         setOpen(!open);
     };
@@ -97,6 +101,7 @@ const HeaderMobile = (props: Props) => {
             }
         });
     };
+
     return (
         <HeaderMobileWrap>
             <AppBar position='fixed' open={open}>
@@ -130,9 +135,9 @@ const HeaderMobile = (props: Props) => {
                             />
                         </Search>
                         <IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-                            <Badge badgeContent={4} color='error'>
+                            <StyledBadge badgeContent={TotalQuantity} color='secondary'>
                                 <ShoppingCart />
-                            </Badge>
+                            </StyledBadge>
                         </IconButton>
                         <IconButton
                             sx={{ display: { xs: 'none' } }}

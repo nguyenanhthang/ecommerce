@@ -29,7 +29,13 @@ export const getUser = async () => {
     }
 };
 export const updateUser = async (id: number | string, data: any) => {
-    const res = await request.post(`/edit-profile/${id}`, data);
+    const bearer_token = `Bearer ${localStorage.getItem('token')}`;
+    const res = await request.post(`/edit-profile/${id}`, data, {
+        headers: {
+            'Content-Type': ' multipart/form-data',
+            Authorization: bearer_token
+        }
+    });
     return res?.data;
 };
 export const logoutUser = async () => {

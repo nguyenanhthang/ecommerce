@@ -7,7 +7,6 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 const DefaultLayout: React.FC<children> = ({ children }) => {
     const matches = useMediaQuery('(max-width:650px)');
-    console.log(matches);
     return (
         <WrapperLayout>
             {matches ? <HeaderMobile /> : <Header />}

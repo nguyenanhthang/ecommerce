@@ -20,11 +20,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormInput, FormWrapper } from '../../../Auth/Login/components/FormLogin/FormLogin.styled';
 import Inputs from '../../../../components/InputForm/Inputs';
 import ButtonComponent from 'components/Button/ButtonComponent';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateUser } from '../../../../api/auth';
 import { Box } from '@mui/material';
 import { PhotoCamera } from '@mui/icons-material';
 import { devNull } from 'os';
+import ImgComponent from 'components/Img/ImgComponent';
+import IconsComponent from 'components/Icons/IconsComponent';
 type Props = {
     getUser: any;
 };
@@ -38,7 +40,9 @@ const schema = yup.object().shape({
         .min(6, 'Phải Có Ít nhất 6 Ký Tự')
 });
 type ProfileInput = yup.InferType<typeof schema>;
+
 const MyProfile: React.FC<Props> = ({ getUser }) => {
+    const queryClient = useQueryClient()
     const methods: any = useForm<ProfileInput>({
         resolver: yupResolver(schema),
         defaultValues: {
@@ -47,6 +51,7 @@ const MyProfile: React.FC<Props> = ({ getUser }) => {
             phone: getUser?.data?.data?.phone
         }
     });
+    console.log(getUser?.data?.data?.avatar);
     const {
         setError,
         reset,
@@ -58,28 +63,21 @@ const MyProfile: React.FC<Props> = ({ getUser }) => {
     });
     const [state, setstate] = useState<any>('');
     const loadFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const formData = new FormData();
         const file = event.target.files;
-        formData.append('avatar', file ? file[0].name : '');
-        setstate(formData);
+        const file2 = file ? file[0] : '';
+        //const url = URL.createObjectURL(file2);
+        setstate(file2);
     };
-    console.log(getUser);
     const updateLogin: SubmitHandler<ProfileInput> = (value: any) => {
-        console.log({
-            full_name: value.full_name,
-            email: value.email,
-            phone: value.phone,
-            avatar: state.get('avatar')
-        });
         updateMutation.mutate(value, {
             onSuccess: () => {
-                alert('update thanh cong');
-                return updateUser(getUser?.data?.data?.id, {
+                updateUser(getUser?.data?.data?.id, {
                     full_name: value.full_name,
                     email: value.email,
                     phone: value.phone,
-                    avatar: state.get('avatar')
+                    avatar: state
                 });
+                queryClient.invalidateQueries({ queryKey: ['getUsers'] });
             }
         });
     };
@@ -117,6 +115,7 @@ const MyProfile: React.FC<Props> = ({ getUser }) => {
             </MyProfileWrapper>
             <MyAvatarWrapper xs={3}>
                 <MyAvatarContainer>
+                    <IconsComponent LinkIcons={getUser?.data?.data?.avatar} />
                     <input
                         type='file'
                         accept='image/*'
@@ -124,12 +123,6 @@ const MyProfile: React.FC<Props> = ({ getUser }) => {
                         id='file'
                         onChange={loadFile}
                         style={{ display: 'none' }}
-                    />
-                    <img
-                        src={state ? state : getUser.data.data.avatar}
-                        style={{ borderRadius: '50%', width: '50px', height: '50px' }}
-                        id='output'
-                        alt=''
                     />
                     <Box display='flex' justifyContent='flex-end' padding='10px 20px'>
                         <label htmlFor='file' style={{ cursor: 'pointer' }}>

@@ -23,27 +23,20 @@ import {
     ColorsProduct,
     ImportTant
 } from './ChooseOption.styled';
-import { Rating } from '@mui/material';
+import { Rating, Typography } from '@mui/material';
 import ButtonComponent from 'components/Button/ButtonComponent';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { addCart } from 'features/Product/ProductSlice';
 
-const options = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-    { label: '12 Angry Men', year: 1957 },
-    { label: "Schindler's List", year: 1993 },
-    { label: 'Pulp Fiction', year: 1994 }
-];
 type Props = {
     getDetailProduct: any;
 };
 
 const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
     const dispatch = useAppDispatch();
+    const [toTalPrice, setTotalPrice] = React.useState(Number(getDetailProduct?.data?.product_price));
     let [count, setCount] = React.useState(1);
+    const [value, setValue] = React.useState<number | null>(2);
     function incrementCount() {
         count = count + 1;
         setCount(count);
@@ -52,23 +45,26 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
         count = count - 1;
         setCount(count);
     }
-    const [value, setValue] = React.useState<number | null>(2);
     const handleAddToCart = (getDetailProduct: any) => {
         dispatch(
             addCart({
-                id: getDetailProduct.id,
-                product_name: getDetailProduct.product_name,
-                product_image: getDetailProduct.product_image,
+                id: getDetailProduct.data.id,
+                product_name: getDetailProduct.data.product_name,
+                product_image: getDetailProduct.data.product_image,
                 quantity: count,
-                productPrice: getDetailProduct?.product_price,
-                totalPrice: getDetailProduct?.product_price * count
+                productPrice: toTalPrice,
+                totalPrice: toTalPrice * count,
+                //size: 
             })
         );
     };
+    // const handleTotalPrice = (product: number) => {
+    //     setTotalPrice((prev: number) => Number((prev += product)));
+    // };
     return (
         <ChooseOptionWrapper xs={12} sm={12} lg={5.5} md={5.5}>
             <ChooseOptionHeader>
-                <ChooseOptionTitle variant='h6'>Name: {getDetailProduct?.product_name}</ChooseOptionTitle>
+                <ChooseOptionTitle variant='h6'>Name: {getDetailProduct.data?.product_name}</ChooseOptionTitle>
                 <ChooseOptionRating>
                     <Rating
                         name='simple-controlled'
@@ -79,18 +75,29 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                     />
                 </ChooseOptionRating>
                 <ChooseOptionStock variant='h6'>Stock: Available In Stock</ChooseOptionStock>
-                <ChooseOptionCost>Cost: {getDetailProduct?.product_price}</ChooseOptionCost>
+                <ChooseOptionCost>Cost: {toTalPrice}</ChooseOptionCost>
             </ChooseOptionHeader>
-            <ChooseOptionDescription>{getDetailProduct?.product_short_desc}</ChooseOptionDescription>
+            <ChooseOptionDescription>{getDetailProduct.data?.product_short_desc}</ChooseOptionDescription>
             <ChooseOptionColorWrapper>
                 <ChooseOptionColorTitle variant='h4'>
                     COLOR <ImportTant variant='caption'>*</ImportTant>
                     <ColorList>
-                        <ColorsProduct variant='caption' sx={{ background: '#1cbbb4' }}></ColorsProduct>
-                        <ColorsProduct variant='caption' sx={{ background: '#000000' }}></ColorsProduct>
-                        <ColorsProduct variant='caption' sx={{ background: '#00aeef' }}></ColorsProduct>
-                        <ColorsProduct variant='caption' sx={{ background: '#00a99d' }}></ColorsProduct>
-                        <ColorsProduct variant='caption' sx={{ background: '#e7352b' }}></ColorsProduct>
+                        {getDetailProduct?.colors.length !== 0 ? (
+                            getDetailProduct?.colors.map((el: any, i: number) => {
+                                return (
+                                    <ColorsProduct
+                                        //onClick={() => handleTotalPrice(el.pivot.price)}
+                                        key={i}
+                                        variant='caption'
+                                        sx={{ background: `${el.attr_value}`, cursor: 'pointer' }}
+                                    ></ColorsProduct>
+                                );
+                            })
+                        ) : (
+                            <Typography variant='h6' sx={{ color: 'red', fontWeight: '500' }}>
+                                NO Option
+                            </Typography>
+                        )}
                     </ColorList>
                 </ChooseOptionColorTitle>
                 <ChooseOptionColor></ChooseOptionColor>
@@ -102,9 +109,12 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                 <Autocomplete
                     disablePortal
                     id='combo-box-demo'
-                    options={options}
+                    options={getDetailProduct?.size.map((el: any) => {
+                        return { label: el.attr_name };
+                    })}
+                    //onChange={(e, value: any) => handleTotalPrice(value.price)}
                     sx={{ width: 300 }}
-                    renderInput={(params) => <TextField {...params} label='Movie' />}
+                    renderInput={(params) => <TextField {...params} label='Size' />}
                 />
                 <ChooseOptionSizeButtonWrapper>
                     <ChooseOptionSizeButtonNode>
