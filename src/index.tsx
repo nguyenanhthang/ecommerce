@@ -7,8 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import GlobalStyle from './components/GlobalStyle/GlobalStyle';
-
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
@@ -21,14 +19,12 @@ const root = createRoot(container);
 
 root.render(
     <React.StrictMode>
-        <GlobalStyle>
-            <Provider store={store}>
-                <QueryClientProvider client={queryClient}>
-                    <ReactQueryDevtools initialIsOpen={false} />
-                    <App />
-                </QueryClientProvider>
-            </Provider>
-        </GlobalStyle>
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <ReactQueryDevtools initialIsOpen={false} />
+                <App />
+            </QueryClientProvider>
+        </Provider>
     </React.StrictMode>
 );
 

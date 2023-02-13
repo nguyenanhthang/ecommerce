@@ -2,13 +2,15 @@ import React from 'react';
 import { children } from '../../types/ChildrenProp.type';
 import { ContainerLayout, WrapperLayout } from './DefaultLayout.styled';
 import Header from '../header/Header';
-import Footer from '../footer/Footer';
+import HeaderMobile from 'layouts/Mobile/HeaderMobile/HeaderMobile';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 const DefaultLayout: React.FC<children> = ({ children }) => {
+    const matches = useMediaQuery('(max-width:650px)');
     return (
         <WrapperLayout>
-            <Header />
+            {matches ? <HeaderMobile /> : <Header />}
             <ContainerLayout>{children}</ContainerLayout>
-            <Footer />
         </WrapperLayout>
     );
 };

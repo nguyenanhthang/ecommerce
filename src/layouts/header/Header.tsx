@@ -10,18 +10,60 @@ import {
     StyledBadge,
     NavTop,
     NavTopStart,
-    NavTopEnd
+    NavTopEnd,
+    InfoUserName,
+    InfoWrapper,
+    NavListUser,
+    NavListItem,
+    CartHeader,
+    CardList
 } from './Header.styled';
 import SearchComponent from '../../components/Search/SearchComponent';
 import IconsComponent from '../../components/Icons/IconsComponent';
-import { IconButton } from '@mui/material';
 import { ShoppingCart, CircleNotifications, PsychologyAlt, Phone, GTranslate } from '@mui/icons-material';
 import ButtonComponent from './../../components/Button/ButtonComponent';
 import { useNavigate } from 'react-router-dom';
 import config from '../../config/config';
-
+import { useMutation } from '@tanstack/react-query';
+import { logoutUser } from '../../api/auth';
+import { AccountBox, ShoppingCartCheckout, Logout } from '@mui/icons-material';
+import Cart from './components/cart/Cart';
+import { useUser } from 'Hook/useUser';
+import { useAppSelector } from '../../app/hooks';
+import { useDispatch } from 'react-redux';
+import { searchProduct } from 'features/Product/ProductSlice';
+import { RootState } from '../../app/store';
+import queryString from 'query-string';
+const MenuItem: any = [
+    { title: 'Profile', to: config.routes.profile, icon: <AccountBox /> },
+    { title: 'Detail Cart', to: config.routes.cartPage, icon: <ShoppingCartCheckout /> }
+];
 const Header = () => {
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
+    const getUser: any = useUser();
+    const dispatch = useDispatch();
+    const search = useAppSelector((state: RootState) => state.product.search);
+    const TotalQuantity = useAppSelector((state: RootState) => state.product.totalQuantity);
+    const handleKeyDown = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (search !== '') {
+            return navigate({ pathname: config.routes.product, search: queryString.stringify({ keyword: search }) });
+        }
+        return navigate(config.routes.product);
+    };
+    const LogoutUserMutation: any = useMutation({
+        mutationFn: () => {
+            return logoutUser();
+        }
+    });
+    const HandleLogoutUser = () => {
+        LogoutUserMutation.mutate(getUser.data.data, {
+            onSuccess: () => {
+                localStorage.removeItem('token');
+                navigate(config.routes.login);
+            }
+        });
+    };
     return (
         <HeaderWrapper>
             <NavTop>
@@ -32,17 +74,33 @@ const Header = () => {
                     <ButtonComponent text='Notification' icon={<CircleNotifications sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Help' icon={<PsychologyAlt sx={{ fontSize: '1rem' }} />} />
                     <ButtonComponent text='Language' icon={<GTranslate sx={{ fontSize: '1rem' }} />} />
-                    <ButtonComponent onClick={() => Navigate(config.routes.login)} text='Login' />
-                    <ButtonComponent onClick={() => localStorage.removeItem('user')} text='Register' />
-                    {/* {localStorage.get('user') ? (
-                        <>
-                            <IconsComponent LinkIcons='/static/images/avatar/1.jpg' width={35} height={35} />
-                        </>
+                    {!getUser.isLoading && getUser.data && getUser.data.data ? (
+                        <InfoWrapper key={getUser.data.data.id}>
+                            <IconsComponent
+                                LinkIcons={'http://hieu.fresher.ameladev.click/' + getUser.data.data.avatar}
+                                width={20}
+                                height={20}
+                            />
+                            <InfoUserName>{getUser.data.data.full_name}</InfoUserName>
+                            <NavListUser>
+                                {MenuItem.map((el: any, i: number) => {
+                                    return (
+                                        <NavListItem key={i} onClick={() => navigate(el.to)}>
+                                            {el.icon} {el.title}
+                                        </NavListItem>
+                                    );
+                                })}
+                                <NavListItem onClick={() => HandleLogoutUser()}>
+                                    <Logout /> LogOut
+                                </NavListItem>
+                            </NavListUser>
+                        </InfoWrapper>
                     ) : (
                         <>
-                            
+                            <ButtonComponent onClick={() => navigate(config.routes.login)} text='Login' />
+                            <ButtonComponent onClick={() => navigate(config.routes.register)} text='Register' />
                         </>
-                    )} */}
+                    )}
                 </NavTopEnd>
             </NavTop>
             <HeaderContainer>
@@ -50,18 +108,28 @@ const Header = () => {
                     <LogoIcon></LogoIcon>
                 </NavLogo>
                 <NavTitleWrapper>
-                    <NavTitle variant='caption'>Home</NavTitle>
-                    <NavTitle variant='caption'>Product</NavTitle>
+                    <NavTitle onClick={() => navigate(config.routes.home)} variant='caption'>
+                        Home
+                    </NavTitle>
+                    <NavTitle onClick={() => navigate(config.routes.product)} variant='caption'>
+                        Product
+                    </NavTitle>
                     <NavTitle variant='caption'>About</NavTitle>
                     <NavTitle variant='caption'>Contact</NavTitle>
                 </NavTitleWrapper>
                 <NavAction>
-                    <SearchComponent />
-                    <IconButton aria-label='cart'>
-                        <StyledBadge badgeContent={4} color='secondary'>
+                    <SearchComponent
+                        onKeyDown={handleKeyDown}
+                        onChange={(e: any) => dispatch(searchProduct(e.target.value))}
+                    />
+                    <CartHeader aria-label='cart'>
+                        <StyledBadge badgeContent={TotalQuantity} color='secondary'>
                             <ShoppingCart />
                         </StyledBadge>
-                    </IconButton>
+                        <CardList>
+                            <Cart />
+                        </CardList>
+                    </CartHeader>
                 </NavAction>
             </HeaderContainer>
         </HeaderWrapper>

@@ -6,7 +6,8 @@ import { Controller, useFormContext } from 'react-hook-form';
 const Inputs: React.FC<InputIf> = ({ id, name, label, type, ...otherProps }) => {
     const {
         control,
-        formState: { errors }
+        formState: { errors },
+        setValue
     } = useFormContext();
     return (
         <Controller
@@ -17,11 +18,13 @@ const Inputs: React.FC<InputIf> = ({ id, name, label, type, ...otherProps }) => 
                 <InputWrapper
                     {...otherProps}
                     {...field}
+                    placeholder={otherProps.placeholder}
                     inputProps={{ style: { height: `${otherProps.height}`, width: `${otherProps.width}` } }}
                     label={label}
                     type={type}
                     error={!!errors[name]}
                     helperText={errors[name] && `${errors[name]?.message}`}
+                    id={id}
                 />
             )}
         />

@@ -1,10 +1,14 @@
 import { styled } from '@mui/material/styles';
 import { Box } from '@mui/material';
+import { deviceComponents } from './../../Hook/useDevice';
 export const WrapperLayout = styled(Box)`
     display: flex;
     flex-direction: column;
     width: 100vw;
-    background: ##f5f5f5;
-    min-height: 100vh;
 `;
-export const ContainerLayout = styled(Box)``;
+export const ContainerLayout = styled(Box)`
+    margin-top: 88px;
+    @media screen and ${deviceComponents.tablet} {
+        margin-top: 46px;
+    }
+`;
