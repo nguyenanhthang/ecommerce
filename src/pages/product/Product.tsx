@@ -1,7 +1,14 @@
 import SideBar from 'layouts/SideBar/SideBar';
 import React, { useEffect, useMemo, useState } from 'react';
 import Footer from '../../layouts/Footer/Footer';
-import { ProductBanner, ProductContainer, ProductContent, ProductTool, ProductWrapper, GridProduct } from './Product.styled';
+import {
+    ProductBanner,
+    ProductContainer,
+    ProductContent,
+    ProductTool,
+    ProductWrapper,
+    GridProduct
+} from './Product.styled';
 import Products from './components/Product/Products';
 import BannerRelative from 'pages/Home/components/BannerRalative/BannerRelative';
 import images from 'assets';

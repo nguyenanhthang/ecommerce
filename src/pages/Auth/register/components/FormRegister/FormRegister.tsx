@@ -90,7 +90,7 @@ const FormRegister = () => {
         navigate(config.routes.login);
     };
     return (
-        <FormRegisterWrapper>
+        <FormRegisterWrapper md={5} lg={5} xs={12} sm={8}>
             <RegisterHeading>
                 <HeaderRegister variant='caption'>Register</HeaderRegister>
                 <DetailRegister variant='caption'>Create your account to get full access</DetailRegister>

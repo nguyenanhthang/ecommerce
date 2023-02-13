@@ -1,12 +1,12 @@
 import { styled } from '@mui/material/styles';
 import { Box, Typography } from '@mui/material';
-export const FormRegisterWrapper = styled(Box)`
+import Grid2 from '@mui/material/Unstable_Grid2';
+export const FormRegisterWrapper = styled(Grid2)`
     background: #ffff;
     position: absolute;
-    min-width: 40%;
     height: auto;
     box-shadow: 0px 10px 30px 0px rgb(13 12 13 / 20%);
-    padding: 2% 4%;
+    padding: 10px 40px;
     border-radius: 5px;
 `;
 export const RegisterHeading = styled(Box)`

@@ -9,9 +9,20 @@ export const login = async (data: any) => {
     return res;
 };
 export const registerAuth = async (data: any) => {
-    const url = config.routes.register;
-    const res = await request.post(url, data);
-    return res;
+    const bearer_token = `Bearer ${localStorage.getItem('token')}`;
+    try {
+        const Header = {
+            headers: {
+                Authorization: bearer_token
+            }
+        };
+        const url = config.routes.register;
+        const res = await request.post(url, data, Header);
+        return res;
+    } catch (err: any) {
+        // here display a message to the user or something else
+        console.error(err.message);
+    }
 };
 export const getUser = async () => {
     const bearer_token = `Bearer ${localStorage.getItem('token')}`;
