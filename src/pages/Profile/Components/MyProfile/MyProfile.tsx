@@ -115,7 +115,7 @@ const MyProfile: React.FC<Props> = ({ getUser }) => {
             </MyProfileWrapper>
             <MyAvatarWrapper xs={3}>
                 <MyAvatarContainer>
-                    <IconsComponent LinkIcons={getUser?.data?.data?.avatar} />
+                    <IconsComponent LinkIcons={'http://hieu.fresher.ameladev.click/' + getUser?.data?.data?.avatar} />
                     <input
                         type='file'
                         accept='image/*'

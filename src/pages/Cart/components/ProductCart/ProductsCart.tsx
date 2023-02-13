@@ -29,7 +29,6 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const [show, setShow] = React.useState(false);
-    const totalQuantity = useAppSelector((state) => state.product.totalQuantity);
     const addProduct = (product: any) => {
         dispatch(
             addCart({
@@ -60,6 +59,7 @@ const ProductsCart: React.FC<Props> = ({ dataCart }) => {
             </Grid>
             {dataCart.length !== 0 ? (
                 dataCart.map((product: any) => {
+                    console.log(product);
                     return (
                         <Grid sx={{ m: 0, display: 'flex' }}>
                             <Grid lg={6} xs={4}>

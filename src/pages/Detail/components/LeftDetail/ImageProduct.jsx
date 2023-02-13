@@ -21,10 +21,10 @@ const ImageProduct = ({ getDetailProduct }) => {
         <ImagesCarousel md={5.5} lg={5.5} sm={12} xs={12}>
             <Carousel
                 data={
-                    getDetailProduct
-                        ? getDetailProduct.product_gallery.map((el) => {
-                            return { image: 'http://hieu.fresher.ameladev.click/' + el?.path_image };
-                        })
+                    getDetailProduct?.product_gallery.length !== 0
+                        ? getDetailProduct?.product_gallery?.map((el) => {
+                              return { image: 'http://hieu.fresher.ameladev.click/' + el?.path_image };
+                          })
                         : data
                 }
                 width='100%'

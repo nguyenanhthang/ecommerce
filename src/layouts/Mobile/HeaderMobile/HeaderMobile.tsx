@@ -152,7 +152,11 @@ const HeaderMobile = (props: Props) => {
                         <IconButton>
                             {!getUser.isLoading && getUser.data && getUser.data.data ? (
                                 <InfoWrapper key={getUser.data.data.id}>
-                                    <IconsComponent LinkIcons={getUser.data.data.avatar} width={20} height={20} />
+                                    <IconsComponent
+                                        LinkIcons={'http://hieu.fresher.ameladev.click/' + getUser.data.data.avatar}
+                                        width={20}
+                                        height={20}
+                                    />
                                     <InfoUserName>{getUser.data.data.full_name}</InfoUserName>
                                     <NavListUser>
                                         {MenuItem.map((el: any, i: number) => {

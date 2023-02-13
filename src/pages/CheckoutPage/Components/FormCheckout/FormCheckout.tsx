@@ -22,7 +22,7 @@ const FormCheckout = (props: Props) => {
         formState: { isSubmitSuccessful, errors }
     } = methods;
     return (
-        <CheckOutFormWrap>
+        <CheckOutFormWrap lg={8} md={8}>
             <FormProvider {...methods}>
                 <CheckOutForm component='form'>
                     <CheckOutFormBox>

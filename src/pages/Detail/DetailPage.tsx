@@ -20,7 +20,6 @@ import { useParams } from 'react-router-dom';
 const DetailPage = () => {
     const userId: any = useParams();
     const getDetailProduct = useDetail(userId.id);
-    console.log(getDetailProduct?.data?.data);
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);

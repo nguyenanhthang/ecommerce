@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import {
@@ -34,9 +34,11 @@ type Props = {
 
 const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
     const dispatch = useAppDispatch();
-    const [toTalPrice, setTotalPrice] = React.useState(Number(getDetailProduct?.data?.product_price));
-    let [count, setCount] = React.useState(1);
-    const [value, setValue] = React.useState<number | null>(2);
+    const [toTalPrice, setTotalPrice] = useState(Number(getDetailProduct?.data?.product_price));
+    let [count, setCount] = useState(1);
+    const [value, setValue] = useState<number | null>(2);
+    const [getAtributeColor, setGetAtributeColor] = useState({});
+    const [getAtributeSize, setGetAtributeSize] = useState({});
     function incrementCount() {
         count = count + 1;
         setCount(count);
@@ -54,7 +56,8 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                 quantity: count,
                 productPrice: toTalPrice,
                 totalPrice: toTalPrice * count,
-                //size: 
+                size: getAtributeSize,
+                color: getAtributeColor
             })
         );
     };
@@ -87,6 +90,7 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                                 return (
                                     <ColorsProduct
                                         //onClick={() => handleTotalPrice(el.pivot.price)}
+                                        onClick={() => setGetAtributeColor(el)}
                                         key={i}
                                         variant='caption'
                                         sx={{ background: `${el.attr_value}`, cursor: 'pointer' }}
@@ -110,9 +114,10 @@ const ChooseOption: React.FC<Props> = ({ getDetailProduct }) => {
                     disablePortal
                     id='combo-box-demo'
                     options={getDetailProduct?.size.map((el: any) => {
-                        return { label: el.attr_name };
+                        return { id: el.id, label: el.attr_name };
                     })}
                     //onChange={(e, value: any) => handleTotalPrice(value.price)}
+                    onChange={(e, value: any) => setGetAtributeSize(value)}
                     sx={{ width: 300 }}
                     renderInput={(params) => <TextField {...params} label='Size' />}
                 />

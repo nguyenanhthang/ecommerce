@@ -38,7 +38,9 @@ export const productSlice = createSlice({
                     product_name: newItem.product_name,
                     productPrice: newItem.productPrice,
                     quantity: newItem.quantity,
-                    totalPrice: newItem.totalPrice
+                    totalPrice: newItem.totalPrice,
+                    size: newItem.size,
+                    color: newItem.color
                 });
             } else {
                 validDateCart.quantity += newItem.quantity;

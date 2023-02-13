@@ -1,10 +1,9 @@
 import { styled } from '@mui/material/styles';
-import { Box, Typography, CardMedia, Button } from '@mui/material';
-
-export const CheckoutCartPageWrap = styled(Box)`
+import { Box, Typography } from '@mui/material';
+import Grid from '@mui/material/Unstable_Grid2';
+export const CheckoutCartPageWrap = styled(Grid)`
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
     width: auto;
 `;
 export const CheckoutCartPageHeader = styled(Box)`

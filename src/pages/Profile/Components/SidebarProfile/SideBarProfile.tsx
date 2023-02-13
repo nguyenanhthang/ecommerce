@@ -36,7 +36,7 @@ const SideBarProfile: React.FC<Props> = ({ getUser }) => {
         <SideBarProfileGrid container xs={3}>
             <SideBarProfileWrapper item xs={12}>
                 <InfoProfile>
-                    <IconsComponent LinkIcons={getUser?.data?.data?.avatar} />
+                    <IconsComponent LinkIcons={'http://hieu.fresher.ameladev.click/' + getUser?.data?.data?.avatar} />
                     <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'baseline', marginLeft: '5px' }}>
                         <InfoNameProfile>Name: {getUser ? getUser.data.data.full_name : ''}</InfoNameProfile>
                         <ButtonComponent icon={<Create />} type='button' text='Edit Profile' border='none' />
